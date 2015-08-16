@@ -1,0 +1,10 @@
+Mundo 1 pintado = 0 0 685 600
+Mundo 10 pintado = 686 0 685 600
+Mundo 2 pintado = 0 601 685 600
+Mundo 3 pintado = 0 1202 685 600
+Mundo 4 pintado = 686 601 685 600
+Mundo 5 pintado = 686 1202 685 600
+Mundo 6 pintado = 1372 0 685 600
+Mundo 7 pintado = 1372 601 685 600
+Mundo 8 pintado = 2058 0 685 600
+Mundo 9 pintado = 1372 1202 685 600
