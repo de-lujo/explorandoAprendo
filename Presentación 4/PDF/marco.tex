@@ -1,0 +1,761 @@
+
+
+
+\chapter{Introducción}
+\label{intr}
+
+En Chile, una de las grandes misiones que tiene el sistema educativo, es fomentar el desarrollo de la educación en todos sus niveles, promoviendo el progreso integral de todas las personas, focalizado a generar igualdad de oportunidades y a la entrega del aprendizaje de calidad para todos los niños/as, jóvenes y adultos durante su vida \cite{REF1}.\\
+
+Uno de los enfoques donde el ministerio de educación se ha preocupado de realizar mejoras, son en las enseñanzas y cambios curricurales en las aulas de pre-kinder y kinder, donde se forman las habilidades y capacidades mínimas a niños de entre 3 a 6 años, para el aprendizaje durante su vida escolar y social.
+
+Pero no todos los niños han desarrollado las competencias que son requeridas en la educación básica, presentando dificultades en la comprensión y expresión en el lenguaje. Para estos niños que presentan estas dificultades y que no pueden ser explicados por: pérdida auditiva, daño cerebral, déficit intelectual o motor, factores socioambientales o emocionales, son clasificados como Trastorno Específico del Lenguaje (TEL) \cite{REF2}.\\
+
+El Trastorno Específico del Lenguaje (TEL), es un trastorno grave y duradero que afecta a la adquisición del lenguaje desde sus inicios, prolongándose durante la infancia y la adolescencia, pudiendo dejar en algunos casos secuelas significativas en la edad adulta.
+
+No todos los niños presentan los mismos síntomas y con la misma intensidad, en la comprensión, en la pronunciación, el uso de la sintaxis o en la capacidad de uso social del lenguaje y de la comunicación, por lo que se debe realizar actividades que abarquen el reforzamiento de las debilidades de cada niño \cite{REF3}.\\
+
+Es por ello, que la falta de integración de TICs en el desarrollo del lenguaje, imposibilitan que los niños estimulen sus sentidos, potenciando la capacidad de recepción y retención de información a través de recursos interactivos, que enseñen y refuercen el desarrollo psicomotor y el desarrollo cognitivo de cada niño. 
+Si consideramos que diversos estudios indican que se recuerda el 10\% de lo que se ve, el 20\% de lo que se oye, el 50\%, de lo que se ve y oye, y un 80\% de lo que se ve, oye y hace, la TICs cumplen un papel fundamental para la retención de información hacia el aprendizaje del niño, acercando  así un poco al mundo digital que se vive hoy en día \cite{REF4}.\\
+
+Si bien existen softwares pensados a niños que tengan transtorno específicos lenguaje, estas no reflejan la realidad chilena, sobre todo en el mundo de las aplicaciones móviles.\\
+
+En este trabajo de título veremos en el \textbf{Capitulo 2} el marco referencial, donde analizaremos el marco conceptual para el domino utilizado en el trabajo. También analizaremos el estado de arte, comparando las herramientas que abordan los problemas planteados.\\
+
+En el \textbf{Capítulo 3} veremos la definición del problema, la forma en que se llevan acabo las actividades según el sistema actual y la naturaleza del cambio de ello.
+Además se presenta la metodología de trabajo, la solución a implementar, cumpliendo el objetivo general y los objetivos específicos.
+También se incluye los requerimientos funcionales y no funcionales, con el diagrama conceptual, diagrama de caso de uso, específicando para cada caso de uso, su caso de uso expandido, diagrama de secuencia y el diagrama de estado, mostrando el  comportamiento general del sistema a desarrollar. \\
+
+
+En el \textbf{Capítulo 4} veremos el diseño de la aplicación, donde se analizarán todos los diagramas que representan el sistema, incluyendo el diseño arquitectónico donde se explicará la arquitectura a utilizar en el sistema, el diseño de la interfaz, representando los casos de usos establecidos en la etapa de análisis.\\
+También se establece el diseño lógico, encontrando el diagrama de clases, de despliegue y el de componente y por último el diseño de datos y de pruebas, donde se establecerán los testing a aplicar después de la implementación del sistema.\\
+
+
+A continuación en el \textbf{Capítulo 5}, se presenta la implementación del trabajo de título, que incluye las herramientas utilizadas para desarrollar el software, el hardware de desarrollo utilizado, el lenguaje de programación y el framework elegido, mostrando las pantallas de interfaz del sistema implementado.\\
+
+
+En el \textbf{Capítulo 6} se incluye la conclusión del trabajo de título.
+
+
+
+\chapter{Marco Referencial}
+\label{marco}
+Dentro el Marco Referencial analizaremos el marco conceptual necesario para comprender el dominio del trabajo de título utilizado, como tambien así, analizar las técnicas y herramientas existentes que se relacionan al problema planteado.
+
+\section{Marco conceptual}
+
+En el marco conceptual veremos los conceptos necesarios para entender el dominio del trabajo de título, como también comparar las herramientas existentes que abarcan a la problemática de transtorno específico del lenguaje. 
+
+\subsection{Definición del área del problema} \label{contexto}
+
+\normalsize
+
+A continuación se abordarán los conceptos y definiciones fundamentales, que se utilizarán durante el desarollo de este trabajo de título.
+
+
+\subsubsection{Trastorno específico del lenguaje (TEL)} \label{TEL}
+\vspace{2mm}
+\normalsize
+
+Trastorno específico del lenguaje conocido también como disfasia, es un trastorno grave y duradero que afecta a la adquisición del lenguaje desde sus inicio como también durante el desarrollo del lenguaje. 
+Se define como una dificultad del lenguaje que no es causada por algún déficit en el nivel neurológico, sensorial, intelectual o emocional, afectando el desarrollo del vocabulario, la gramática y las habilidades comunicativas.
+
+TEL no afecta de forma homogénea a cada persona detectada, por lo que afecta con diferentes grados de intensidad a cada componente del lenguaje (fonología, morfológia y sintaxis (morfosintaxis), semántica y pragmática). Puede afectar a la expresión del lenguaje como también a la comprensión del lenguaje.
+
+Las dificultades  y habilidades de los niños afectados evolucionan a medida que transcurre el tiempo, superando algunos problemas detectados y adquiriendo otros nuevos, que afectan en sus entornos sociales y escolares.
+
+En TEL el problema principal está enfocado en el lenguaje oral, pero también presentan problemas en otras áreas del desarrollo. Los niños con TEL tienen más probabilidad de tener problemas sociales, emocionales, de conducta y problemas significativos para la adquisición del aprendizaje del lenguaje \cite{atelga}.
+
+
+\subsubsection{Niveles del lenguaje} \label{nivelesdelenguaje}
+
+
+Dentro de los niveles de lenguaje que afecta TEL \cite{conciencia}, podemos encontrar los siguientes:
+
+
+\begin{itemize}
+	
+	\item \textbf{Nivel Fonológico}: 
+	
+	El sonido de las letras, palabras y la entonación de cada una de ellas. Los niños pueden pueden repetir las sílabas de una palabra pero no la palabra completa, lo mismo para las palabras nuevas. También presentando dificultades en articulaciones y modulaciones en palabras largas.
+	
+	\item \textbf{Nivel Semántico}: 
+	
+	El significado de las palabras. Los niños con TEL presentan un vocabulario restringido, reflejando una evidente dificultad en aprender nuevas palabras, dado que presentan falencias en la construcción de las representaciones fonológicas duraderas.
+	
+	También presentan problemas de lentitud  en el reconocimiento de palabras,  para denominar palabras  y dificultades en establecer relaciones léxicas. \\
+	
+	\item \textbf{Nivel Morfosintáctico}: 
+	
+	La categorización de las palabras, por ejemplo si son verbos, preposiciones, pronombres, entre otros. También  sobre la utilización de estas palabras en la formación y el empleo de las oraciones, que afectan a la complejidad de la sintaxis, llegando ser ininteligible el lenguaje. \\
+	
+	\item \textbf{Nivel Pragmático}: 
+	
+	El uso del lenguaje varía según el contexto. 
+	
+	Por ejemplo, en iniciaciones y mantenimientos de temas de conversación, algunos niños no presentan dificultades en adicionar temas nuevos dentro de la conversación, pero aún así presentan  problemas en mantener los mismos temas que ellos introducen o temas que los adultos introducen.
+	
+	En cambio en el discurso, presentan dificultades en mantener la estructura de un discurso, impidiendo la capacidad de responder preguntas literales referidas a un texto, como también, no aprovechan el recurso linguístico de la  narración, exposición o conversación.
+	
+	
+	
+\end{itemize}
+
+\subsection{Estado del Arte}
+\label{tec}
+\vspace{1mm}
+\normalsize
+
+En esta sección veremos las herramientas y técnicas encontradas, realizando un análisis de cada una ellas y generando una comparación entre ellas.  
+
+
+
+\subsubsection{Técnicas y métodos existentes}
+
+
+Dentro de la técnicas y métodos de evaluación para la detección de trastorno de lenguaje en niños, en Chile, se aplican 2 test con diferentes metodologías para la medición de TEL, que son las siguientes:
+
+\subsubsection{TECAL}
+
+Es un test para la comprensión auditiva del lenguaje (TECAL) en niños entre 3 a 6 años 11 meses, que consta de 101 items, donde 
+41 items evalúan el vocabulario, 48 items evalúan morfología y 12 items corresponde a sintaxis.
+
+Se aplican de forma individual y consiste que el niño escuche un estímulo auditivo y que asocie ese estímulo a la lámina presentada.
+
+Cada lámina contiene 3 dibujos, 1 dibujo que corresponde a la respuesta correcta, otro de constraste referente y el otro que actúa como distractor, anotando los resultados en una hoja de respuesta.
+
+Cada respuesta correcta corresponde a 1 punto, sumando los puntos de cada sección se establece la interpretación \cite{tecal}.
+
+\subsubsection{TEPROSIF}
+
+Es un test que evalúa los procesos de simplificación fonológica  en niños de 3 años  hasta 5 años 11 meses.
+
+Consta de 36 items, constituidos cada uno por una palabra. Las palabras tiene la característica de ser distinta metría (mono, bi, tri y polisílabos) con diferentes estructuras (sílaba trabadas, etc.).
+
+El test incluye 36 láminas en blanco negro la que cada una de ellas se encuentran divididas en dos mitades. En la mitad superior  se respresenta la palabra a evaluar y un objeto que crea el contexto para esa palabra. En la mitad inferior se 	encuentran  ambos dibujos que están relacionados.
+
+La modalidad aplicada pertenece a la imitación diferida, al cual permite que exista el tiempo necesario  en la audición de la palabra y la producción de esa palabra, para que el niño exprese su proceso fonológico \cite{teprosif}.\\
+
+\vspace{1mm}
+
+\normalsize
+
+\subsubsection{Herramientas existentes}
+
+Dentro de las herramientas relacionadas con el aprendizaje en el lenguaje, encontramos softwares y aplicaciones móviles que son aplicados a niños de rango 3 a 6 años. Estas herramientas son las siguientes:
+
+
+
+\vspace{2mm}
+\subsubsection{Nivel Semántico}
+
+\begin{itemize}
+	
+	\item \textbf{EXLER:} Desarrollada por la Escuela de Patología del Lenguaje (EPL), Barcelona.\\
+	El objetivo principal de este programa es el desarrollo léxico, enfocado a los niños con trastornos específicos del lenguaje.\\
+	La metodología utilizada es entregar diferentes campos semánticos (la casa, la cocina, el baño, el pescador y el pueblo del pescador), realizando para cada uno 5 tipos de actividades: Exploración del nombre, comprensión verbal, comprensión escrita, dictado y la denominación escrita \cite{exler}.\\
+	
+	El software de escritorio (Figura \ref{exler}) permite:
+	
+	\begin{itemize}
+		
+		\item Desarrollar y ampliar el vocabulario del niño.
+		\item Estimular la 	atención y la comprensión auditiva del niño.
+		\item Estimular y ejercitar la comprensión escrita.
+		\item Ejercitar la transcripción del lenguaje oral a lenguaje escrito.
+		\item Ayudar la correcta escritura de cada palabra.
+		
+	\end{itemize}
+	
+	\begin{figure}[htf]
+		\begin{center}
+			\includegraphics[width=9cm,height=5cm] {imagenes/exler.jpg}
+		\end{center}
+		\caption{Programa EXLER, EPL} \label{exler}
+	\end{figure}
+	
+	
+	\newpage
+	\item \textbf{Nociones Espaciales:} Aplicación móvil creada por la compañía Fonolab \cite{nociones}, Santiago de Chile.
+	
+	Nociones Espaciales (Figura \ref{nociones}) es un juego en donde el niño deberá arrastrar y ubicar cada elemento en la posición en la que corresponda.
+	
+	El juego cuenta con 12 etapas, y a medida que avanza cada etapa, se aumenta la complejitud del juego.
+	
+	El juego se encuentra disponible en Android y IOS por un valor de \$ 5 dólares.
+	Usuarios que han comprado e instalado la aplicación: 5.\\
+	
+	
+\end{itemize}
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=6cm] {imagenes/espaciales.png}
+	\end{center}
+	\caption{Nociones Espaciales, Fonolab}\label{nociones}
+\end{figure}
+
+
+\vspace{2mm}
+\subsubsection{Nivel Morfosintáctico}
+
+\begin{itemize}
+	\item \textbf{ESPIRAL Morfosintaxis:} Software de escritorio desarrollado por Onda Educa \cite{morfo}, Zaragoza.
+	
+	Esta herramienta (Figura \ref{espiral}) permite trabajar morfemas dependientes y determinantes, morfología verbal, interrogaciones, pronombres, preposiciones y conjugaciones verbales.
+	
+	El software consta de dos grandes bloques, conteniendo cada bloque 6 etapas que desarrollan distintas actividades, apoyado con imágenes intuitivas, función de ayuda, además de láminas manipulativas, enseñando de forma interactiva, apuntando el trabajo individual y al trabajo grupal.
+	
+	
+	\begin{figure}[htf]
+		\begin{center}
+			\includegraphics[width=10cm,height=6cm] {imagenes/espiral.jpg}
+		\end{center}
+		\caption{ESPIRAL Morfosintaxis, Onda Educa}\label{espiral}
+	\end{figure}	
+	
+	\item \textbf{La frase y yo. Estructurando el lenguaje:} Programa creado por Eugenio Corbalán \cite{recursos}.
+	
+	Se centra en el nivel morfosintáctico, permitiendo dentro de sus actividades, el trabajo  de la esructura de frases sencillas S-V-C con apoyo visual, utilizando situaciones de la vida diaria y más cercanas a los niños (Figura \ref{frase}).\\
+	
+	\begin{figure}[htf]
+		\begin{center}
+			\includegraphics[width=10cm,height=6cm] {imagenes/frase.jpg}
+		\end{center}
+		\caption{La frase y yo. Estructurando el lenguaje, Eugenio Corbalán}\label{frase}
+	\end{figure}
+	
+	
+	
+\end{itemize}
+
+\newpage
+\vspace{2mm}
+\subsubsection{Nivel Fonológico}
+
+\begin{itemize}
+	
+	\item \textbf{Segmenta Sílabas:} Aplicación móvil creada por la compañía Fonolab \cite{segmenta}, Santiago de Chile.
+	
+	Segmenta Sílaba (Figura \ref{segfon}) es un juego que tiene por objetivo estimular y potenciar el desarrollo de la conciencia fonológica a través de la segmentación y manipulación de sílabas.
+	Durante el juego, el niño controla un personaje  que deberá ir saltando para "atrapar" las sílabas que corresponde a cada palabra. Así el niño aprenderá a asociar las sílabas de cada palabra.
+	
+	El juego se encuentra disponible en Android y IOS por un valor de \$ 2 dólares.
+	Usuarios que han comprado e instalado la aplicación: 5.
+	
+	\begin{figure}[htf]
+		\begin{center}
+			\includegraphics[width=10cm,height=6cm] {imagenes/silabas.png}
+		\end{center}
+		\caption{Segmenta Sílabas, Fonolab} \label{segfon}
+	\end{figure}
+	
+	
+	\newpage
+	\item \textbf{Proyect@ Logomon}: Aplicación móvil (Videojuego) creado por Daniel Alonso Hernández Jara, Ingeniero Civil en Informática, Universidad de Valparaíso.
+	El videojuego (Figura \ref{log}) que se basa en el uso de pseudopalabras o logotomas, los cuales crean una representación de facciones sonoras, sin sentido ni significado, formadas por consonantes y vocales arbitrarias.
+	Para esto se utiliza el reconocimiento de voz para la pronunciación de logotomas, evaluando con pruebas de diagnósticos \cite{logo}.
+	
+	\begin{figure}[htf]
+		\begin{center}
+			\includegraphics[width=10cm,height=6cm] {imagenes/logomon.png}
+		\end{center}
+		\caption{Proyect@ Logomon, Universidad de Valparaíso}\label{log}
+	\end{figure}
+	
+	
+	
+\end{itemize}
+
+
+\newpage
+\vspace{2mm}
+
+\subsection{Comparación entre técnicas y herramientas existentes} \label{comp}
+
+
+
+Entre las técnicas y herramientas investigadas, podemos diferenciar que cada herramienta y test estan enfocadas a cada nivel del lenguaje, por lo que no hay un software que desarrolle la mayoría de los niveles del lenguaje (Tabla \ref{compherra}).
+
+Dentro de los recursos de cada software, los programas de escritorio presentan láminas y dibujos  de forma monotoma, en comparación de la forma interactiva que se entrega en las aplicaciones móviles investigadas.
+
+A pesar que encontramos aplicaciones móviles que reflejen la realidad chilena enfocadas a TEL, estas son muy escasas y son de pagos, imposibilitando a las personas que no tienen los medios para pagar en una tienda de aplicaciones móviles.
+
+La gran mayoría de los software investigados no interactúan con la voz del niño, a excepción de la herramienta "Proyect@ Logomon" que utiliza el reconocimiento de voz en las actividades del juego.\\
+Tomando en consideración lo descrito anteriormente, la aplicación móvil a desarrollar en el trabajo de título, innovorá con la inclusión de varios niveles del lenguaje, contar con recursos interactivos, además de grabar la voz del niño para desarrollar el nivel fonológico. 
+Además la aplicación móvil a desarrollar será totalmente gratuita.
+
+
+\begin{table}[htf]
+	\begin{center}
+		\begin{tabular}{| p{2.7cm} | p{1.7cm}  | p{1.9cm} |p{2.3cm} | p{1.8cm} |p{1.8cm} | p{1.8cm} |}
+			\hline
+			
+			\multicolumn{7}{|c|}{\textbf{\textit{Herramientas existentes}}} \\ \hline \hline
+			\textit{\textbf{Característica}} & 
+			\textit{\textbf{EXLER}} &
+			\textit{\textbf{Nociones Espaciales}} & 
+			\textit{\textbf{Espiral Morfosintaxis}} & 
+			\textit{\textbf{La frase y yo}} & 
+			\textit{\textbf{Segmenta Sílabas}} & 
+			\textit{\textbf{Proyect@ Logomon}} \\ \hline \hline
+			
+			
+			Tipo de 
+			
+			Software& 
+			Escritorio& 
+			Móvil& 
+			Escritorio& 
+			Web& 
+			Móvil& 
+			Móvil\\ \hline
+			
+			Realidad 
+			
+			Chilena& 
+			No& 
+			Si& 
+			No& 
+			No& 
+			Si& 
+			Si\\ \hline
+			
+			Licencia& 
+			Pago& 
+			Pago& 
+			Pago& 
+			Gratis& 
+			Pago& 
+			Gratis\\ \hline
+			
+			Voz del 
+			
+			usuario& 
+			No& 
+			No& 
+			No& 
+			No& 
+			No& 
+			Si\\ \hline
+			
+			Nivel 
+			
+			Semántico& 
+			Si&
+			Si&
+			No&
+			No&
+			No&
+			No \\ \hline
+			
+			Nivel
+			
+			Morfosintáctico& 
+			No&
+			No&
+			Si&
+			Si&
+			No&
+			No \\ \hline
+			
+			Nivel
+			
+			Fonológico& 
+			No&
+			No&
+			No&
+			No&
+			Si&
+			Si \\ \hline
+			
+		\end{tabular}
+	\end{center}
+	\caption{Comparación de las herramientas investigadas}\label{compherra}
+\end{table}
+
+\chapter{Definición del Problema y Análisis}
+\label{definicion}
+
+\section{Definición del problema} \label{prob}
+
+\vspace{1mm}
+
+\normalsize
+
+La falta de innovación en integrar TICs en las aulas de las escuelas de lenguajes, impiden enseñar de forma dinámica e interactiva sobre el mejoramiento de las falencias detectadas en los niños con trastorno en el lenguaje, considerando que entre 3\% - 10\% de la población infantil presenta algún tipo de déficit en el lenguaje \cite {REF5}.\\
+
+Problemas en la expresión y comprensión en el lenguaje oral, carencia en las reglas gramaticales,  dificultades en articular los fonemas de una palabra, dificultades para discriminar sonidos (tonos lingüísticos y no lingüísticos), son las falencias que presentan un niño detectado con trastorno  en el lenguaje \cite{REF6} .
+
+Si estos problemas no son tratados a tiempo, con llevan al retraso en el aprendizaje durante toda su vida escolar, afectando a su vida social y futuramente su vida laboral.\\
+
+Si bien existen aplicaciones pensado a niños desde los 3-6 años, no estan enfocados a los pequeños que presentan algún grado del  trastorno en el lenguaje, sólo abarcan un nivel del lenguaje, imposibilitando  mejorar y reforzar las debilidades detectadas en todos los niveles del lenguaje, que pueden ser centrados en una sola aplicación.
+
+
+\newpage
+\vspace{1mm}
+
+\subsection{Sistema actual y naturaleza del cambio}
+
+\vspace{1mm}
+
+\normalsize
+
+Actualmente los sistemas enfocados a potenciar el desarrollo del lenguaje en TEL, se centran en un nivel específico del lenguaje, utilizando imágenes, palabras y audios para las actividades de cada software.\\
+
+También el uso de TICs en aulas de educación parvularia es casi nula, dado que no cuentan con computadores y dispositivos móviles para la utilización de software que permitan mejorar el lenguaje de los niños, además que la gran mayoría de los software desarrollados, deben ser adqueridos a través de un medio de pago para obtener la licencia del software, limitando más aún el acceso a escuelas, colegios y jardines que carecen el recurso para obtenerlo.\\ 
+
+Por lo mencionado anteriormente, se desarrollará una aplicación móvil gratuita, que permita reunir diferentes actividades en un juego para niños entre 3 a 6 años con trastorno específico del lenguaje, enfocado en los niveles Fonológico, Semántico y Morfosintáctico.
+Esto permitirá que cada niño utilice otra forma de realizar actividades que actualmente lo realizan en papel, entregando las enseñanzas interactivamente.\\
+
+La aplicación móvil tendrá la opción de seleccionar dos ambientes, en las cuales cada una tendrá tres actividades que es el cuento, las adivinanzas y el pictograma musica, diversificando el contenido en la aplicación. 
+
+
+\vspace{1mm}
+\subsection{Metodología}
+
+La metodología a utilizar durante todo el proyecto será esencialmente en cascada (Figura \ref{meto}), a excepción de la etapa de desarrollo que será de forma incremental, donde se realizarán pruebas unitarias a medida que las actividades se vayan implementando.\\
+
+En la etapa de análisis se investigará sobre los conceptos involucrados en el trabajo de título, sobre las herramientas existentes y por último el levantamiento de requerimientos funcionales y no funcionales que se desarrollará.\\
+
+Luego en la etapa de diseño, se obtendran los prototipos preliminares y finales de la interfaz de la aplicación. Además se incluirá la documentación sobre la construcción del sistema, a través de diagramas y modelos.\\
+
+En la etapa de desarrollo, la implementación del sistema será incremental, encontrando dos ambientes del juego, en donde cada ambiente se desarrollará 3 actividades. Cada ambiente tendrá testing de desarrollo, donde se realizarán pruebas unitarias.
+
+\newpage
+Por otro lado, una vez finalizada la etapa de desarrollo y testing de desarrollo, se ejecutará la etapa de testing general, en donde se realizará una prueba de integración sobre las funcionalidades implementadas y testing con usuarios sobre la usabilidad de la aplicación.\\
+
+Por último la etapa de implantanción, donde se pondrá en la puesta en marcha la aplicación, donde podrá ser utilizada y descargada desde la tienda de android.\\
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=14cm] {imagenes/metodologia.png}
+	\end{center}
+	\caption{Metodología utilizada en el trabajo de título.}\label{meto}
+\end{figure}
+
+
+\clearpage
+\newpage
+\section{Solución propuesta}
+
+\vspace{1mm}
+
+\normalsize
+
+Desarrollo de una aplicación móvil gratuita (juego) para dispositivos Tablets de bajo costo (Android), que permita:
+
+\begin{itemize}
+	
+	\item Seleccionar dos ambientes en el juego, para generar tres actividades, el cuento, las adivinanzas y el pictograma musical, presentando diversos recursos interactivos.
+	Ej. Un ambiente tendrá dos cuentos, y para cada cuento, un juego de adivinazas y un juego de pictograma musical.
+	
+	\item La aplicación tendrá dos personajes principales los cuales podrán ser elegido por el niño. Ej. Un niño o una niña.
+	
+	
+	\item Creación de un diccionario en las actividades, que permita al niño ampliar su vocabulario, incluyendo imágenes y palabras que podrán incluir sonido de éstas.
+	
+	
+	\item Inclusión de sonidos en las diferentes actividades que mejoren la conciencia fonológica de cada niño, asociando el sonido a las imágenes o a las palabras.
+	Ej. Cuando aparece la imagen o palabra del león en el diccionario, podrá reproducir el sonido de la palabra león o el rugido del león.
+		
+
+	\item En la actividades de las adivinanzas tendrán la opción de "pistas", que ayudarán al niño a resolver cada pregunta.
+	
+	\item En la actividades de las pictograma musical tendrán la opción de "reproducir canción", que ayudará al niño a reproducir nuevamente la canción, permitiendo al niño completar más facilmente las imágenes correctas en la letra.
+	
+	\item Grabar las voces del niño en las actividades, permitiendo reproducir esa grabación para mejorar el área de la fonética. 
+	Ej. Grabar la voz del niño en la actividad pictograma musical, para reproducir en conjunto de una canción.
+	
+	\item Adaptar las actividades que trabajan en el lenguaje, a la realidad chilena.
+	
+	
+\end{itemize}
+
+\newpage
+\vspace{1mm}
+\subsection{Objetivos}
+
+
+\vspace{2mm}
+\subsubsection{Objetivo General}
+
+Desarrollar una aplicación móvil  que permita potenciar el aprendizaje del lenguaje, realizando soporte en el nivel de fonológico,  el nivel semántico y el nivel morfosintáctico, en niños entre 3-6 años, por medio de juegos interactivos.
+
+
+\vspace{2mm}
+\subsubsection{Objetivos Específicos}
+\begin{itemize}
+	
+	\item Generar y desarrollar  distintos ambientes o escenarios, que permitan diversificar el contenido y las actividades dentro de la aplicación. 
+	Ej. Una selva, la Antártida. 
+	
+	\item Establecer y diseñar las actividades del cuento, adivinanzas y pictograma musical, que estarán disponible en la aplicación.
+	
+	\item Integración de un diccionario para ampliar el vocabulario del niño.
+	
+	\item Gestionar capturas de voces, que permitan reforzar la conciencia fonológica en los niños.
+	
+	\item Integración de una barra herramienta que permita acceder al diccionario y grabar la voz del niño, disponible en las actividades de la aplicación.
+	
+	\item Diseñar e incluir una introducción que permita explicar la aplicación y sus herramientas.
+	
+	
+\end{itemize}
+
+
+\clearpage
+\newpage
+\vspace{1mm}
+\subsection{Especificación de requerimientos}
+
+Dentro esta sección, se especificarán los requerimientos del sistema, los tipos de usuario y la documentación de los diagramas que reflejen el sistema a desarrollar durante el trabajo de título.
+
+\vspace{2mm}
+\subsubsection{Requerimientos Funcionales}
+
+Los requerimientos funcionales son todos aquellos que el cliente desea que realice la aplicación o sistema, identificados en la Tabla \ref{reqfun} y Tabla \ref{reqfun2}:
+
+\begin{table}[htf]
+	\begin{center}
+		\begin{tabular}{| p{2.5cm} | p{8cm}|}
+			\hline
+			
+			\multicolumn{2}{|c|}{\textbf{\textit{Requerimientos Funcionales}}} \\ \hline \hline
+			\textit{\textbf{Identificador}} & 
+			\textit{\textbf{Requerimiento}} \\ \hline \hline
+			
+			
+			REF001&  
+			Creación e incorporación de un micrófono con la funcionalidad de grabar la voz del niño, pudiendo reproducir esa grabación en determinadas actividades en cada ambiente.\\ \hline
+			
+			REF002& 
+			Utilización de sonidos en imágenes y palabras durante el juego.\\ \hline
+			
+			REF003& 
+			Utilización de Drag and drop en imágenes y palabras en la actividad del pictograma musical .\\ \hline
+			
+			REF004& 
+			Creación y selección de dos ambientes del juego.\\ \hline
+			
+			REF005&
+			Creación y selección de los personajes protagonistas del juego.\\ \hline
+			
+			REF006&
+			Inclusión de música en la pantalla principal.\\ \hline
+			
+			REF007&
+			Creación y elección de 2 cuentos por cada ambiente.\\ \hline
+			
+			REF008&
+			Creación e inclusión de una presentación para la explicar la introducción de la aplicación y también las herramientas de la aplicación.\\ \hline
+			
+			REF009&
+			Creación de un diccionario de palabras asociadas a las imágenes de la aplicación.\\ \hline
+			
+			
+			
+			
+		\end{tabular}
+	\end{center}
+	\caption{Tabla de los requerimientos funcionales a abordar} \label{reqfun}
+\end{table}
+
+
+\clearpage
+\newpage
+
+\begin{table}[htf]
+	\begin{center}
+		\begin{tabular}{| p{2.5cm} | p{8cm}|}
+			\hline
+			
+			\multicolumn{2}{|c|}{\textbf{\textit{Requerimientos Funcionales}}} \\ \hline \hline
+			\textit{\textbf{Identificador}} & 
+			\textit{\textbf{Requerimiento}} \\ \hline \hline
+			
+			REF010&
+			Creación de un diccionario en cada ambiente, quién se encargará de mostrar el significado de las imágenes y palabras.\\ \hline
+			
+			REF011&
+			Al finalizar un cuento, se debe elegir la actividad adivinanza o pictograma musical.\\ \hline
+			
+			REF012&
+			En la actividad pictograma musical, debe existir un boton de música el cual se reproducirá la canción asociada a la actividad.\\ \hline
+			
+			REF013&
+			En la actividad adivinanzas debe existir un boton de pistas, que ayuden a resolver la actividad en el juego.\\ \hline
+			
+			REF014&
+			Creación de un ícono del planeta tierra en todas las actividades, indicando el retroceso a la pantalla de selección de ambientes.\\ \hline
+			
+		\end{tabular}
+	\end{center}	
+	\caption{Tabla de los requerimientos funcionales abordar}\label{reqfun2}
+\end{table}
+
+
+
+\vspace{2mm}
+\subsubsection{Requerimientos No Funcionales}
+
+Los requerimientos No funcionales son todos aquellos requerimientos que pretende restringir la aplicación o sistema, identificados en la Tabla \ref{reqno}.
+
+\begin{table}[htf]
+	\begin{center}
+		\begin{tabular}{| p{2.5cm} | p{8cm}|}
+			\hline
+			
+			\multicolumn{2}{|c|}{\textbf{\textit{Requerimientos No Funcionales}}} \\ \hline \hline
+			\textit{\textbf{Identificador}} & 
+			\textit{\textbf{Requerimiento}} \\ \hline \hline
+			
+			
+			RNF001&  
+			Las transiciones de una pantalla a otra debe ser máximo 2 segundos.\\ \hline
+			
+			RNF002& 
+			La aplicación debe ser usable e interactivo para el niño.\\ \hline
+			
+			RNF003& 
+			La aplicación debe ser desarrollada en Android.\\ \hline	
+			
+		\end{tabular}
+	\end{center}
+	\caption{Tabla de los requerimientos no funcionales a abordar} \label{reqno}
+\end{table}
+
+
+
+\clearpage
+\newpage
+\vspace{1mm}
+\subsection{Tipos de Usuarios}
+
+Los usuarios que se ven involucrados en la aplicación son los siguientes:
+
+\begin{itemize}
+	
+	\item \textbf{Educadoras Parvularias}: Usuario que utilizará la aplicación como una herramienta de apoyo en sus clases en escuelas de lenguajes, integrando TICs en las aulas, utilizándolo como una fuente de recursos interactivos.
+	
+	\item \textbf{Niños de 3 a 6 años}: Usuario final quién va dirigido la aplicación. Podrá desarrollar 3 actividades por cada ambiente, en donde cada actividad ayudará a mejorar las falencias para cada nivel del lenguaje.
+	
+\end{itemize}
+
+\vspace{1mm}
+\subsection{Modelo de Conceptual}
+
+En la Figura \ref{concep} presenta el modelo conceptual, donde establece las relaciones que existen entre las entidades del sistema.
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=14cm,height=10cm] {imagenes/ModeloConceptual.png}
+	\end{center}
+	\caption{Modelo Conceptual generado.}\label{concep}
+\end{figure}
+
+
+
+\vspace{1mm}
+\subsection{Diagrama de Casos de Usos}
+
+En el diagrama de caso de uso Figura \ref{diacaso}, veremos la función de cada actor en el sistema, entendiendo el comportamiento que tendrá la aplicación.
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=16cm,height=12cm] {imagenes/CasosUsos.png}
+	\end{center}
+	\caption{Diagrama de Casos de Usos generado.}\label{diacaso}
+\end{figure}
+
+
+\clearpage
+\newpage
+\vspace{1mm}
+\subsection{Casos de Usos Expandidos}
+
+En esta sección se detallará los casos de usos identificados en la Figura \ref{diacaso}, estableciendo la interacción entre los casos de usos y los requerimientos funcionales asociados a ellos.
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU001 \\
+		
+		{\bf Nombre} &  Ver Presentación  \\
+		
+		{\bf Actor} &   Niño, Educadora Parvularia. \\
+		
+		{\bf Propósito} & Ver la presentación de la aplicación y la introducción de las herramientas. \\
+		
+		{\bf Resumen} & El niño y la educadora podrán ver la introducción de la aplicación. \\
+		
+		{\bf Precondición} &     -       \\
+		
+		{\bf Ref. Cruzadas} &  REF008.      \\
+		
+		& \\
+	\end{tabular}
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora presionará empezar introducción. &            \\
+		
+		& 2. El sistema mostrará un video explicativo sobre la introducción del juego y la explicación de las herramientas. \\
+		
+		3. El niño / educadora finalizará el video pulsando el botón siguiente.& \\
+		
+		& 4. Se procede al siguiente caso de uso.\\ \hline
+		
+		\multicolumn{2}{|c|}{{\bf Curso Alternativo }} \\
+		\hline
+		3 El niño / educadora volverá a ver nuevamente el video, seleccionando el botón volver a ver. & \\
+		
+		& 4 El sistema mostrará nuevamente el video de presentación. \\ \hline
+		
+	\end{tabular} 
+	
+	\caption{Caso de Uso Expandido: ver Presentación.}\label{verpre}
+\end{table}
+
+Para obtener todas las específicaciones de los casos de usos extendidos, visitar el \textbf{Apéndice A} adjuntado en este trabajo de título.
+
+\vspace{1mm}
+
+
+\clearpage
+\newpage
+\subsection{Diagramas de Secuencias}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS01.png}
+	\end{center}
+	\caption{Caso de uso: Ver Presentación}
+\end{figure}
+
+Para obtener todos los Diagramas de Secuencias, podrán visitar el \textbf{Apéndice B} adjuntado en este trabajo de título.
+
+
+\clearpage
+\newpage
+\vspace{1mm}
+\subsection{Diagramas de Estados}
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE01.png}
+	\end{center}
+	\caption{Caso de uso: Ver Presentación}
+\end{figure}
+
+Para obtener todos los Diagramas de Estados, podrán visitar el \textbf{Apéndice C} adjuntado en este trabajo de título.
+
+
+\clearpage
+

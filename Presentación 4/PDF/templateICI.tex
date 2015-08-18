@@ -1,0 +1,90 @@
+\documentclass[12pt,letterpaper]{report}
+
+\marginparsep 0pt
+\textwidth 6in
+\topmargin 0pt
+\headsep .5in
+\textheight 9.2in
+\voffset = 0pt
+\hoffset = 0pt
+\marginparwidth = 0pt \oddsidemargin = 0pt \sloppy
+
+%Dimensiones de la página
+\usepackage[left=2.5cm,top=3cm,right=2.5cm,bottom=2.5cm]{geometry}
+%Sangría
+\setlength{\parindent}{1cm}
+
+%Numeracion
+\pagenumbering{arabic}
+
+\usepackage{templateICI}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage[dvips]{epsfig}
+\usepackage{times}
+\usepackage[latin1]{inputenc}
+\usepackage[dvips]{graphicx}
+\usepackage[usenames]{color}
+\usepackage[spanish]{babel}
+\newcommand{\ie}{i.e.}
+\newcommand {\out}[1]{}
+\newtheorem{definicion}{Definicion}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage[]{fontenc}
+\usepackage{hyperref}
+
+\renewcommand{\shorthandsspanish}{}
+
+\addto\captionsspanish{
+\def\listtablename{Índice de tablas}
+\def\tablename{Tabla}}
+
+\sloppy
+
+\begin{document}
+	\title{\textbf{Desarrollo de una aplicación móvil que permita potenciar el desarrollo del lenguaje, en niños entre 3 a 6 años con trastorno específico en el lenguaje (TEL)}}
+	\author{\textbf{Ian Franco Quiroga Farías}}
+	\principaladviser{Carlos Becerra Castro}
+	\coprincipaladviser{}
+	\firstreader{}
+	
+	\beforepreface
+	\prefacesection{Resumen}
+	
+	La integración de TICs en el área de la educación, permite generar recursos interactivos para el aprendizaje, entregando materiales didácticos que enseñen y motiven el desarrollo psicomotor y cognitivo de cada persona.
+	
+	Dentro del área de educación, encontramos las escuelas de lenguajes, que se encargan de reforzar, ayudar y enseñar a niños entre 3 a 6 años, con dificultades en la expresión y comprensión en el lenguaje. Estos niños, presentan un grado de trastorno específico del lenguaje (TEL).
+	
+	La falta de innovación e integración TICs en las escuelas de lenguajes, impiden las enseñanzas dinámicas de las actividades que actualmente se realizan en papel. 
+	Si bien existen aplicaciones móviles que realicen actividades para los niños, la gran mayoría no reflejan la realidad chilena ni estan enfocados a niños con TEL.
+	
+	Es por ello, tomando los beneficios de usar las TICs en la educación, se propone crear una aplicación móvil que permita realizar distintas actividades, enseñando y reforzando los niveles fonológico, semántico y morfosintáctico del lenguaje.
+\afterpreface
+
+\listoffigures
+\listoftables
+%Aqui deben incluir el fuente de cada capitulo, sin su encabezado.
+\include{marco}
+\include{diseno}
+\include{implementacion}
+
+%\include{capitulo4}
+%\include{capitulo5}
+
+%\appendix
+
+%\include{apendice}
+
+%\include{appendix1}
+%\include{appendix2}
+%\include{appendix3}
+
+\bibliographystyle{plain}
+\bibliography{template,informe}
+%\bibliography{informe}
+
+\end{document} 

@@ -1,0 +1,294 @@
+\chapter{Implementación}
+\label{capimplementacion}
+En esta sección se abordarán  las herramientas utilizadas durante el desarrollo de la aplicación, entregando  las especificaciones técnicas  y la descripción de cada una de ellas. 
+
+
+\section{Herramientas de Software}\label{herraSoftware}
+
+Para el desarrollo de la aplicación, se ocupó un entorno de desarrollo ligero formado por el editor de texto \textbf{Sublime Text}\cite{sublime} y el plugin \textbf{Corona editor}\cite{fuse}.
+
+\begin{itemize}
+	
+\item \textbf{Sublime Text 3.0} : Editor de texto gratuito sofisticado que permite escribir el código del programa. Además es extensible, permitiendo la integración de plugins que ayuden a configurar nuestro IDE.
+
+\item \textbf{Corona Editor} : Plugin gratuito para Sublime Text instalable desde el package control plugin de Sublime Text.\\
+Corona Editor entrega herramientas de depuración, debugueo, completación de código, documentación, consola y compilación de código. 
+	
+\end{itemize}
+
+
+\section{Hardware de Desarrollo}\label{hardDesarrollo}
+
+Para desarrollar el programa se utilizó el siguiente equipo con las siguientes especificaciones técnicas:
+
+\begin{itemize}
+
+\item \textbf{Modelo}: Samsung GALAXY Tab 2 (7.0)
+\item \textbf{Tamaño}: 600 x 1024 pixels, 7.0 pulgadas
+\item \textbf{Memoria}: 1GB RAM
+\item \textbf{Procesador}: Procesador dual core 1GHz
+\item \textbf{Almacenamiento}: 8GB
+\item \textbf{Sistema Operativo}: Android OS, v4.0 Ice Cream Sandwich
+
+\end{itemize}
+
+
+
+
+\section{Lenguajes de Programación}\label{lengProgra}
+
+El lenguaje de programación utilizado para desarrollar el trabajo de título está determinado por el framework seleccionado, que corresponde al lenguaje \textbf{Lua} \cite{lua}.\\
+
+
+Lua, es un lenguaje de programación extensible diseñado para una programación procedimental con utilidades para la descripción de datos.
+Ofrece soporte para la programación orientada a objeto, programación funcional y programación orientada a datos.\\
+
+Lua es usado como un lenguaje de script potente y ligero para cualquier programa que lo necesite, implementado con las librerías escritas en el lenguaje C.\\
+
+Además, Lua es un lenguaje robusto probado y utilizado en muchas aplicaciones, como por ejemplo, MySQL Worbench y  VLC media player. \\
+También es utilizado principalmente en la construcción y desarrollo de juegos, por ejemplo:
+
+
+\begin{itemize}
+	
+	\item Angry Birds
+	\item Crysis
+	\item Farcry
+	\item L.A Noire
+	\item The Witcher
+	\item World of Warcraft
+	
+\end{itemize}
+
+
+\clearpage
+\newpage
+\section{Framework}\label{frameLib}
+
+El framework elegido corresponde a \textbf{Corona SDK} \cite{corona}.\\
+
+\textbf{Corona SDK} es un framework ocupado esencialmente para la creación de juegos para dispositivos móviles. Se basa en el lenguaje de programación Lua de fácil aprendizaje, que en conjunto de APIs, permiten añadir características con pocas líneas de código.\\
+
+\textbf{Corona SDK} permite publicar para iOS, Android, Kindle Fire, Nook y Windows 8 Phone, a partir de una sola base de código.\\
+
+Se ha escogido el framework \textbf{Corona SDK}, por las siguientes razones:
+
+\begin{itemize}
+	
+	\item \textbf{Integración de OpenGL-ES}: Permite utilizar funcionalidades que manipulen la pantalla del programa, permitiendo crear la funcionalidad drag and drop, detectar choques de objetos en tiempo de ejecución y la creación de animaciones a través de pocas líneas de código.
+	
+	\item \textbf{Desarrollo de multiplataforma}: Corona nos permite crear aplicaciones tanto para iOS (iPhone y iPad) como también en móviles Android.
+	
+	\item \textbf{Rendimiento}: Corona está optimizado para hacer uso de las características de hardware aceleración, dando como resultado un alto rendimiento en juegos y aplicaciones.
+	
+	\item \textbf{Carasterísticas del dispositivo}: Posee acceso y control del dispositivo y del hardware, como por ejemplo, cámara, acelerómetro, GPS y especialmente el acceso al micrófono, utilizado en el desarrollo de la aplicación del trabajo de título.
+	
+	
+	\item \textbf{Nivel de aprendizaje}: Corona utiliza el lenguaje Lua que es potente y  fácil de aprender.
+	
+	\item \textbf{Documentación}: Corona tiene una comunidad donde ayuda a los desarrolladores a resolver problemas, aportar funcionalidades desarrolladas en sus aplicaciones. Además cuenta con la específicaciónd de cada una de sus librerías, con ejemplos que ayudan a construir la aplicación rápidamente. 
+	
+	
+	\item \textbf{Licencia}: Corona SDK tiene una licencia gratuita, que nos permite publicar sin ningún problema en tiendas de carácter comerciales, como por ejemplo Google Play.
+	
+	
+\end{itemize}
+
+
+
+\clearpage
+\newpage
+\section{Interfaces del Sistema}\label{interSis}
+
+Durante la etapa de implementación se obtuvieron las siguientes interfaces:
+
+
+\subsubsection{Introducción de la aplicación}
+
+En esta pantalla se da comienzo a la aplicación, entregando la temática que se desarrollará durante la historia (Figura\ref{intApli}) .
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/introduccion.PNG}
+	\end{center}
+	\caption{Introducción a la aplicación.}\label{intApli}
+\end{figure}
+
+\clearpage
+\newpage
+\subsubsection{Selección de Personaje}
+
+El usuario podrá elegir su personaje, teniendo la posibilidad de elegir entre niño o niña (Figura\ref{selPer}) .
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/seleccionPersonaje.PNG}
+	\end{center}
+	\caption{Selección de Personaje.}\label{selPer}
+\end{figure}
+
+
+\subsubsection{Selección de Ambiente}
+
+En esta pantalla se explicará el ambiente Sabana, indicando sus características generales de ella (Figura\ref{selAmb}) .
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/seleccionAmbiente.PNG}
+	\end{center}
+	\caption{Selección de Ambiente.}\label{selAmb}
+\end{figure}
+  
+\clearpage
+\newpage
+\subsubsection{Introducción de herramientas}
+
+En esta pantalla se explicará la funcionalidad de las herramientas de la aplicación, encontrando el diccionario, la música y el planeta (Figura\ref{intHer}).
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/herramientas.PNG}
+	\end{center}
+	\caption{Introducción de herramientas.}\label{intHer}
+\end{figure}
+
+\subsubsection{Selección de cuentos}
+
+El usuario podrá elegir dos cuentos disponible en el ambiente, en donde podrá obtener dos historias diferentes basadas en la Sabana (Figura\ref{selCue}).
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/seleccionCuentos.PNG}
+	\end{center}
+	\caption{Selección de Cuentos.}\label{selCue}
+\end{figure}
+
+\clearpage
+\newpage
+\subsubsection{Cuentos}
+
+En estas pantallas se contará dos historias diferentes ambientado en la Sabana, que a partir de ellas, se realizarán los juegos de la aplicación. (Figura\ref{Cue1} y Figura\ref{Cue2}).
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/cuento1.PNG}
+	\end{center}
+	\caption{Cuento1: Algo extraño sucede en la sabana.}\label{Cue1}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/cuento2.PNG}
+	\end{center}
+	\caption{Cuento2: Un paseo por la sabana.}\label{Cue2}
+\end{figure}
+
+\clearpage
+\newpage
+\subsubsection{Selección de Juegos}
+
+En la selección de juegos podremos elegir entre los juegos de adivinanzas y pictograma musical. (Figura\ref{selJue}).
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/seleccionjuego.PNG}
+	\end{center}
+	\caption{Selección de Juegos}\label{selJue}
+\end{figure}
+
+\subsubsection{Juego 1: Adivinanzas}
+
+El juego de las adivinanzas consiste en resolver acertijos sobre los elementos que participan en el cuento, cuento quefue seleccionado anteriormente. Para ello podrá reproducir la adivinanza y podrá usar pistas que ayuden a resolver esta adivinanza.  (Figura\ref{jueAdi}).
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/adivinanza.PNG}
+	\end{center}
+	\caption{Juego 1 : Adivinanzas}\label{jueAdi}
+\end{figure}
+
+\newpage
+\subsubsection{Juego 2: Pictograma Musical}
+
+El pictograma musical consiste en completar la letra de una canción a través de imágenes de los animales del cuento seleccionado. Al momento de completar la canción, se reproducirá y se dará la posibilidad de grabar la voz acompañada con el instrumental de la canción. (Figura\ref{juePic}).
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=6cm] {imagenes/pictograma.PNG}
+	\end{center}
+	\caption{Juego 2 : Pictograma Musical}\label{juePic}
+\end{figure}
+
+
+
+\chapter{Conclusión}
+\label{conclusion}
+
+
+Durante este trabajo de título se abarcaron distintas etapas que permitieron fabricar el software, tales como: el Marco referencial (Marco conceptual y Estado del arte), la etapa de Definición del problema y análisis, la etapa de Diseño y por último la etapa de implementación.\\
+
+En la etapa de Marco referencial, se investigó sobre las dificultades del lenguaje que presentan en niños 3-6 años, comprendiendo que cada problema abarca a un nivel de lenguaje, permitiendo potenciar esos niveles através de las actividades desarrolladas en la aplicación móvil.
+
+Además se realizó una investigación sobre el estado actual de los software desarrollados para este ámbito, concluyendo que existen pocas herramientas que potencien el desarrollo del lenguaje y reflejen la realidad chilena.\\
+
+En la etapa de Definición del problema y análisis, se estableció los requerimientos funcionales y no funcionales, casos de usos, modelo conceptual, diagramas de estados del software implementado, estableciendo más concretamente la propuesta y solución de este trabajo de título. Además se definió los objetivos generales y específicos, alcanzados en la etapa de implementación.\\
+
+Durante la etapa de Diseño, se definió la arquitectura android para implementar el software, ya que en temas de costos es muy alcanzable para cualquier persona que quiera obtener de la herramienta implementada.
+También se genera los primeros prototipos de la aplicación móvil, que reflejaban como serían abarcadas las funcionalidades establecidas en los requerimientos.
+Además se establecenlos  diagrama de navegación de la aplicación, diagrama de clases,  diagrama de componentes, como también el diseño de pruebas.
+
+\clearpage
+\newpage
+En el diseño de pruebas se estableció realizar 3 etapas, siendo las pruebas unitarias, pruebas de integración y las pruebas de usuarios, donde tendrán como objetivo encontrar fallas que no fueron identificadas durante la etapa de implementación.
+
+Con respecto al diseño de datos, se decidió no ocupar base de datos, dado que el software no guarda datos, solamente utiliza recursos como por ejemplo: música, sonidos e imágenes.\\
+
+En la etapa de Implementación se investigó un framework que ayudó a facilitar el desarrollo nativo en Android, llamado Corona SDK, el cual se basa en el lenguaje script ligero llamado Lua, de fácil aprendizaje.
+
+Este framework tiene soporte para el desarrollo de juegos, entregando funcionalidades que facilitan el desarrollo de las actividades establecidas para cada cuento y juego, garantizando el rendimiento y la utilización de un componente del dipositivo móvil: El micrófono.\\
+
+
+Con la aplicación terminada, se espera realizar las pruebas unitarias, integración y de usuarios, diseñadas en el etapa de diseño, como también, se almacenará la aplicación móvil en la plataforma google play, donde podrán descargar gratuitamente en los dispositivos móviles. 
+Estas actividades están planificadas para el segundo semestre del trabajo de título.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

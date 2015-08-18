@@ -1,0 +1,523 @@
+\chapter{Diseño}
+\label{capdiseno}
+
+\section{Diseño del sistema a implementar}  \label{diseno}
+En esta sección se presenta los distintos diseños que representan el sistema a desarrollar, tanto en su arquitectura, su interfaz gráfica, en el diseño lógico,  diseño de datos y las pruebas de software a realizar.
+
+
+\subsection{Diseño arquitectónico} \label{disenoarq}
+
+Durante en la etapa de análisis se estableció que la aplicación será desarollada en dispositivos con sistema operativo Android, donde se implementa una arquitectura basada en android, la cual está compuesta por 4 capas:
+
+\begin{itemize}
+	\item Aplicaciones
+	\item Framework de Aplicaciones
+	\item Biblioteca
+	\item Kernel
+\end{itemize}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=9cm] {imagenes/arq.png}
+	\end{center}
+	\caption{Diagrama de arquitectura de Android.}
+	\label{diarq1}
+\end{figure}
+
+
+\clearpage
+\newpage
+La Figura \ref{diarq1}  nos da a conocer que Android se encuentra construido a base del kernel de linux, pasando a la capa de librería quién se encarga de administrarlas en tiempo de ejecución. Luego se encuentra la capa del framework que ayuda a construir la aplicación que posteriormente es mostrada en la capa de aplicaciones \cite{arqui}.\\
+
+Tomando en consideración la arquitectura de android y los requerimientos analizados en la etapa de análisis, se establece la arquitectura del sistema a implementar.
+
+\subsubsection{Diagrama de Arquitectura del Sistema}\label{arqsistema}
+
+Para desarollar una aplicación nativa en android, se ha establecido utilizar una arquitectura monolítica, también conocido como arquitectura de una sola capa \cite{arqui2}.\\
+
+La arquitectura de una sola capa (Figura \ref{diarq}), el sistema contiene las interfaces de usuario, la lógica de negocio y los datos en el mismo equipo, administrado por el mismo sistema instalado en el equipo. Esto permite generar eficiencia en la comunicación entre la interfaz, la lógica y los datos en tiempo real, al momento de utilizar el sistema.
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=8cm,height=6cm] {imagenes/arqsys.png}
+	\end{center}
+	\caption{Diagrama de arquitectura del sistema.}\label{diarq}
+\end{figure}
+
+\clearpage
+\newpage
+\subsection{Diseño de interfaz} \label{disenointerfaz}
+
+El diseño de interfaz de usuario nos permite representar los requerimientos identificados en la etapa de análisis, utilizando prototipados en papel, para luego ser convertidos en prototipos digitales. A continuación se presentará el funcionamiento de la aplicación a través de la representación ilustrativa de los prototipos obtenidos.
+
+\subsubsection{Prototipo 1: Pantalla de Inicio }
+
+En la primera pantalla de la aplicación (Figura \ref{prot1}), deberá mostrar la introducción de la herramienta, explicando la finalidad y el enfoque de la aplicación.\\
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU001 \\
+		
+		{\bf Nombre} &  Ver Presentación  \\
+		
+		{\bf Actor} &   Niño, Educadora Parvularia. \\
+		
+		{\bf Propósito} & Ver la presentación de la aplicación y la introducción de las herramientas. \\
+		
+		{\bf Resumen} & El niño y la educadora podrán ver la introducción de la aplicación. \\
+		
+		{\bf Precondición} &     -       \\
+		
+		{\bf Ref. Cruzadas} &  REF008.      \\
+		
+		& \\ 
+	\end{tabular}
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora presionará empezar introducción. &            \\
+		
+		& 2. El sistema mostrará un video explicativo sobre la introducción del juego y la explicación de las herramientas [\textbf{Punto A}, Figura \ref{prot1}].  \\
+		
+		3. El niño / educadora finalizará el video pulsando el botón siguiente [\textbf{Punto B}, Figura \ref{prot1}].& \\ \hline
+		
+	\end{tabular} 
+	\caption{Caso de Uso Expandido: ver Presentación.}
+\end{table}
+
+
+\clearpage
+\newpage 
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro1.png}
+	\end{center}
+	\caption{Prototipo 1, Pantalla de inicio} \label{prot1}
+\end{figure}
+
+
+Para un mayor detalles sobre los prototipos generados, podrán acceder en el \textbf{Apéndice D}.
+
+
+
+\clearpage
+\newpage
+\subsubsection{Diagrama de Navegación}\label{dianave}
+
+En el diagrama de navegación (Figura \ref{fignave}), se presenta la secuencia de la utilización del sistema, accediendo a las funcionalidades específicadas en la etapa de análisis del trabajo de título.
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=12cm,height=13cm] {imagenes/diagramaNavegacion.png}
+	\end{center}
+	\caption{Diagrama de Navegación}\label{fignave}
+\end{figure}
+
+
+
+
+\clearpage
+\newpage
+\subsection{Diseño lógico} \label{disenolog}
+
+En el diseño lógico describiremos los requerimientos analizados, a través de clases y objetos por utilizar en el desarrollo de la aplicación.
+
+
+\subsubsection{Diagrama de Clases}\label{diaclases}
+
+Analizado el modelo conceptual de la etapa de análisis, se ha identificado las clases más importante del sistema, tal como se muestra en la figura \ref{diacla}.
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=16cm,height=14cm] {imagenes/clases.png}
+	\end{center}
+	\caption{Diagrama de clases del sistema} \label{diacla}
+\end{figure}
+
+
+\clearpage
+\newpage
+\subsubsection{Diagrama de Despliegue}\label{diadespliegue}
+
+El sistema no cuenta con comunicación de datos con otros nodos físicos (hardware).
+La única interacción que existe, es el mismo nodo (dispositivo móvil) que ejecuta la aplicación a desarrollar.
+
+\subsubsection{Diagrama de Componentes}\label{diaComponentes}
+
+En el sistema a desarrollar, se ha logrado identificar 4 módulos compuestos por componentes en la figura \ref{figcom}, que los cuales son: 
+
+\begin{itemize}
+	
+	\item \textbf{Módulo Android:} Compuestos por componentes que contienen la lógica del sistema, por ejemplo, la creación de ambientes, cuentos y juegos. 
+	
+	\item \textbf{Módulo Libraries Android:} Biblioteca de Android que facilitan los recursos de interfaz y funcionalidades  de Android, por ejemplo, librería de utilización del micrófono, creación de botones, reproducción de música y sonido, entre otras \cite{libreria}.
+	
+	\item \textbf{Módulo Config:} Módulo que establece los archivos de configuración del sistema, por ejemplo, los dispositivos compatibles, los permisos de utilización de funcionalidades de android.
+	
+	\item \textbf{Módulo Execute:} Módulo que contiene el archivo ejecutable de la instalación de la aplicación.
+	
+\end{itemize}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=14cm,height=12cm] {imagenes/comp.png}
+	\end{center}
+	\caption{Diagrama de componentes del sistema.} \label{figcom}
+\end{figure}
+
+\clearpage
+\newpage
+
+
+\subsection{Diseño de datos}  \label{disenodatos}
+
+Dentro de la aplicación a desarrollar, no se ocupará una base de datos que almacene información del usuario o del sistema, ya que solamente se rescatará los pocos recursos integrados en la aplicación, tales como: 
+
+\begin{itemize}
+	
+	\item \textbf{Imágenes:} Fondos, pictogramas, botones y dibujos.
+	\item \textbf{Archivos de texto:} Nombre del niño, letras y textos.
+	\item \textbf{Música:} Música de fondo, sonidos de botones y canciones.
+	
+\end{itemize}
+
+
+\subsection{Diseño de pruebas}\label{disenopruebas}
+
+En el diseño de pruebas se especifican todas las pruebas que se realizarán al sistema una vez implementado, con el objetivo de corregir los problemas que pueden presentar desde el momento de la instalación de la aplicación, hasta y durante la ejecución del sistema.\\
+
+El diseño de pruebas será aplicado en el siguiente orden:
+
+\begin{itemize}
+	\item Pruebas Unitarias
+	\item Pruebas de Integración
+	\item Pruebas de Usabilidad
+	\item Pruebas de Aceptación y Rechazo.
+\end{itemize}
+
+\clearpage
+\newpage
+\subsubsection{Pruebas Unitarias}\label{puebasunitarias}
+
+Las pruebas unitarias consisten en realizar revisiones en pequeños fragmentos de código del sistema \cite{pruebau}. Estos fragmentos representan a tareas atómicas de caracter específicos e independientes, en el sistema por desarrollar.\\
+
+Las pruebas unitarias permiten simplificar las pruebas de integración, fomentar a la refactorización y documentación del código.\\
+El tipo de prueba utilizar, será el método de "caja negra".\\
+
+El método de caja negra son pruebas funcionales donde se define un conjunto de condiciones de entradas que abarcan los requisitos funcionales del sistema.\\
+Las pruebas de caja negra establecen un conjunto de entradas y las salidas esperadas, no importando el interior del sistema.\\
+
+
+La plantilla utilizada para realizar las pruebas unitarias es la Tabla \ref{tablapuplantilla}
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{4cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PU001: XXXX}} \\\hline
+		\textbf{Propósito:} &  \\ \hline 
+		\textbf{Caso de Uso:} &  \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Caso prueba}}} \\ 	\hline
+		\textbf{Entradas:} &  \\ \hline
+		
+		\textbf{Salida Esperada:} &  \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Valores de caso prueba}}} \\ 	\hline
+		\textbf{Entrada }& \textbf{Salida} \\ \hline
+		
+		& \\ \hline
+		&  \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de plantilla de las pruebas unitarias}\label{tablapuplantilla}	
+\end{table}
+
+A partir de la Tabla \ref{tablapuplantilla}, se obtienen las pruebas unitarias que son las siguientes: 
+
+\clearpage
+\newpage
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{4cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PU001: Drag and drop}} \\\hline
+		\textbf{Propósito:} & Generar el movimiento de drag and drop en el sistema \\ \hline 
+		\textbf{Caso de Uso:} & CU008\\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Caso prueba}}} \\ 	\hline
+		\textbf{Entradas:} & x,y Valores enteros de imagen \\ \hline
+		
+		\textbf{Salida Esperada:} & Posición x,y de la imagen \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Valores de caso prueba}}} \\ 	\hline
+		\textbf{Entrada }& \textbf{Salida} \\ \hline
+		
+		x=400; y=500 & Imagen en x=400; y=500 (Correcto)\\ \hline
+		x=600; y=700 & Imagen en x=600; y=700 (Correcto) \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas Unitarias PU001}\label{tablapu001}	
+\end{table}
+
+
+En el \textbf{Apéndice E} se encuentran el diseño de pruebas unitarias restantes.
+
+
+
+\clearpage
+\newpage
+\subsubsection{Pruebas de Integración}\label{prueintegrar}  
+
+Las pruebas de integración corresponde al conjunto de tareas específicas que han sido ejecutadas en las pruebas de unitarias, donde establecen dos o más interacciones entre ellas. Estas pruebas pueden ser clases, módulos, paquetes, subsistemas, entre otras.\\
+Las pruebas de integración tienen como objetivo verificar las funciones y rendimiento de ellas \cite{pruebai}.\\
+
+Los tipos de pruebas de integración son las siguientes:
+
+
+\begin{itemize}
+	
+	\item \textbf{Top-Down}: Consiste en empezar a integrar los módulos o subsistemas más importantes del sistema, realizando las pruebas hacia los niveles inferiores.
+	
+	\item \textbf{Bottom-Up}: Consiste en realizar las pruebas en los módulos de niveles inferiores de abstracción, apuntando a los niveles con más abstracción del sistema.
+	
+	\item \textbf{Big - Bang}: Consiste en probar todos los módulos desarrollados en conjunto, recreando la mayor parte del sistema. Tiene como finalidad ahorrar el tiempo dedicado en realizar las pruebas de Top-Down y Bottom-up, pero el proceso de integración es más complicado por su acoplamiento existente entre los modulos testeados.
+	
+\end{itemize}
+
+Las pruebas de integración a utilizar es \textbf{Bottom-up} (Figura \ref{buttonup} ), porque permite detectar eficazmente las funcionalidades que no se encuentran ejecutándose correctamente, escalando hasta los niveles más abstractos del sistema.
+
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=16cm,height=7cm] {imagenes/bottonup.png}
+	\end{center}
+	\caption{Diagrama de la prueba integración Bottom-UP} \label{buttonup}
+\end{figure}
+
+\clearpage
+\newpage
+
+La plantilla utilizada para las pruebas de integración corresponde a la Figura \ref{tablapiplantilla}:\\
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{3.5cm}|p{7cm}|}
+		
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PI001: XXXX }} \\\hline
+		Nivel: &   \\ \hline 
+		Objetivo:&	\\ \hline
+		Estado Inicial: &  \\ \hline
+		Estado Final: &  \\ \hline
+		Resultado Esperado: &   \\ \hline
+		Resultado   Obtenido:&  \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Plantilla para lasPruebas de Integración}\label{tablapiplantilla}
+	
+\end{table}
+
+A partir de la Figura \ref{tablapiplantilla}, se realizarán las siguientes pruebas de integración:\\
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{3.5cm}|p{7cm}|}
+		
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PI001: Juego Pictograma Musical }} \\\hline
+		Nivel: &  1\\ \hline 
+		Objetivo:& Arrastrar Imágenes en la letra de la canción, reproducir la canción y grabación de la voz.  \\ \hline
+		Estado Inicial: & Inicializar interfaz del juego y en espera de usar las funcionalidades  \\ \hline
+		Estado Final: & Usar todas las imágenes y la grabación de voz  \\ \hline
+		Resultado Esperado: &  Imágenes en la posición correcta, completando el juego. Pasar al otro juego  \\ \hline
+		Resultado   Obtenido:& -\\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas de Integración - PI001}\label{tablapi001}
+	
+\end{table}
+
+Para un mayor detalle de las Pruebas de Integración, podrán acceder al \textbf{Apéndice F} adjuntado en este trabajo de título.
+
+
+\clearpage
+\newpage
+\subsubsection{Pruebas de Usabilidad}\label{prueusable}
+
+Las pruebas de usabilidad son centradas en el usuario que permiten evaluar si el sistema puede realmente cumplir con las tareas del sistema, en términos de efectividad, eficiencia y satisfacción \cite{pruebausa}.\\
+
+Una de las técnicas de usabilidad más utilizadas, corresponde a la evaluación heurística establecidas por Jacob Nielsen.\\
+
+La evaluación heurística tiene como objetivo de inspeccionar la interfaz de la aplicación para descubrir los problemas potenciales de usabilidad \cite{heu1}.\\
+La evaluación heurística es una técnica cualitativa que consiste en evaluar la conformidad de la interfaz del sistema .\\
+
+Los puntos más importantes utilizados en la evaluación heurística (Figura \ref{tablahe3} y \ref{tablahe4}) son los siguientes \cite{heu2}:
+
+
+\begin{table}[htf]
+	\centering
+	\begin{tabular}{|p{5cm}|p{7cm}|}
+		
+		\hline
+		\textbf{Nombre} & \textbf{Descripción} \\ \hline 
+		1- Visibilidad del estado del sistema & El sistema debe mantener informado al usuario sobre las acciones que estan ocurriendo en el sistema.  \\ \hline
+		2- Similitud entre el sistema y el mundo real & El sistema debe hablar en le lenguaje del usuario.  \\ \hline
+		3- Control y libertad del usuario & El sistema debe presentar una opción para volver a la acción anterior, en caso que el usuario se equivoque en su elección.  \\ \hline
+		4- Consistencia y estándares & Los usuarios no deben cuestionar acciones o situaciones, siguiendo conveciones y normas del sistema. \\ \hline
+		5- Prevención de errores  & Eliminar y corregir los posibles problemas que con llevan errores.\\ \hline
+		6- Reconocimiento en vez de recordar & Dejar visible los objetos, acciones y opciones. El usuario no debe preguntarse al recordar información específica.\\ \hline
+		7- Flexibilidad y Eficiencia de uso & Entregar aceleradores que permitan aumentar la velocidad de interacción para usuarios expertos y novatos. \\ \hline
+	\end{tabular} 
+	\caption{Tabla de heurísticas}\label{tablahe3}
+	
+\end{table}
+
+
+
+\clearpage
+\newpage
+
+\begin{table}
+	\centering
+	\begin{tabular}{|p{5cm}|p{7cm}|}
+		
+		\hline
+		\textbf{Nombre} & \textbf{Descripción} \\ \hline 
+		8- Estética y diseño minimalista & La interfaz no debe contener información irrelevante, disminuyendo la visibilidad de la interfaz. \\ \hline
+		9- Ayuda ante errores & El mensaje de error debe ser claro, indicando el problema. \\ \hline
+		10- Ayuda y documentación & En el caso de utilizar, ésta debe ser fácil de encontrar y centrada a las tareas del usuario. \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de heurísticas}\label{tablahe4}
+	
+\end{table}
+
+
+A partir de las heurísticas establecidas en la figura \ref{tablahe3}, se aplicarán las plantillas de la tabla de escala de severidad (Figura \ref{tablahe}) y de la tabla de frecuencia de severidad (Figura), entregando datos cuantitativos de la evaluación.\\
+
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|}
+		
+		\hline
+		\textbf{Clasificación} & \textbf{Severidad} & \textbf{Corrección}\\ \hline 
+		
+		\centering 4 & Problema Catastrófico & Vital \\ \hline
+		\centering 3 & Problema Alto& Alto \\ \hline
+		\centering 2 & Problema Menor& Bajo \\ \hline
+		\centering 1 & Problema cósmetico& Muy bajo\\ \hline
+		\centering 0 & No es un problema& - \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de escala de severidad}\label{tablahe}
+	
+\end{table}
+
+
+\begin{table}[htf]
+	\centering
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		
+		\hline
+		\textbf{Clasificación} & \textbf{Frecuencia} \\ \hline 
+		\centering 4 &  90\% - 100\% \\ \hline
+		\centering 3 &  51\% - 89\% \\ \hline
+		\centering 2 &  11\% - 50\% \\ \hline
+		\centering 1 &  2\% - 10\% \\ \hline
+		\centering 0 & 1\%	\\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de frecuencia de severidad}\label{tablahe2}
+	
+\end{table}
+
+
+\clearpage
+\newpage
+\subsubsection{Pruebas de Aceptación y de Rechazo de los Usuarios}\label{prueacepta}
+
+Las pruebas de aceptación de usuarios tienen como finalidad de corroborar los requerimientos obtenidos del usuario.\\
+El usuario nos entrega la información sobre el sistema, si cumple las tareas y objetivos establecidos a comienzo del desarrollo de la aplicación.\\
+La educadoras parvularias realizarán estas pruebas de aceptación y rechazo.\\
+
+En la tabla \ref{encuestaEducadora} y \ref{encuestaEducadora2} se específica los tópicos que integrará esta prueba.\\
+
+
+\begin{table}[htf]
+	\begin{tabular}{|p{10.5cm}|lllll|}
+		\hline
+		\textbf{Item} & 1 & 2 & 3 & 4 & 5 \\
+		\hline
+		\multicolumn{6}{|l|}{\textbf{Actividades}}\\
+		\hline
+		1.La elección de ambientes, permite diversificar el contenido de aplicación.  &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ \\
+		2. Los cuentos son atractivos, cortos y fáciles de entender. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		3. Las adivinanzas es fácil e intuitivo. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		4. Las adivinanzas entrega pistas que ayudan a resolver la adivinanza. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		5. El pictograma musical es fácil e intuitivo. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		6. El pictograma musical permite grabar la voz en conjunto a la pista de la canción. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\  
+		\hline
+		\multicolumn{6}{|l|}{\textbf{Funcionalidades}}\\
+		\hline
+		7. La función de arrastrar y soltar en pictograma musical, funciona correctamente. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		8. Los botones presenten en la aplicación, todos tienen una funcionalidad asociada correctamente. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		8. Se muestra las presentaciones que introducen el juego y las herramientas. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		\hline
+		
+	\end{tabular}
+	\caption{Encuesta Educadora Parvularia} \label{encuestaEducadora}
+\end{table}
+
+\clearpage
+\newpage 
+
+\begin{table}[H]
+	\begin{tabular}{|p{10.5cm}|lllll|}
+		\hline
+		\textbf{Item} & 1 & 2 & 3 & 4 & 5 \\
+		
+		\hline
+		\multicolumn{6}{|l|}{\textbf{Herramientas}} \\
+		\hline
+		9. Todos los íconos que pertenece a la barra de herramientas acceden a su función. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		10. El ícono de lupa, entrega la pantalla de palabras con sus significados e imágenes. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		11. El ícono del planeta tierra regresa a la pantalla principal de la aplicación. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		12. El ícono de la grabación de voz, permite ejecutar su funcionalidad. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		13. El ícono de la doble corchea, permite silenciar y activar la música de la aplicación. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		\hline
+		
+		
+		\multicolumn{6}{|l|}{\textbf{Multimedia}}\\
+		\hline
+		14. Los sonidos, canciones y grabaciones estan asociados correctamente en la aplicación. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		15. En la cantidad de imágenes y sonidos son variados. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		16. Las imágenes son utilizadas correctamente en el contexto de la pantalla donde se encuentra. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		17. El movimiento del planeta tierra se ve correctamente en la presentación y en la pantalla principal. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		18. La calidad de la imágenes y sonidos son acordes a la aplicación. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		\hline
+		
+		\multicolumn{6}{|l|}{\textbf{Importancia}}\\
+		\hline
+		19. El niño/a realiza las actividades fácilmente. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		20. La aplicación funciona correctamente. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		21. La aplicación es una herramienta alternativa importante en el desarrollo del lenguaje . &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		22. La aplicación deberá incluir más actividades, más ambientes, para diversificar aún más su contenido. &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $ &  $\bigcirc $\\
+		\hline
+	\end{tabular}
+	\caption{Encuesta Educadora Parvularia} \label{encuestaEducadora2}
+\end{table}

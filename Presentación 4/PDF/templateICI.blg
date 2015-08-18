@@ -1,0 +1,28 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: templateICI.aux
+A level-1 auxiliary file: marco.aux
+A level-1 auxiliary file: diseno.aux
+A level-1 auxiliary file: implementacion.aux
+The style file: plain.bst
+Database file #1: template.bib
+You're missing a field part---line 19 of file template.bib
+ :   pages     = 
+ :               ¨{402-427}
+I'm skipping whatever remains of this entry
+Database file #2: informe.bib
+Warning--entry type for "conciencia" isn't style-file defined
+--line 1 of file informe.bib
+I was expecting a `,' or a `}'---line 45 of file informe.bib
+ :  
+ :  howpublished = "url:{https://play.google.com}",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 61 of file informe.bib
+ :  
+ :  year={2006},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty journal in recursos
+Warning--empty journal in REF6
+Warning--empty journal in REF2
+Warning--empty journal in atelga
+(There were 3 error messages)

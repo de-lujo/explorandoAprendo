@@ -1,0 +1,1791 @@
+
+\chapter{Caso de Usos Expandidos} \label{casos}
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU002 \\
+		
+		{\bf Nombre} &  Seleccionar Personaje  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & El niño elige un personaje principal.\\
+		
+		{\bf Resumen} & 
+		Elegir un personaje principal de los dos disponibles (Un niño explorador o una niña exploradora). \\
+		
+		{\bf Precondición} &    Ver Presentación       \\
+		
+		{\bf Ref. Cruzadas} &  REF005, CU001.      \\
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño ingresará su nombre. & \\
+		
+		& 2. El sistema guarda el nombre por la sesión solamente y lo muestra por pantalla. \\
+		
+		3. El niño seleccionará el personaje "niño explorador" o "niña exploradora". & \\
+		
+		& 4. El sistema mostrará la elección del personaje.\\
+		
+		5. El niño presionará boton siguiente.&\\
+		
+		& 6. Se prodece a confirmar la elección del personaje.\\
+		
+		7. El niño confirmar la elección.&\\
+		
+		& 8. Se prodece al siguiente caso de uso.\\ \hline
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Seleccionar Personaje.} \label{selper}
+\end{table}
+
+
+
+\begin{table}[h]
+	
+\begin{tabular}{|p{7cm}|p{7cm}|}\hline
+\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 1}} \\
+\hline
+7. El niño no confirmar la elección del personaje . & \\
+
+& 8. El sistema mostrará nuevamente la selección del personaje. \\ \hline
+
+\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 2}} \\
+\hline
+7. El niño confirma, pero falta el ingreso del nombre o la elección del personaje . & \\
+
+& 8. El sistema mostrará nuevamente el caso de uso "Seleccionar Personaje". \\ \hline
+
+\end{tabular} 
+\caption{Caso de Uso Extendido: Seleccionar Personaje.} \label{selper}
+
+\end{table}
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU003 \\
+		
+		{\bf Nombre} &  Escoger Ambiente  \\
+		
+		{\bf Actor} &   Niño, educadora parvularia. \\
+		
+		{\bf Propósito} & El niño / educadora escoge un ambiente.\\
+		
+		{\bf Resumen} & 
+		Seleccionar un ambiente para desarollar la historia para las actividades. \\
+		
+		{\bf Precondición} &     -       \\
+		
+		{\bf Ref. Cruzadas} &  REF004, REF006.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora seleccionará un ambiente. & \\
+		
+		& 2. El sistema mostrará el ambiente cargando imágenes y música asociadas. \\
+		
+		3. El niño / educadora presionará el botón siguiente para seguir la pantalla siguiente. & \\
+		
+		& 4. El sistema mostrará la pantalla que asociada.\\
+		
+		5. El niño presionará la última vez el botón siguiente, para finalizar &\\
+		
+		& 6. Al momento de finalizar, se procederá a mostrar el siguiente caso de uso.\\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 1}} \\
+		\hline
+		4.1 El niño seleccionará el caso de uso "Escoger Herramienta". & \\
+		
+		& 4.2 El sistema mostrará el caso de uso "Escoger Herramienta". \\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 2}} \\
+		\hline
+		1 El niño presionará el botón volver atrás, para volver al caso de uso "Seleccionar Personaje" CU002. & \\
+		
+		& 2 El sistema mostrará el caso de uso CU002. \\ \hline
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Escoger Ambiente.}\label{escoamb}
+\end{table}
+
+
+\newpage
+\clearpage
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU004 \\
+		
+		{\bf Nombre} &  Escoger Cuento  \\
+		
+		{\bf Actor} &   Niño, educadora parvularia. \\
+		
+		{\bf Propósito} & El niño / educadora escoge un cuento.\\
+		
+		{\bf Resumen} & 
+		Seleccionar un cuento para desarollar la historia para la actividad adivinanzas y pictograma musical. \\
+		
+		{\bf Precondición} &     Escoger Ambiente      \\
+		
+		{\bf Ref. Cruzadas} &  REF004, CU003.      \\
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora seleccionará un cuento. & \\
+		
+		& 2. El sistema mostrará el cuento cargando imágenes y música asociadas. \\
+		
+		3. El niño / educadora presionará el botón siguiente para comenzar el cuento. & \\
+		
+		& 4. El sistema mostrará la pantalla asociada al cuento.\\
+		
+		5. El niño presionará la última vez el botón siguiente, para finalizar el cuento &\\
+		
+		& 6. Al momento de finalizar, se procederá a mostrar el siguiente caso de uso.\\ \hline
+		
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 1}} \\
+		\hline
+		1. El niño / educadora seleccionará el botón volver.  & \\
+		
+		& 2. El sistema volverá a la última pantalla del ambiente. \\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 2}} \\
+		\hline
+		4.1 El niño seleccionará el caso de uso "Escoger Herramienta". & \\
+		
+		& 4.2 El sistema mostrará el caso de uso "Escoger Herramienta". \\ \hline
+		
+	\end{tabular} 
+	
+	\caption{Caso de Uso Extendido: Escoger Cuento.}\label{escoher}
+\end{table}
+
+\clearpage
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU005 \\
+		
+		{\bf Nombre} &  Seleccionar Juego  \\
+		
+		{\bf Actor} &   Niño, educadora parvularia. \\
+		
+		{\bf Propósito} & El niño / educadora escoge un juego.\\
+		
+		{\bf Resumen} & 
+		Seleccionar el juego de las adivinanzas o pictograma musical. \\
+		
+		{\bf Precondición} &    Escoger Cuento     \\
+		
+		{\bf Ref. Cruzadas} &  REF011, CU004.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora seleccionará un juego. & \\
+		
+		& 2. El sistema mostrará el caso de uso según el juego seleccionado. \\ \hline
+		
+		\multicolumn{2}{|c|}{{\bf Curso Alternativo 1}} \\
+		\hline
+		1. El niño / educadora seleccionará el botón volver. & \\
+		
+		& 2. El sistema volverá a la última pantalla del caso de uso "Escoger Cuento" CU004. \\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 2}} \\
+		\hline
+		1. El niño / educadora seleccionará el caso de uso "Escoger Herramienta". & \\
+		
+		& 2. El sistema mostrará el caso de uso "Escoger Herramienta". \\ \hline
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Seleccionar Juego.}\label{seljuego}
+\end{table}
+
+
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU006 \\
+		
+		{\bf Nombre} & Jugar Adivinanzas  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Acertar las adivinanzas.\\
+		
+		{\bf Resumen} & 
+		El juego consiste en tener una imagen de fondo con varias imágenes, que una vez se escuche la adivinanza, seleccionar la imagen correcta, en el caso de que no pueda acertar a la correcta, podrá utilizar le botón "pista" que dará más instrucciones para acertar la opción correcta. \\
+		
+		{\bf Precondición} &     -      \\
+		
+		{\bf Ref. Cruzadas} &  REF003, REF013.    \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño presionará un botón para comenzar el juego. & \\
+		
+		& 2. El sistema cargará las adivinanzas cargando imágenes, texto y grabación de la adivinaza. \\
+		
+		3. El niño reproducirá y escuchará la adivinanza, seleccionando la imagen correcta, para luego, seguir con la siguiente adivinanza. & \\
+		
+		& 4. El sistema entregará el resultado y mostrará la siguiente adivinanza asociada.\\
+		
+		5. El niño seleccionará la imagen correcta de la última adivinanza, para finalizar el juego.&\\
+		
+		& 6. Al momento de acertar la ultima adivinanza, se procederá a mostrar el resultado  y volverá al caso de uso Seleccionar Juego CU005.\\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 1}} \\
+		\hline
+		2.1 El niño seleccionará el caso de uso "Escoger Herramienta". & \\
+		
+		& 2.2 El sistema mostrará el caso de uso "Escoger Herramienta". \\ \hline
+		
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Jugar Adivinanza.}\label{jugaradi}
+\end{table}
+
+\clearpage
+
+\begin{table}[h]
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 2}} \\
+		\hline
+		2.8 Al escuchar la primera adivinanza, en el caso que el niño se equivoque o no entiende la adivinanza, seleccionará el botón pista que ayudará acertar. & \\
+		
+		& 2.9 El sistema mostrará el caso de uso "Usar pistas". \\ \hline
+	\end{tabular}
+	
+	\caption{Caso de Uso Extendido: Jugar Adivinanza.}
+\end{table}
+
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &   CU007 \\
+		
+		{\bf Nombre} & Usar Pistas \\
+		
+		{\bf Actor} &   Niño\\
+		
+		{\bf Propósito} & Utilizar ayuda para resolver adivinanza.\\
+		
+		{\bf Resumen} & 
+		La opción "pistas", entregará descripciones adicionales para cada una de las adivinanzas, permitiendo que el niño pueda resolver más fácil la adivinanza.\\
+		
+		{\bf Precondición} &   Jugar Adivinanzas  \\
+		
+		{\bf Ref. Cruzadas} &  REF003, REF013, CU006. \\
+		
+		
+		& \\
+	\end{tabular}
+	
+\end{table}
+
+\begin{table}[h]
+	\begin{tabular}{|p{7cm}|p{7cm}|}\hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		1. El niño selecciona "Usar Pistas". & \\
+		
+		& 2. El sistema mostrará la interfaz de "Usar Pistas". \\ 
+		
+		3. El niño selecciona reproducir nueva pista. & \\
+		
+		& 4. El sistema reproducirá la grabación asociada a la pista de la imagen. \\
+		
+		5. El niño presiona volver a la pantalla anterior. & \\
+		
+		& 6. El sistema redireccionará al caso de uso "Jugar Adivinanzas", donde fue invocado. \\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 1}} \\
+		\hline
+		3. El niño selecciona volver a la pantalla anterior. & \\
+		
+		& 4. El sistema redireccionará al caso de uso "Jugar Adivinanzas", donde fue invocado. \\ \hline	
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 2}} \\
+		\hline
+		3. El niño selecciona reiteradas veces "Nueva Pista". & \\
+		
+		& 4. El sistema reproducirá máximo 3 pistas, indicando un mensaje al niño de límite de pistas, por lo que tendrá una opción de pasar a la siguiente adivinanza, volviendo al caso de uso "Jugar Adivinanzas" CU006. \\ \hline	
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Usar Pistas.}\label{usarpista}
+\end{table}
+
+
+
+\newpage
+\clearpage
+\begin{table}[h]
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU008 \\
+		
+		{\bf Nombre} &  Jugar Pictograma Musical  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Completar Canciones.\\
+		
+		{\bf Resumen} & 
+		El niño a través de canciones completará la letra de la canción arrastrando imágenes. \\
+		
+		{\bf Precondición} &  Seleccionar Juego \\
+		
+		{\bf Ref. Cruzadas} &  REF012, REF003, CU005.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño seleccionará el juego pictograma musical. & \\
+		
+		& 2. El sistema mostrará la interfaz del pictograma musical, cargando imágenes, texto y canciones. \\
+		
+		3. El niño escuchará la canción, moviendo la imagen correcta en la oración. & \\
+		
+		& 4. El sistema entregará por pantalla el resultado, esperando la siguiente respuesta.\\
+		
+		5. El niño moverá la última imagen correcta para finalizar el juego.&\\
+		
+		& 6. Al momento de finalizar, se procederá a mostrar el resultado y volverá al caso de uso Seleccionar Juego CU005 .\\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 1}} \\
+		\hline
+		4.1 El niño seleccionará el caso de uso "Escoger Herramienta". & \\
+		
+		& 4.2 El sistema mostrará el caso de uso "Escoger Herramienta". \\ \hline
+		
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Jugar Pictograma Musical.} \label{jugarpicto}
+\end{table}
+
+\clearpage
+\newpage
+
+\begin{table}[h]
+	\begin{tabular}{|p{7cm}|p{7cm}|}\hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 2}} \\
+		\hline
+		2.6 El niño se equivoca de imagen. & \\
+		
+		& 2.7 El sistema mostrará el resultado, negando que la imagen quede en la oración (efecto de rebote al utilizar el drag and drop). \\ 
+		
+		2.8 El niño podrá reproducir nuevamente la canción pulsando un botón de música. & \\
+		
+		& 2.9 El sistema entregará la canción a escuchar. \\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo 3}} \\
+		\hline
+		1. ó 4.1 El niño presiona el botón volver. & \\
+		
+		& 2. ó 4.2 El sistema mostrará el caso de uso "Seleccionar Juego". \\ \hline
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Jugar Pictograma Musical.}
+\end{table}
+
+\clearpage
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU009 \\
+		
+		{\bf Nombre} &  Escoger Herramientas  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Escoger una herramienta que proporcione una funcionalidad en la aplicación.\\
+		
+		{\bf Resumen} & 
+		Seleccionar la funcionalidad de activar/desactivar la musica de la pantalla, mostrar el diccionario con un botón de una lupa y un botón del planeta tierra para volver al menú principal de la aplicación. \\
+		
+		{\bf Precondición} &     -       \\
+		
+		{\bf Ref. Cruzadas} &  REF001, REF002, REF009, REF014, REF010.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora selecciona un boton del conjunto de funcionalidades. & \\
+		
+		& 2. El sistema mostrará la funcionalidad seleccionada. \\ \hline
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Escoger Herramientas.} \label{escoherra}
+\end{table}
+
+\clearpage
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU010 \\
+		
+		{\bf Nombre} &  Ver Diccionario  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Entregar vocabulario nuevo, para el entendimiento de las palabras e imágenes usadas.\\
+		
+		{\bf Resumen} & 
+		Seleccionar la funcionalidad de mostrar un diccionario que contendrá el significado de las palabras e identificación de imágenes o pictogramas. \\
+		
+		{\bf Precondición} &  Escoger Herramientas \\
+		
+		{\bf Ref. Cruzadas} & REF009, REF010, CU009.     \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora escoge el boton lupa. & \\
+		
+		& 2. El sistema mostrará la interfaz del diccionario . \\
+		
+		3. El niño / educadora presionará la imagen o palabra disponible en el diccionario. & \\
+		
+		& 4. El sistema mostrará interfaz del elemento  seleccionado del diccionario, entregando sonido, imagen y texto.\\
+		
+		5. El niño presionará finalizar diccionario.  &\\
+		
+		& 6. El sistema redireccionar a la pantalla Escoger Herramientas CU003.\\ \hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo}} \\
+		\hline
+		
+		1. El niño / educadora  escoge finalizar diccionario o el botón volver, regresando a la pantalla anterior. & \\
+		
+		& 2. El sistema procederá volver al caso de uso donde fue llamado "Escoger Herramientas", CU003.\\ \hline
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Ver Diccionario.}\label{verdic}
+\end{table}
+
+\clearpage
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU011 \\
+		
+		{\bf Nombre} &  Grabar Voz \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Grabar la voz del niño, permitiendo desarrollar la consciencia fonológica.\\
+		
+		{\bf Resumen} & 
+		La funcionalidad grabar voz, permite que el niño escuche las palabras o frases que dice, en el transcurso de la aplicación, creando interacción entre la aplicación y el niño. \\
+		
+		{\bf Precondición} &  Escoger Herramientas \\
+		
+		{\bf Ref. Cruzadas} &  REF001, CU009.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño escoge el botón de un micrófono. & \\
+		
+		& 2. El sistema mostrará un mensaje que se encuentra grabando la voz .\\
+		
+		3. El niño presionará nuevamente el botón del micrófono para inicializar la grabación & \\
+		
+		& 4. El sistema mostrará un mensaje que la grabación ha comenzado.\\
+		
+		5. El niño presionará nuevamente el botón del micrófono para finalizar la grabación.  &\\
+		
+		& 6. El sistema mostrará un mensaje que la grabación ha finalizado.\\ 
+		
+		7. El niño presionará nuevamente el botón de reproducir la grabación. &\\
+		
+		& 8. El sistema reproducirá la grabación.\\ 
+		
+		9. El niño presionará finalizar. &\\
+		
+		& 10. El sistema volverá a la pantalla anterior.\\ \hline
+		
+		
+		
+		
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo}} \\
+		\hline
+		
+		3. El niño no pulsa el botón del micrófono nuevamente para finalizar la grabación. & \\
+		
+		& 4. El sistema procederá a finalizar dentro de 50 segundos la grabación, mostrando el mensaje finalización de la grabación.\\ \hline
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Grabar Voz.}\label{grabarvoz}
+\end{table}
+
+\clearpage
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU012 \\
+		
+		{\bf Nombre} &  Regresar Ambientes \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Volver a la pantalla principal de selección de ambientes.\\
+		
+		{\bf Resumen} & 
+		Entregar la posibilidad de volver al menú de elección de ambiente durante las actividades. \\
+		
+		{\bf Precondición} &  Escoger Herramientas \\
+		
+		{\bf Ref. Cruzadas} &  REF014, CU009.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño selecciona el ícono del planeta tierra. & \\
+		
+		& 2. El sistema enviará un mensaje de confirmación .\\
+		
+		3. El niño confirmará volver a la selección de ambiente. & \\
+		
+		& 4. El sistema redireccionará al caso de uso "Escoger Ambiente".\\ \hline
+		
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Alternativo}} \\
+		\hline
+		
+		3. El niño negará volver a la selección de ambientes.& \\
+		
+		& 4. El sistema volverá a la pantalla donde fue llamado.\\ \hline
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Regresar Ambientes.}\label{regamb}
+\end{table}	
+
+
+\chapter{Diagramas de Secuencias} \label{diagrama}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS02.png}
+	\end{center}
+	\caption{Caso de uso: Seleccionar Personaje}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS03.png}
+	\end{center}
+	\caption{Caso de uso: Escoger Ambiente}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS04.png}
+	\end{center}
+	\caption{Caso de uso: Escoger Cuento}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS05.png}
+	\end{center}
+	\caption{Caso de uso: Seleccionar Juego}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS06.png}
+	\end{center}
+	\caption{Caso de uso: Jugar Adivinanza}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS07.png}
+	\end{center}
+	\caption{Caso de uso: Usar Pistas}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS08.png}
+	\end{center}
+	\caption{Caso de uso: Jugar Pictograma}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS09.png}
+	\end{center}
+	\caption{Caso de uso: Escoger Herramientas}
+\end{figure}
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS10.png}
+	\end{center}
+	\caption{Caso de uso: Ver Diccionario}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS11.png}
+	\end{center}
+	\caption{Caso de uso: Grabar Voz}
+\end{figure}
+
+\clearpage
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=10cm,height=8cm] {imagenes/DS12.png}
+	\end{center}
+	\caption{Caso de uso: Regresar Ambientes}
+\end{figure}
+
+
+
+\chapter{Diagramas de Estados} \label{estados}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE02.png}
+	\end{center}
+	\caption{Caso de uso: Seleccionar Personaje}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE03.png}
+	\end{center}
+	\caption{Caso de uso: Escoger Ambiente}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE04.png}
+	\end{center}
+	\caption{Caso de uso: Escoger Cuento}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE05.png}
+	\end{center}
+	\caption{Caso de uso: Seleccionar Juego}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE06.png}
+	\end{center}
+	\caption{Caso de uso: Jugar Adivinanza}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE07.png}
+	\end{center}
+	\caption{Caso de uso: Usar Pistas}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE08.png}
+	\end{center}
+	\caption{Caso de uso: Jugar Pictograma}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE09.png}
+	\end{center}
+	\caption{Caso de uso: Escoger Herramientas}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE10.png}
+	\end{center}
+	\caption{Caso de uso: Ver Diccionario}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE11.png}
+	\end{center}
+	\caption{Caso de uso: Grabar Voz}
+\end{figure}
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=13cm,height=6cm] {imagenes/DE12.png}
+	\end{center}
+	\caption{Caso de uso: Regresar Ambientes}
+\end{figure}
+
+
+\chapter{Diseño de Interfaz} \label{interfaz}
+
+\subsubsection{Prototipo 2: Pantalla de selección de Personaje }
+
+En la segunda pantalla de la aplicación (Figura \ref{prot2}), el niño podrá ingresar su nombre y seleccionará un personaje que participará en la historia del cuento. El personaje seleccionado puede ser un niño explorador o una niña exploradora.\\
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro2.png}
+	\end{center}
+	\caption{Prototipo 2, Pantalla de selección de personaje} \label{prot2}
+\end{figure}
+
+\newpage
+\begin{table}[htf]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU002 \\
+		
+		{\bf Nombre} &  Seleccionar Personaje  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & El niño elige un personaje principal.\\
+		
+		{\bf Resumen} & 
+		Elegir un personaje principal de los dos disponibles (Un niño explorador o una niña exploradora). \\
+		
+		{\bf Precondición} &    Ver Presentación       \\
+		
+		{\bf Ref. Cruzadas} &  REF005, CU001.      \\
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño ingresará su nombre [\textbf{Punto A}, Figura \ref{prot2}]. & \\
+		
+		& 2. El sistema guarda el nombre por la sesión solamente y lo muestra por pantalla. \\
+		
+		3. El niño seleccionará el personaje "niño explorador" o "niña exploradora" [\textbf{Punto B}, Figura \ref{prot2}]. & \\
+		
+		& 4. El sistema mostrará la elección del personaje.\\
+		
+		5. El niño presionará boton siguiente [\textbf{Punto C}. Figura \ref{prot2}].&\\
+		
+		& 6. Se prodece a confirmar la elección del personaje.\\
+		
+		7. El niño confirmar la elección.&\\
+		
+		& 8. Se prodece al siguiente caso de uso.\\ \hline
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Seleccionar Personaje.}
+\end{table}
+
+
+\newpage
+\clearpage
+\subsubsection{Prototipo 3: Pantalla principal, selección de ambientes}
+
+En la tercera pantalla de la aplicación (Figura \ref{prot3.1} y Figura \ref{prot3.2}), se introducirá un video o animación que explicará los ambientes disponibles, siendo la sabana y el océano/antártida.\\
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU003 \\
+		
+		{\bf Nombre} &  Escoger Ambiente  \\
+		
+		{\bf Actor} &   Niño, educadora parvularia. \\
+		
+		{\bf Propósito} & El niño / educadora escoge un ambiente.\\
+		
+		{\bf Resumen} & 
+		Seleccionar un ambiente para desarollar la historia para las actividades. \\
+		
+		{\bf Precondición} &     -       \\
+		
+		{\bf Ref. Cruzadas} &  REF004, REF006.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora seleccionará un ambiente [\textbf{Punto A}, Figura \ref{prot3.1}]. & \\
+		
+		& 2. El sistema mostrará el ambiente cargando imágenes y música asociadas. \\
+		
+		3. El niño / educadora presionará el botón siguiente para seguir la pantalla siguiente [\textbf{Punto B}, Figura \ref{prot3.2}]. & \\
+		
+		& 4. El sistema mostrará la pantalla que asociada.\\
+		
+		5. El niño presionará la última vez el botón siguiente, para finalizar &\\
+		
+		& 6. Al momento de finalizar, se procederá a mostrar el siguiente caso de uso.\\ \hline
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Escoger Ambiente.}
+\end{table}
+
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro31.png}
+	\end{center}
+	\caption{Prototipo 3.1, Pantalla principal, selección de ambientes}\label{prot3.1}
+\end{figure}
+
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro32.png}
+	\end{center}
+	\caption{Prototipo 3.2, Pantalla principal, selección de ambientes}\label{prot3.2}
+\end{figure}
+
+\clearpage
+\newpage
+\subsubsection{Prototipo 4: Pantalla de presentación de herramientas}
+
+En la cuarta pantalla de la aplicación (Figura \ref{prot4} ), previamente elegido un ambiente, se procederá a a explicar las herramientas en la esquina superior, encontrando las siguientes:\\
+
+
+\begin{itemize}
+	
+	\item El ícono de la cara del explorador tendrá como funcionalidad de ayudar en las pistas del juego de las adivinanzas. 
+	
+	\item La doble corchea tendrá la funcionar de habilitar y deshabilitar la música de fondo de la aplicación.
+	
+	\item El ícono del mundo al presionarlo volverá a la pantalla principal de selección de ambientes.
+	
+	\item El ícono de la lupa mostrará el diccionario asociado a la pantalla, encontrando el significado de palabras con su sonido respectivo.\\
+	
+\end{itemize}
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU009 \\
+		
+		{\bf Nombre} &  Escoger Herramientas  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Escoger una herramienta que proporcione una funcionalidad en la aplicación.\\
+		
+		{\bf Resumen} & 
+		Seleccionar la funcionalidad de activar/desactivar la musica de la pantalla, explorador que ayude en las pistas de la adivinanza, mostrar el diccionario con un botón de una lupa y un botón del planeta tierra para volver al menú principal de la aplicación. \\
+		
+		{\bf Precondición} &     -       \\
+		
+		{\bf Ref. Cruzadas} &  REF001, REF002, REF009, REF014, REF010.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{6cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora selecciona un boton del conjunto de funcionalidades [\textbf{Punto A}, Figura \label{proto4}]. & \\
+		
+		& 2. El sistema mostrará la funcionalidad seleccionada. \\ \hline
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Escoger Herramientas.}
+\end{table}
+
+
+\newpage
+\clearpage
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro4.png}
+	\end{center}
+	\caption{Prototipo 4, Pantalla de presentación de herramientas} \label{prot4}
+\end{figure}
+
+
+\subsubsection{Prototipo 5: Pantalla de selección de cuentos}
+
+En esta pantalla (Figura \ref{prot5.1}), se dará a elegir dos cuentos que usarán la temática del ambiente elegido.\\
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU004 \\
+		
+		{\bf Nombre} &  Escoger Cuento  \\
+		
+		{\bf Actor} &   Niño, educadora parvularia. \\
+		
+		{\bf Propósito} & El niño / educadora escoge un cuento.\\
+		
+		{\bf Resumen} & 
+		Seleccionar un cuento para desarollar la historia para la actividad adivinanzas y pictograma musical. \\
+		
+		{\bf Precondición} &     Escoger Ambiente      \\
+		
+		{\bf Ref. Cruzadas} &  REF004, CU003.      \\
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora seleccionará un cuento [\textbf{Punto A}, Figura \ref{prot5.1}]. & \\
+		
+		& 2. El sistema mostrará el cuento cargando imágenes y música asociadas. \\
+		
+		3. El niño / educadora presionará el botón siguiente para comenzar el cuento. & \\
+		
+		& 4. El sistema mostrará la pantalla asociada al cuento.\\
+		
+		5. El niño presionará la última vez el botón siguiente, para finalizar el cuento [\textbf{Punto B}, Figura \ref{prot5.2}]. &\\
+		
+		& 6. Al momento de finalizar, se procederá a mostrar el siguiente caso de uso.\\ \hline
+		
+	\end{tabular} 
+	
+	\caption{Caso de Uso Extendido: Escoger Cuento.}
+\end{table}
+
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro51.png}
+	\end{center}
+	\caption{Prototipo 5.1, Pantalla de selección de cuentos} \label{prot5.1}
+\end{figure}
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro52.png}
+	\end{center}
+	\caption{Prototipo 5.2, Pantalla de la historia de cuentos} \label{prot5.2}
+\end{figure}
+
+
+\newpage
+\clearpage
+\subsubsection{Prototipo 6: Pantalla de la selección de actividades}
+
+En esta pantalla el niño podrá elegir que actividad realizar, encontrando el juego de las adivinanzas y el pictograma musical.
+Al seleccionar uno de ellos, se cargará cada juego en una pantalla nueva.\\
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU005 \\
+		
+		{\bf Nombre} &  Seleccionar Juego  \\
+		
+		{\bf Actor} &   Niño, educadora parvularia. \\
+		
+		{\bf Propósito} & El niño / educadora escoge un juego.\\
+		
+		{\bf Resumen} & 
+		Seleccionar el juego de las adivinanzas o pictograma musical. \\
+		
+		{\bf Precondición} &    Escoger Cuento     \\
+		
+		{\bf Ref. Cruzadas} &  REF011, CU004.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora seleccionará un juego [\textbf{Punto A}, Figura \ref{proto6} ]. & \\
+		
+		& 2. El sistema mostrará el caso de uso según el juego seleccionado. \\ \hline
+		
+	\end{tabular}  
+	\caption{Caso de Uso Extendido: Seleccionar Juego.}
+\end{table}
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro6.png}
+	\end{center}
+	\caption{Prototipo 6, Pantalla de la selección de las actividades} \label{proto6}
+\end{figure}
+
+
+\clearpage
+\newpage
+\subsubsection{Prototipo 7: Pantalla del juego de las adivinanzas}
+
+En esta pantalla el niño podrá escuchar las diferentes adivinanzas, en donde tendrá que seleccionar el dibujo que corresponda a la descripción nombrada. Además constará del botón explorador habilitado para la utilización de pistas y el botón del signo interrogación que podrá repetir nuevamente la adivinanza. También podrá utilizar la barra de herramientas de la parte superior derecha de la aplicación.\\
+
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro7.png}
+	\end{center}
+	\caption{Prototipo 7, Pantalla del juego de las adivinanzas}\label{proto7}
+\end{figure}
+
+
+\begin{table}[htf]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU006 \\
+		
+		{\bf Nombre} & Jugar Adivinanzas  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Acertar las adivinanzas.\\
+		
+		{\bf Resumen} & 
+		El juego consiste en tener una imagen de fondo con varias imágenes, que una vez se escuche la adivinanza, seleccionar la imagen correcta, en el caso de que no pueda acertar a la correcta, podrá utilizar le botón "pista" que dará más instrucciones para acertar la opción correcta. \\
+		
+		{\bf Precondición} &     -      \\
+		
+		{\bf Ref. Cruzadas} &  REF003, REF013.    \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño presionará un botón para comenzar el juego. & \\
+		
+		& 2. El sistema cargará las adivinanzas cargando imágenes, texto y grabación de la adivinaza. \\
+		
+		3. El niño reproducirá y escuchará la adivinanza, seleccionando la imagen correcta, para luego, seguir con la siguiente adivinanza [\textbf{Punto A}, Figura \ref{proto7}]. & \\
+		
+		& 4. El sistema entregará el resultado y mostrará la siguiente adivinanza asociada.\\
+		
+		5. El niño seleccionará la imagen correcta de la última adivinanza, para finalizar el juego [\textbf{Punto B}, Figura \ref{proto7}].&\\
+		
+		& 6. Al momento de acertar la última adivinanza, se procederá a mostrar el resultado e iniciará el juego del pictograma.\\ \hline
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Jugar Adivinanza.}
+\end{table}
+
+
+\clearpage
+\newpage
+\subsubsection{Prototipo 8: Pantalla de las pistas del juego de las adivinanzas}
+
+En esta pantalla, el niño podrá acceder a las pistas que ayudarán  a resolver la adivinanza. En ella podrá escuchar la pista sobre la adivinanza y podrá volver a la pantalla del juego.
+
+\begin{table}[htf]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &   CU007 \\
+		
+		{\bf Nombre} & Usar Pistas \\
+		
+		{\bf Actor} &   Niño\\
+		
+		{\bf Propósito} & Utilizar ayuda para resolver adivinanza.\\
+		
+		{\bf Resumen} & 
+		La opción "pistas", entregará descripciones adicionales para cada una de las adivinanzas, permitiendo que el niño pueda resolver más fácil la adivinanza.\\
+		
+		{\bf Precondición} &   Jugar Adivinanzas  \\
+		
+		{\bf Ref. Cruzadas} &  REF003, REF013, CU006. \\
+		
+	\end{tabular}
+	
+\end{table}
+
+\begin{table}[htf]
+	\begin{tabular}{|p{7cm}|p{7cm}|}\hline
+		
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		1. El niño selecciona "Usar Pistas". & \\
+		
+		& 2. El sistema mostrará la interfaz de "Usar Pistas". \\ 
+		
+		3. El niño selecciona reproducir nueva pista. [\textbf{Punto A}, Figura \ref{proto8}]. & \\
+		
+		& 4. El sistema reproducirá la grabación asociada a la pista de la imagen. \\
+		
+		5. El niño presiona volver a la pantalla anterior.[\textbf{Punto B}, Figura \ref{proto8}] & \\
+		
+		& 6. El sistema redireccionará al caso de uso "Jugar Adivinanzas", donde fue invocado. \\ \hline
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Usar Pistas.}
+\end{table}
+
+\clearpage
+\newpage
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro8.png}
+	\end{center}
+	\caption{Prototipo 8, Pantalla del juego de las adivinanzas}\label{proto8}
+\end{figure}
+
+
+\subsubsection{Prototipo 9: Pantalla del juego del pictograma musical}
+
+En esta pantalla el niño podrá escuchar la canción relacionada con el cuento y el ambiente seleccionado.\\
+El pictograma musical consiste en arrastrar las imágenes a cada estrofa de la canción, en la cual si es correcta quedará en la estrofa elegida. A medida que avance podrá reproducir la canción hasta la última estrofa correcta.
+
+También, el niño podrá cantar la canción utilizando la pista de la canción del pictograma musical.\\
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro9.png}
+	\end{center}
+	\caption{Prototipo 8, Pantalla del juego del pictograma musical}\label{proto9}
+\end{figure}
+
+
+\clearpage
+\newpage
+
+\begin{table}[htf]
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU008 \\
+		
+		{\bf Nombre} &  Jugar Pictograma Musical  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Completar Canciones.\\
+		
+		{\bf Resumen} & 
+		El niño a través de canciones completará la letra de la canción arrastrando imágenes. \\
+		
+		{\bf Precondición} &  Seleccionar Juego \\
+		
+		{\bf Ref. Cruzadas} &  REF012, REF003, CU005.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño seleccionará el juego pictograma musical. & \\
+		
+		& 2. El sistema mostrará la interfaz del pictograma musical, cargando imágenes, texto y canciones. \\
+		
+		3. El niño escuchará la canción, moviendo la imagen correcta en la oración [\textbf{Punto A}, Figura \ref{proto9}]. & \\
+		
+		& 4. El sistema entregará por pantalla el resultado, esperando la siguiente respuesta.\\
+		
+		5. El niño moverá la última imagen correcta para finalizar el juego [\textbf{Punto B}, Figura \ref{proto9}].&\\
+		
+		& 6. Al momento de finalizar, se procederá a mostrar el resultado y comenzará con el siguiente juego.\\ \hline
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Jugar Pictograma Musical.}
+\end{table}
+
+
+\clearpage
+\newpage
+\subsubsection{Prototipo 10: Pantalla de grabación de voz}
+
+En esta pantalla se podrá grabar la voz del niño, que en conjunto a la pista de la canción, podrá cantarla.\\
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro10.png}
+	\end{center}
+	\caption{Prototipo 10, Pantalla de finalización del juego}\label{proto10}
+\end{figure}
+
+\clearpage
+\newpage
+
+\begin{table}[htf]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU011 \\
+		
+		{\bf Nombre} &  Grabar Voz \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Grabar la voz del niño, permitiendo desarrollar la consciencia fonológica.\\
+		
+		{\bf Resumen} & 
+		La funcionalidad grabar voz, permite que el niño escuche las palabras o frases que dice, en el transcurso de la aplicación, creando interacción entre la aplicación y el niño. \\
+		
+		{\bf Precondición} &  Escoger Herramientas \\
+		
+		{\bf Ref. Cruzadas} &  REF001, CU009.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño escoge el botón de un micrófono [\textbf{Punto A}, Figura \ref{proto10}]. & \\
+		
+		& 2. El sistema mostrará un mensaje que se encuentra grabando la voz .\\
+		
+		3. El niño presionará nuevamente el botón del micrófono para inicializar la grabación [\textbf{Punto B}, Figura \ref{proto10}]. & \\
+		
+		& 4. El sistema mostrará un mensaje que la grabación ha comenzado [\textbf{Punto C}, Figura \ref{proto10}].\\
+		
+		5. El niño presionará nuevamente el botón del micrófono para finalizar la grabación.  &\\
+		
+		& 6. El sistema mostrará un mensaje que la grabación ha finalizado.\\ 
+		
+		7. El niño presionará nuevamente el botón de reproducir la grabación [\textbf{Punto D}, Figura \ref{proto10}]. &\\
+		
+		& 8. El sistema reproducirá la grabación.\\ 
+		\hline
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Grabar Voz.}
+\end{table}
+
+
+
+\clearpage
+\newpage	
+
+\subsubsection{Prototipo 11: Pantalla de utilización del diccionario}
+
+
+El sistema desplegará un conjunto de palabras e imágenes relacionadas con la pantalla actual.
+
+
+
+\begin{table}[htf]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU010 \\
+		
+		{\bf Nombre} &  Ver Diccionario  \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Entregar vocabulario nuevo, para el entendimiento de las palabras e imágenes usadas.\\
+		
+		{\bf Resumen} & 
+		Seleccionar la funcionalidad de mostrar un diccionario que contendrá el significado de las palabras e identificación de imágenes o pictogramas. \\
+		
+		{\bf Precondición} &  Escoger Herramientas \\
+		
+		{\bf Ref. Cruzadas} & REF009, REF010, CU009.     \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño / educadora escoge el boton lupa [\textbf{Punto A}, Figura \ref{proto11}]. & \\
+		
+		& 2. El sistema mostrará la interfaz del diccionario . \\
+		
+		3. El niño / educadora presionará la imagen o palabra disponible en el diccionario [\textbf{Punto B}, Figura \ref{proto11}]. & \\
+		
+		& 4. El sistema mostrará interfaz del elemento  seleccionado del diccionario, entregando sonido, imagen y texto.\\
+		
+		5. El niño presionará la flecha para finalizar diccionario [\textbf{Punto C}, Figura \ref{proto11}].  &\\
+		
+		& 6. El sistema volverá a la pantalla anterior, donde fue llamado.\\ \hline
+		
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Ver Diccionario.}
+\end{table}
+
+\clearpage
+\newpage
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro11.png}
+	\end{center}
+	\caption{Prototipo 11, Pantalla del diccionario}\label{proto11}
+\end{figure}
+
+
+\subsubsection{Prototipo 12: Pantalla de finalización del ambiente}
+
+Ya elegido el primer juego, automáticamente al elegir el segundo juego (independiente si corresponde a adivinanzas o pictograma musical), nos llevará  a la pantalla de finalización del juego. En ella se mostrará agradecimientos por haber participado en los juegos, dando la posibilidad de volver al menú principal de selección de ambientes, a través del ícono del planeta tierra.
+
+
+\begin{figure}[htf]
+	\begin{center}
+		\includegraphics[width=9cm,height=5cm] {imagenes/pro12.png}
+	\end{center}
+	\caption{Prototipo 12, Pantalla de finalización del ambiente}\label{proto12}
+\end{figure}
+
+\clearpage
+\newpage
+
+\begin{table}[h]
+	
+	\begin{tabular}{rp{11cm}}
+		
+		{\bf Id} &      CU012 \\
+		
+		{\bf Nombre} &  Regresar Ambientes \\
+		
+		{\bf Actor} &   Niño. \\
+		
+		{\bf Propósito} & Volver a la pantalla principal de selección de ambientes.\\
+		
+		{\bf Resumen} & 
+		Entregar la posibilidad de volver al menú de elección de ambiente durante las actividades. \\
+		
+		{\bf Precondición} &  Escoger Herramientas \\
+		
+		{\bf Ref. Cruzadas} &  REF014, CU009.      \\
+		
+		
+		& \\
+	\end{tabular}
+	
+	\begin{tabular}{|p{7cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf Curso Normal}} \\
+		\hline
+		Actor &    Sistema \\
+		\hline
+		1. El niño selecciona el ícono del planeta tierra [\textbf{Punto A}, Figura \ref{proto12}]. & \\
+		
+		& 2. El sistema enviará un mensaje de confirmación[\textbf{Punto B}, Figura \ref{proto12}].\\
+		
+		3. El niño confirmará volver a la selección de ambiente.[\textbf{Punto C}, Figura \ref{proto12}] & \\
+		
+		& 4. El sistema redireccionará al caso de uso "Escoger Ambiente".\\ \hline
+		
+		
+		
+	\end{tabular}  
+	
+	\caption{Caso de Uso Extendido: Regresar Ambientes.}
+\end{table}	
+
+
+
+
+\chapter{Pruebas Unitarias} \label{uni}
+
+\begin{table}[htf]
+	\centering
+	\begin{tabular}{|p{4cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PU002: Grabar voz}} \\\hline
+		\textbf{Propósito:} & Capturar la voz a través del micrófono de android. \\ \hline 
+		\textbf{Caso de Uso:} & CU011 \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Caso prueba}}} \\ 	\hline
+		\textbf{Entradas:} & Evento listener del botón para grabar y reproducir grabación. \\ \hline
+		
+		\textbf{Salida Esperada:} & Devolver la grabación una vez finalizada o reproducirla. \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Valores de caso prueba}}} \\ 	\hline
+		\textbf{Entrada}& \textbf{Salida} \\ \hline
+		
+		Presionar botón de grabar & Mostrar mensaje de grabación en curso (Correcto). \\ \hline
+		Presionar botón de grabar (2 vez) & Mostrar mensaje de grabación finalizada (Correcto). \\ \hline
+		Presionar botón de reproducir & Reproducir grabación (Correcto). \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas Unitarias PU002}\label{tablapu002}	
+\end{table}
+
+\begin{table}[htf]
+	\centering
+	\begin{tabular}{|p{4cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PU003: Reproducir Pistas}} \\\hline
+		\textbf{Propósito:} & Cargar la interfaz de las pistas y reproducir pista. \\ \hline 
+		\textbf{Caso de Uso:} & CU007\\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Caso prueba}}} \\ 	\hline
+		\textbf{Entradas:} & Evento listener del botón pista y Evento listener escuchar pista. \\ \hline
+		
+		\textbf{Salida Esperada:} & Ver la intefaz de pistas y escuchar las pistas. \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Valores de caso prueba}}} \\ 	\hline
+		\textbf{Entrada }& \textbf{Salida} \\ \hline
+		
+		Presionar botón pistas & Mostrar interfaz de pista (correcto). \\ \hline
+		Presionar botón reproducir pista & Reproducir la grabación de la pista (Correcto). \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas Unitarias PU003}\label{tablapu003}	
+\end{table}
+
+
+\begin{table}[htf]
+	\centering
+	\begin{tabular}{|p{4cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PU004: Seleccionar personaje}} \\\hline
+		\textbf{Propósito:} & Ingresar nombre  y seleccionar personaje de niño o niña. \\ \hline 
+		\textbf{Caso de Uso:} & CU002\\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Caso prueba}}} \\ 	\hline
+		\textbf{Entradas:} & Evento listener del personaje niño o niña, y evento de ingresar texto. \\ \hline
+		
+		\textbf{Salida Esperada:} & Enfocar imagen niño o niña y guardar nombre del usuario. \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Valores de caso prueba}}} \\ 	\hline
+		\textbf{Entrada}& \textbf{Salida} \\ \hline
+		
+		Presionar imagen niño. & Enfocar imagen niño. (Correcto) \\ \hline
+		Presionar imagen niña. & Enfocar imagen niño. (Incorrecto) \\ \hline
+		Campo vacío en el nombre. & Mostrar mensaje de ingresar nombre . (Correcto) \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas Unitarias PU004}\label{tablapu004}	
+\end{table}
+
+\begin{table}[htf]
+	\centering
+	\begin{tabular}{|p{4cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PU005: Reproducir Canción}} \\\hline
+		\textbf{Propósito:} & Cargar canción y reproducirla en el juego pictograma musical. \\ \hline 
+		\textbf{Caso de Uso:} & CU008\\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Caso prueba}}} \\ 	\hline
+		\textbf{Entradas:} & Evento listener de reproducir canción y evento listener de reproducir instrumental de la canción. \\ \hline
+		
+		\textbf{Salida Esperada:} & Escuchar la canción o el instrumental. \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Valores de caso prueba}}} \\ 	\hline
+		\textbf{Entrada }& \textbf{Salida} \\ \hline
+		
+		Presionar botón reproducir la canción & Escuchar la canción del juego (Correcto). \\ \hline
+		Evento de reproducir instrumental& Reproducir canción instrumental del juego (Correcto). \\ \hline
+		
+	\end{tabular}  
+	\caption{Tabla de Pruebas Unitarias PU005}\label{tablapu005}	
+\end{table}
+
+
+
+\begin{table}[htf]
+	\centering
+	\begin{tabular}{|p{4cm}|p{7cm}|}
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PU006: Cargar Ambiente}} \\\hline
+		\textbf{Propósito:} & Cargar la interfaz del ambiente. \\ \hline 
+		\textbf{Caso de Uso:} & CU003\\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Caso prueba}}} \\ 	\hline
+		\textbf{Entradas:} & Evento de inicialización de un ambiente. \\ \hline
+		
+		\textbf{Salida Esperada:} & Interfaz entregada en la pantalla. \\ \hline
+		
+		\multicolumn{2}{|c|}{{\textbf{Valores de caso prueba}}} \\ 	\hline
+		\textbf{Entrada }& \textbf{Salida} \\ \hline
+		
+		Evento de inicialización & Mostrar imágenes, texto y música del ambiente (Correcto). \\ \hline
+		
+	\end{tabular}  
+	\caption{Tabla de Pruebas Unitarias PU006}\label{tablapu006}	
+\end{table}
+
+
+\chapter{Pruebas de Integración} \label{inte}
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{3.5cm}|p{7cm}|}
+		
+		\hline
+		\multicolumn{2}{|c|}{{\bf PI002: Juego Adivinanzas }} \\\hline
+		Nivel: & 1  \\ \hline 
+		Objetivo:& Utilizar la función pistas, reproduciendo las adivinanzas y seleccionando la imagen correcta  \\ \hline
+		Estado Inicial:& Inicializar interfaz del juego y en espera de usar las funcionalidades   \\ \hline
+		Estado Final:  & Imágenes seleccionadas y haber utilizado las pistas, completando el juego\\ \hline
+		Resultado Esperado:& Todas las imagénes seleccionadas correctamente y reproduciendo las pistas sin problemas. Pasar al otro juego.\\ \hline
+		Resultado Obtenido:& -\\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas de Integración - PI002}\label{tablapi002}
+	
+\end{table}
+
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{3.5cm}|p{7cm}|}
+		
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PI003: Ambientes }} \\\hline
+		Nivel: & 1  \\ \hline 
+		Objetivo:& Navegar en las pantallas, viendo imágenes, botones y texto.  \\ \hline
+		Estado Inicial: & Inicializar interfaz del ambiente y en espera de continuar la siguiente pantalla. \\ \hline
+		Estado Final:& Última pantalla en dirección a la pantalla de los cuentos. \\ \hline
+		Resultado Esperado:& Ver las imágenes y sonidos correctamente y avanzar entre pantallas.  \\ \hline
+		Resultado Obtenido:& - \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas de Integración - PI003}\label{tablapi003}
+	
+\end{table}
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{3.5cm}|p{7cm}|}
+		
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PI004: Cuentos }} \\\hline
+		Nivel:& 1 \\ \hline 
+		Objetivo:& Cargar interfaz, navegar en las pantallas, viendo imágenes, texto, escuchando la voz que relate la historia.   \\ \hline
+		Estado Inicial:& En espera de evento de transición de pantalla. \\ \hline
+		Estado Final:& Última pantalla, en dirección a la pantalla de los juegos\\ \hline
+		Resultado Esperado:& Ver las imágenes y sonidos correctamente y avanzar entre pantallas. \\ \hline
+		Resultado Obtenido:& - \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas de Integración - PI004}\label{tablapi004}
+	
+\end{table}
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{3.5cm}|p{7cm}|}
+		
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PI005: Diccionario }} \\\hline
+		Nivel: & 1  \\ \hline 
+		Objetivo:& Entregar palabras e imágenes asociadas a la pantalla donde fue invocada. \\ \hline
+		Estado Inicial: & En espera de evento de listener sobre el botón de la lupa.\\ \hline
+		Estado Final:& En espera de volver a la pantalla donde fue invocada. \\ \hline
+		Resultado Esperado:& Desplegar interfaz de diccionario, mostrando correctamente las imágenes y palabras asociadas a la pantalla donde fue invocada.\\ \hline
+		Resultado Obtenido:& -  \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas de Integración - PI005}\label{tablapi005}
+	
+\end{table}
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{3.5cm}|p{7cm}|}
+		
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PI006: Regresar Ambiente }} \\\hline
+		Nivel: & 1  \\ \hline 
+		Objetivo:& Regresar a la pantalla de selección de ambientes. \\ \hline
+		Estado Inicial: & Esperando evento de listener en botón del planeta tierra.\\ \hline
+		Estado Final:& Confirmación del evento de regresar ambiente. \\ \hline
+		Resultado Esperado:& Redireccionamiento a la pantalla de ambientes.  \\ \hline
+		Resultado Obtenido:& - \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas de Integración - PI006}\label{tablapi006}
+	
+\end{table}
+
+
+\begin{table}[htf]
+	
+	\centering
+	\begin{tabular}{|p{3.5cm}|p{7cm}|}
+		
+		\hline
+		\multicolumn{ 2}{|c|}{{\bf PI007: Mostrar Presentación }} \\\hline
+		Nivel: & 2  \\ \hline 
+		Objetivo:& Cargar la interfaz de la presentación.\\ \hline
+		Estado Inicial: & Espera del evento de incialización de la presentación  \\ \hline
+		Estado Final:& Espera de finalización de la presentación.\\ \hline
+		Resultado Esperado:& Entregar animación, texto e imágenes correctamente. \\ \hline
+		Resultado Obtenido:& - \\ \hline
+		
+	\end{tabular} 
+	\caption{Tabla de Pruebas de Integración - PI007}\label{tablapi007}
+	
+\end{table}

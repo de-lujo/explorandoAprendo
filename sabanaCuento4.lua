@@ -1,10 +1,12 @@
 local storyboard = require ("storyboard")
 local scene= storyboard.newScene()
-local fondo, boton, icono, explorador, planeta, titulo, screenGroup, sonido
-local time={}
+local fondo, boton, icono, explorador, planeta, titulo, hoja, mundo, corchea, corchea2
+local dicci, nota,screenGroup,text
+local time={0,0,0}
+local sonido, palabra, banner
+local channel,channel2
+local contador=1
 
---audio.reserveChannels(4)
-local channel=audio.findFreeChannel()
 
 
 
@@ -16,10 +18,9 @@ function scene:createScene( event )
 	fondo.x=display.contentWidth/2
 	fondo.y=display.contentHeight/2
 
-
 	nube=display.newRoundedRect( display.contentCenterX, display.contentCenterY, 500, 150, 12 )
 	nube.x=display.contentCenterX -250
-	nube.y=display.contentCenterY -200
+	nube.y=display.contentCenterY-200
 	nube.strokeWidth = 6
 	nube:setStrokeColor( 0, 0, 0 )
 	nube.alpha=0
@@ -65,18 +66,18 @@ function scene:createScene( event )
 	boton:scale( 0.30, 0.30 )
 
 
-	text1= display.newText("Caminaron, caminaron y continuaron caminando,".. "\ncuando de pronto, ¡PLAP! ¡PLEP! ¡PLIP! un avestruz".."\nen el camino.", 0, 0, native.systemFont, 18 )
-	text1:setFillColor( 0, 0, 0)
-	text1.x= display.contentCenterX-245
-	text1.y= display.contentCenterY-200
-	text1.alpha=0
-
 	nota=display.newImage( "img/book1.png")
 	nota.x=display.contentCenterX
 	nota.y=display.contentCenterY
 	nota.isVisible=true
 	nota.alpha=0
 	nota:scale( 0.88, 0.70 )
+
+	text1 = display.newText("Caminaron, caminaron y siguieron caminando, cuando\nde pronto… ¡PLAP! ¡PLEP! ¡PLIP! ¡PLOP!!", 0, 0, native.systemFont, 18 )
+	text1:setFillColor( 0, 0, 0)
+	text1.x= display.contentCenterX-245
+	text1.y= display.contentCenterY-200
+	text1.alpha=0
 
 	arrow= display.newImage( "img/286.png")
 	arrow.x=display.contentCenterX +390
@@ -169,7 +170,7 @@ function scene:createScene( event )
 	img5.x=display.contentCenterX +250
 	img5.y=display.contentCenterY -180
 	img5.isVisible=false
-	img5.alpha=0
+	img5.alpha=1
 	img5.surfaceType="nu"
 	--img5:scale( 0.14, 0.14)
 
@@ -178,7 +179,7 @@ function scene:createScene( event )
 	img6.x=display.contentCenterX + 100
 	img6.y=display.contentCenterY -90
 	img6.isVisible=false
-	img6.alpha=0
+	img6.alpha=1
 	img6.surfaceType="leon"
 	--img2:scale( 0.90, 0.90)
 
@@ -186,7 +187,7 @@ function scene:createScene( event )
 	img7.x=display.contentCenterX +230
 	img7.y=display.contentCenterY +20
 	img7.isVisible=false
-	img7.alpha=0
+	img7.alpha=1
 	img7.surfaceType="elefante"
 	--img3:scale( 0.14, 0.14)
 
@@ -194,7 +195,7 @@ function scene:createScene( event )
 	img8.x=display.contentCenterX +100
 	img8.y=display.contentCenterY +120
 	img8.isVisible=false
-	img8.alpha=0
+	img8.alpha=1
 	img8.surfaceType="hienas"
 	--img8:scale( 0.90, 0.90)
 
@@ -202,7 +203,7 @@ function scene:createScene( event )
 	img9.x=display.contentCenterX +250
 	img9.y=display.contentCenterY -180
 	img9.isVisible=false
-	img9.alpha=0
+	img9.alpha=1
 	img9.surfaceType="cebra"
 	--img9:scale( 0.14, 0.14)
 
@@ -211,7 +212,7 @@ function scene:createScene( event )
 	img10.x=display.contentCenterX + 100
 	img10.y=display.contentCenterY -100
 	img10.isVisible=false
-	img10.alpha=0
+	img10.alpha=1
 	img10.surfaceType="hipopotamo"
 	--img2:scale( 0.90, 0.90)
 
@@ -219,7 +220,7 @@ function scene:createScene( event )
 	img11.x=display.contentCenterX +300
 	img11.y=display.contentCenterY 
 	img11.isVisible=false
-	img11.alpha=0
+	img11.alpha=1
 	img11.surfaceType="avestruz"
 	--img3:scale( 0.14, 0.14)
 
@@ -227,9 +228,43 @@ function scene:createScene( event )
 	img12.x=display.contentCenterX +100
 	img12.y=display.contentCenterY +110
 	img12.isVisible=false
-	img12.alpha=0
+	img12.alpha=1
 	img12.surfaceType="rinoceronte"
 	--img12:scale( 0.90, 0.90)
+
+	banner=display.newImage( "img/banner2.png")
+	banner:scale( 0.20, 0.20)
+	banner.x=display.contentCenterX -240
+	banner.y=display.contentCenterY - 60
+	banner.alpha=0
+
+
+	pause=display.newImage( "img/pause.png")
+	pause:scale( 0.40, 0.40)
+	pause.x=display.contentCenterX -240
+	pause.y=display.contentCenterY - 90
+	pause.alpha=0
+
+	play2=display.newImage( "img/play2.png")
+	play2:scale( 0.40, 0.40)
+	play2.x=display.contentCenterX -240
+	play2.y=display.contentCenterY - 90
+	play2.alpha=0
+
+
+
+	rewind=display.newImage( "img/rewind.png")
+	rewind:scale( 0.40, 0.40)
+	rewind.x=display.contentCenterX -300
+	rewind.y=display.contentCenterY - 90
+	rewind.alpha=0
+
+	forward=display.newImage( "img/forward.png")
+	forward:scale( 0.40, 0.40)
+	forward.x=display.contentCenterX -180
+	forward.y=display.contentCenterY - 90
+	forward.alpha=0
+
 
 
 	screenGroup:insert(fondo)
@@ -242,6 +277,13 @@ function scene:createScene( event )
 	screenGroup:insert(corchea2)
 	screenGroup:insert(mundo)
 	screenGroup:insert(dicci)
+
+	screenGroup:insert(banner)
+	screenGroup:insert(pause)
+	screenGroup:insert(rewind)
+	screenGroup:insert(forward)
+	screenGroup:insert(play2)
+
 	screenGroup:insert(nota)
 	screenGroup:insert(arrow)
 	screenGroup:insert(arrow2)
@@ -263,16 +305,18 @@ function scene:createScene( event )
 	screenGroup:insert(img11)
 	screenGroup:insert(img12)
 
+
 end
+
 
 function reHoja( event)
 
 
 if event.phase == "began" then
 
-		time[7]=timer.performWithDelay( 0, noText, 1)
-		time[8]=timer.performWithDelay( 1000, devuelveHoja, 1)
-		time[9]=timer.performWithDelay( 2000, onText, 1)
+		--time[8]=timer.performWithDelay( 0, noText, 1)
+		time[9]=timer.performWithDelay( 0, devuelveHoja, 1)
+		--time[10]=timer.performWithDelay( 2000, onText, 1)
 
 	end
 
@@ -283,29 +327,14 @@ end
 
 function stopTime( event)
 
-	timer.pause(time[0])
-	timer.pause(time[1])
-	timer.pause(time[2])
-	timer.pause(time[3])
+	if event.phase == "began" then
+
+		pauseTexto(event)
+
+	end
 
 end
 
-
-function goTime(event)
-
-    timer.resume(time[0])
-	timer.resume(time[1])
-	timer.resume(time[2])
-	timer.resume(time[3])
-	--[[timer.resume(time[4])
-	timer.resume(time[5])
-	timer.resume(time[6])
-	timer.resume(time[7])
-	timer.resume(time[8])
-	timer.resume(time[9])]]
-
-
-end
 
 
 
@@ -326,13 +355,17 @@ if (_G.hoja == 3) then
 
 
   	img5.isVisible=true
-  	transition.fadeIn( img5, {time=1000} )
+  	img12.isVisible=false
+  	--transition.fadeIn( img5, {time=1000} )
   	img6.isVisible=true
-  	transition.fadeIn( img6, {time=1000} )
+  	img11.isVisible=false
+  	--transition.fadeIn( img6, {time=1000} )
   	img7.isVisible=true
-  	transition.fadeIn( img7, {time=1000} )
+  	img10.isVisible=false
+  	--transition.fadeIn( img7, {time=1000} )
   	img8.isVisible=true
-  	transition.fadeIn( img8, {time=1000} )
+  	img9.isVisible=false
+  	--transition.fadeIn( img8, {time=1000} )
   	transition.fadeIn( arrow, {time=1000})
 
   	_G.hoja=2
@@ -358,20 +391,26 @@ if (_G.hoja == 3) then
 
 
   	img1.isVisible=true
-  	transition.fadeIn( img1, {time=1000} )
+  	img5.isVisible=false
+
+  	--transition.fadeIn( img1, {time=1000} )
   	img2.isVisible=true
-  	transition.fadeIn( img2, {time=1000} )
+  	img6.isVisible=false
+
+  	--transition.fadeIn( img2, {time=1000} )
   	img3.isVisible=true
-  	transition.fadeIn( img3, {time=1000} )
+  	img7.isVisible=false
+
+  	--transition.fadeIn( img3, {time=1000} )
   	img4.isVisible=true
-  	transition.fadeIn( img4, {time=1000} )
+  	img8.isVisible=false
+
+  	--transition.fadeIn( img4, {time=1000} )
   	transition.fadeOut( arrow2, {time=500})
+  	
   	_G.hoja=1
 
     end
-
-
-
 
 
 
@@ -382,9 +421,9 @@ function avHoja( event )
 
 	if event.phase == "began" then
 
-		time[4]=timer.performWithDelay( 0, noText, 1)
-		time[5]=timer.performWithDelay( 1000, validaHoja, 1)
-		time[6]=timer.performWithDelay( 2000, onText, 1)
+		--time[5]=timer.performWithDelay( 0, noText, 1)
+		time[6]=timer.performWithDelay( 0, validaHoja, 1)
+		--time[7]=timer.performWithDelay( 2000, onText, 1)
 
 	end
 
@@ -409,13 +448,24 @@ function validaHoja (event)
 
 
   	img5.isVisible=true
-  	transition.fadeIn( img5, {time=1000} )
+  	img5.alpha=1
+  	img1.isVisible=false
+  	--transition.fadeIn( img5, {time=1000} )
   	img6.isVisible=true
-  	transition.fadeIn( img6, {time=1000} )
+  	img6.alpha=1
+  	img2.isVisible=false
+
+  	--transition.fadeIn( img6, {time=1000} )
   	img7.isVisible=true
-  	transition.fadeIn( img7, {time=1000} )
+  	img7.alpha=1
+  	img3.isVisible=false
+
+  	--transition.fadeIn( img7, {time=1000} )
   	img8.isVisible=true
-  	transition.fadeIn( img8, {time=1000} )
+  	img8.alpha=1
+  	img4.isVisible=false
+
+  	--transition.fadeIn( img8, {time=1000} )
   	transition.fadeIn( arrow2, {time=1000} )
   	_G.hoja=2
 
@@ -437,13 +487,25 @@ function validaHoja (event)
 
 
   	img9.isVisible=true
-  	transition.fadeIn( img9, {time=1000} )
+  	img9.alpha=1
+  	img5.isVisible=false
+
+  	--transition.fadeIn( img9, {time=1000} )
   	img10.isVisible=true
-  	transition.fadeIn( img10, {time=1000} )
+  	img10.alpha=1
+  	img6.isVisible=false
+
+  	--transition.fadeIn( img10, {time=1000} )
   	img11.isVisible=true
-  	transition.fadeIn( img11, {time=1000} )
+  	img11.alpha=1
+  	img7.isVisible=false
+
+  	--transition.fadeIn( img11, {time=1000} )
   	img12.isVisible=true
-  	transition.fadeIn( img12, {time=1000} )
+  	img12.alpha=1
+  	img8.isVisible=false
+
+  	--transition.fadeIn( img12, {time=1000} )
   	transition.fadeOut( arrow, {time=500})
   	_G.hoja=3
   	
@@ -473,6 +535,7 @@ function noText( event )
 	transition.fadeOut( img11, {time=500})
 	transition.fadeOut( img12, {time=500})
 
+
 end
 
 function onText( event )
@@ -483,21 +546,91 @@ function onText( event )
 end
 
 
+function destexto( event )
+	transition.fadeOut( text1, {time=500} )
+end
+
+
+function start( event )
+	
+	if event.phase == "began" then
+
+	  storyboard.gotoScene("sabanaCuento5","fade",400)
+	end
+end
+
+function back( event )
+	
+	if event.phase == "began" then
+
+	  storyboard.gotoScene("sabanaCuento3","fade",400)
+	end
+end
+
+function volver_ambiente( event )
+	
+	if event.phase == "began" then
+
+	  storyboard.gotoScene("selectAmbiente","fade",400)
+	end
+
+
+end
+
+function sin_musica ( event )
+
+if event.phase == "began" then
+
+	_G.sinMusica=true
+	corchea.isVisible=false
+	corchea2.isVisible=true
+	audio.pause(_G.channel)
+	corchea:removeEventListener( "touch", sin_musica)
+	corchea2:addEventListener( "touch", con_musica )
+
+	end
+
+
+end
+
+function con_musica ( event )
+
+if event.phase == "began" then
+
+	_G.sinMusica=false
+	corchea.isVisible=true
+	corchea2.isVisible=false
+	audio.resume(_G.channel)
+	corchea:addEventListener( "touch", sin_musica)
+	corchea2:removeEventListener( "touch", con_musica )
+
+	end
+
+end
+
+
+
 function fade_out( event )
 	
  if event.phase == "began" then
 
-
-	stopTime(event)
-	onText(event)
+    stopTime(event)
+	channel2= audio.findFreeChannel()
 	_G.hoja=1
 	transition.fadeIn( equis, {time=1000} )
 	transition.fadeIn( nota, {time=1000} )
 	transition.fadeIn( arrow, {time=1000} )
+	onText(event)
+	img1.isVisible=true
+	img2.isVisible=true
+	img3.isVisible=true
+	img4.isVisible=true
+
 	transition.fadeIn( img1, {time=1000} )
 	transition.fadeIn( img2, {time=1000} )
 	transition.fadeIn( img3, {time=1000} )
 	transition.fadeIn( img4, {time=1000} )
+
 	transition.to( fondo, {time=1000, alpha=0.30} )
 	transition.to( nube, {time=1000, alpha=0.30} )
 	transition.to( text1, {time=1000, alpha=0.30} )
@@ -509,7 +642,13 @@ function fade_out( event )
 	transition.to( mundo, {time=1000, alpha=0.30} )
 	transition.to( dicci, {time=1000, alpha=0.30} )
 
-	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = 2, loops = -1})
+	transition.to( banner, {time=1000, alpha=0.30} )
+	--transition.to( pause, {time=1000, alpha=0.30} )
+	transition.to( play2, {time=1000, alpha=0.30} )
+	transition.to( rewind, {time=1000, alpha=0.30} )
+	transition.to( forward, {time=1000, alpha=0.30} )
+
+	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = channel2, loops = 0})
     audio.play(palabra)
 
     icono:removeEventListener( "touch", start)
@@ -517,7 +656,7 @@ function fade_out( event )
 	mundo:removeEventListener( "touch", volver_ambiente)
 	corchea:removeEventListener( "touch", sin_musica )
 
-end
+ end
 
 end
 
@@ -526,8 +665,6 @@ function fade_in( event )
 
  if event.phase == "began" then
 
-    goTime(event)
-	audio.fadeOut( sonido, {time=1000} )
     transition.fadeOut( equis, {time=1000} )
 	transition.fadeOut( nota, {time=1000} )
 	transition.fadeOut( arrow, {time=1000} )
@@ -557,14 +694,22 @@ function fade_in( event )
 	transition.to( corchea2, {time=1000, alpha=1} )
 	transition.to( mundo, {time=1000, alpha=1} )
 	transition.to( dicci, {time=1000, alpha=1} )
-	
-	icono:addEventListener( "touch", start)
+
+
+	transition.to( banner, {time=1000, alpha=1} )
+	--transition.to( pause, {time=1000, alpha=1} )
+	transition.to( play2, {time=1000, alpha=1} )
+	transition.to( rewind, {time=1000, alpha=1} )
+	transition.to( forward, {time=1000, alpha=1} )
+
+
+	audio.stop( channel2)
+	audio.dispose( channel2)
+
+    icono:addEventListener( "touch", start)
 	boton:addEventListener("touch",back)
 	mundo:addEventListener( "touch", volver_ambiente)
 	corchea:addEventListener( "touch", sin_musica )
-
-	audio.stop( channel)
-	audio.dispose( channel )
 
  end
 	
@@ -578,16 +723,16 @@ function musicDicci( event )
 
 	if event.phase == "began" then
 
-		audio.stop(channel)
+		audio.stop(channel2)
 
 		 if (self.surfaceType == "sabana") then
 
-		 sonido=audio.loadSound("music/diccionario/La sabana.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/La sabana.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "jirafa") then
 
-		 sonido=audio.loadSound("music/diccionario/Jirafa.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Jirafa.mp3", {loops = 0, channel =channel})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "cocodrilo") then
@@ -655,87 +800,6 @@ function musicDicci( event )
 
 end
 
-
-function destexto( event )
-	transition.fadeOut( text1, {time=500} )
-end
-
-function texto1( event )
-	text1.text= "\n¡Nosotros también quisiéramos ser un ave!" .. "\nQué lindas tus plumas tan coloridas y suaves" .. "\nCreo que para tenerlas, tendrán que buscar:"
-	transition.fadeIn( text1, {time=1000} )
-	sonido=audio.loadStream("music/cuento1/Parrafo 10.mp3", {loops = -1, channel = channel})
-	audio.play(sonido)
-end
-
-function texto2( event )
-
-	text1.text= "por aquí, por allá o en el nunca jamás. ¡Está bien!".. "\n\nBuscaron muchas hojas por doquier e hicieron" .. "\nsus propias plumas y siguieron su camino."
-	transition.fadeIn( text1, {time=1000} )
-	icono.isVisible=true
-	transition.fadeIn( icono, {time=3000} )
-	sonido=audio.loadStream("music/cuento1/Parrafo 11.mp3", {loops = -1, channel = channel})
-	audio.play(sonido)
-end
-
-
-
-function start( event )
-	
-	if event.phase == "began" then
-
-	  storyboard.gotoScene("sabanaCuento5","fade",400)
-	end
-end
-
-function back( event )
-	
-	if event.phase == "began" then
-
-	  storyboard.gotoScene("sabanaCuento3","fade",400)
-	end
-end
-
-
-
-function volver_ambiente( event )
-	
-	if event.phase == "began" then
-
-	  storyboard.gotoScene("selectAmbiente","fade",400)
-	end
-
-
-end
-
-function sin_musica ( event )
-
-if event.phase == "began" then
-
-	corchea.isVisible=false
-	corchea2.isVisible=true
-	audio.pause(_G.channel)
-	corchea:removeEventListener( "touch", sin_musica)
-	corchea2:addEventListener( "touch", con_musica )
-
-	end
-
-
-end
-
-function con_musica ( event )
-
-if event.phase == "began" then
-
-	corchea.isVisible=true
-	corchea2.isVisible=false
-	audio.resume(_G.channel)
-	corchea:addEventListener( "touch", sin_musica)
-	corchea2:removeEventListener( "touch", con_musica )
-
-	end
-
-end
-
 function validar_Musica( event )
 	
 	if (audio.isChannelActive(_G.channel) == false) then
@@ -750,6 +814,155 @@ function validar_Musica( event )
 
 end
 
+function cancelAll(event)
+
+	 timer.cancel(time[0])
+	 transition.cancel()
+	 audio.stop(channel)
+	 audio.dispose(channel)
+
+end
+
+function texto0( event )
+
+	text1.text="Caminaron, caminaron y siguieron caminando, cuando\nde pronto… ¡PLAP! ¡PLEP! ¡PLIP!,\nun avestruz en el camino."
+	transition.fadeIn( text1, {time=1000} )
+	contador=2
+	channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/cuento1/Parrafo 9.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
+    icono.isVisible=true
+	transition.fadeIn( icono, {time=3000} )
+	--time[1]=timer.performWithDelay( 11000, destexto,1)
+	--time[1]=timer.performWithDelay( 12000, texto1, 1)
+
+end
+
+function texto1( event )
+
+	contador=3
+	sonido=audio.loadStream("music/cuento1/Parrafo 10.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
+	text1.text= "Qué lindas tus plumas tan coloridas y suaves\n¡Nosotros también quisiéramos ser un ave!\n\nCreo que para tenerlas, tendrán que buscar:\npor aquí, por allá o en el nunca jamás.\n¡Está bien!"
+	transition.fadeIn( text1, {time=1000} )
+
+end
+
+
+function texto3( event )
+	
+	contador=4
+	sonido=audio.loadStream("music/cuento1/Parrafo 11.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
+	text1.text="Buscaron muchas hojas por doquier e hicieron\nsus propias plumas y siguieron su camino."
+	transition.fadeIn( text1, {time=1000} )
+
+end
+
+
+function avanzarTexto(event)
+
+	--destexto(event)
+
+ if event.phase == "began" then
+-- destexto(event)
+
+	audio.stop(channel)
+    transition.cancel()
+    play2.alpha=0
+	play2:removeEventListener( "touch", resumeTexto )
+	pause.alpha=1
+	pause:addEventListener("touch", pauseTexto)
+
+
+
+	if (contador == 1) then
+
+		texto0(event) 
+
+
+	elseif (contador == 2) then
+
+		texto1(event)
+
+	elseif (contador == 3 or contador == 4) then
+
+		texto3(event)
+	end
+
+
+ end
+
+
+end
+
+
+function retrocederTexto( event )
+	
+if event.phase == "began" then
+-- destexto(event)
+
+   play2.alpha=0
+   play2:removeEventListener( "touch", resumeTexto )
+   pause.alpha=1
+   pause:addEventListener("touch", pauseTexto)
+
+   audio.stop(channel)
+   transition.cancel()
+  -- destexto(event)
+   contador= contador -1
+
+	if (contador == 3) then
+
+		texto1(event) 
+
+	elseif (contador == 2 or contador == 1) then
+
+		texto0(event)
+
+	 end
+
+
+   end
+
+end
+
+
+function pauseTexto( event)
+	
+	if event.phase == "began" then
+
+
+	timer.pause(time[0])
+
+	pause.alpha=0
+	pause:removeEventListener( "touch", pauseTexto)
+	play2.alpha=1
+	play2:addEventListener( "touch", resumeTexto)	
+	transition.pause()
+	audio.pause(channel)
+
+	end
+
+end
+
+
+function resumeTexto(event)
+
+	if event.phase == "began" then
+	
+	 timer.resume(time[0])
+
+	play2.alpha=0	
+	play2:removeEventListener( "touch", resumeTexto)
+	pause.alpha=1
+	pause:addEventListener( "touch", pauseTexto)
+	transition.resume()
+	audio.resume(channel)
+
+	end	
+
+end
 
 
 
@@ -757,6 +970,11 @@ function scene:enterScene( event)
 
 	fondo.enterFrame=validar_Musica
 	Runtime:addEventListener("enterFrame", fondo)
+	transition.fadeIn( nube, {time=2000} )
+	transition.fadeIn( rewind, {time=2000} )
+	transition.fadeIn( pause, {time=2000} )
+	transition.fadeIn( forward, {time=2000} )
+	transition.fadeIn( banner, {time=2000} )
 	
 	icono:addEventListener( "touch", start)
 	boton:addEventListener("touch",back)
@@ -766,11 +984,10 @@ function scene:enterScene( event)
 	arrow:addEventListener( "touch", avHoja)
 	arrow2:addEventListener( "touch", reHoja)
 	equis:addEventListener( "touch", fade_in)
-	transition.fadeIn( nube, {time=2000} )
-	transition.fadeIn( text1, {time=2000} )
+	forward:addEventListener( "touch", avanzarTexto)
+	rewind:addEventListener( "touch", retrocederTexto)
+	pause:addEventListener( "touch", pauseTexto)
 
-	sonido=audio.loadStream("music/cuento1/Parrafo 9.mp3", {loops = -1, channel = channel})
-	audio.play(sonido)
 
 	img1:addEventListener( "touch", musicDicci)
 	img2:addEventListener( "touch", musicDicci)
@@ -788,18 +1005,23 @@ function scene:enterScene( event)
 
 	if (_G.sinMusica == true ) then
 
-			corchea.isVisible=false
-			corchea2.isVisible=true
-			audio.pause(_G.channel)
-			corchea:removeEventListener( "touch", sin_musica)
-			corchea2:addEventListener( "touch", con_musica )
+		corchea.isVisible=false
+		corchea2.isVisible=true
+		audio.pause(_G.channel)
+		corchea:removeEventListener( "touch", sin_musica)
+		corchea2:addEventListener( "touch", con_musica )
 
-		end
+	end
 
-	time[0]=timer.performWithDelay(9000, destexto, 1)
-	time[1]=timer.performWithDelay(10000, texto1, 1)
-	time[2]=timer.performWithDelay(23000, destexto,1)
-	time[3]=timer.performWithDelay(24000, texto2, 1)
+
+
+
+	time[0]=timer.performWithDelay(0, texto0, 1)  
+	--[[time[1]=timer.performWithDelay(9000, destexto, 1)
+	time[2]=timer.performWithDelay(10000, texto1, 1)
+	time[3]=timer.performWithDelay(20000, destexto,1)
+	time[4]=timer.performWithDelay(21000, texto2, 1)]]
+
 
 
 end
@@ -812,11 +1034,11 @@ function scene:exitScene( event )
    mundo:removeEventListener( "touch", volver_ambiente)
    corchea:removeEventListener( "touch", sin_musica )
    dicci:removeEventListener( "touch", fade_out)
+   cancelAll(event)
    storyboard.removeScene("sabanaCuento4")
 
 
 end
-
 
 function scene:destroyScene( event )
 	-- body

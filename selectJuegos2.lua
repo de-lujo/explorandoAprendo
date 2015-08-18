@@ -1,7 +1,7 @@
 local storyboard = require ("storyboard")
 local scene= storyboard.newScene()
 local fondo, boton, icono, ambiente1, ambiente2, planeta, sonido
-local channel=audio.findFreeChannel()
+local channel
 
 
 function scene:createScene( event )
@@ -48,7 +48,7 @@ function scene:createScene( event )
 	dialog.alpha=0
 	dialog:scale( 0.60, 0.60)
 
-	text1= display.newText( _G.name .. "\nSelecciona un juego", display.contentCenterX, display.contentCenterY, native.systemFont, 18 )
+	text1= display.newText( _G.name .. "\n¿Te gusto el cuento?\nAhora que actividad te gustaría hacer\n Pictogramas Musicales o Adivinanzas", display.contentCenterX, display.contentCenterY, native.systemFont, 18 )
 	text1.x=display.contentCenterX +80
 	text1.y=display.contentCenterY +190
 	text1:setFillColor( 0, 0, 0)
@@ -72,6 +72,7 @@ function move_explorador( event )
 	transition.fadeIn( explorador, {time=2000})
 	transition.fadeIn( dialog, {time=2000} )
 	transition.fadeIn( text1, {time=2000} )
+	channel=audio.findFreeChannel()
 	sonido=audio.loadStream("music/explorador/Frase 15.mp3", {loops = -1, channel = channel})
 	audio.play(sonido)
 
@@ -111,6 +112,14 @@ function start( event)
 end
 
 
+function cancelAll(event)
+
+	 transition.cancel()
+	 audio.stop(channel)
+	 audio.dispose(channel)
+
+end
+
 
 
 function scene:enterScene( event)
@@ -128,11 +137,11 @@ function scene:enterScene( event)
     icono.isVisible=true
     transition.fadeIn( icono, {time=1000})
 
-    icono:addEventListener( "touch", start )
+    icono:addEventListener("touch", start )
 
     end
 
-    move_explorador(event)
+     move_explorador(event)
 
 end
 
@@ -159,6 +168,7 @@ function scene:exitScene( event )
 
    ambiente1:removeEventListener( "touch", redirCuento1)
    ambiente2:removeEventListener( "touch", redirCuento2)
+   cancelAll(event)
    storyboard.removeScene("selectJuegos2")
 
 

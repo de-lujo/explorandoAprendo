@@ -171,7 +171,7 @@ function scene:createScene( event )
 	img5.x=display.contentCenterX +250
 	img5.y=display.contentCenterY -180
 	img5.isVisible=false
-	img5.alpha=0
+	img5.alpha=1
 	img5.surfaceType="nu"
 	--img5:scale( 0.14, 0.14)
 
@@ -180,7 +180,7 @@ function scene:createScene( event )
 	img6.x=display.contentCenterX + 100
 	img6.y=display.contentCenterY -90
 	img6.isVisible=false
-	img6.alpha=0
+	img6.alpha=1
 	img6.surfaceType="leon"
 	--img2:scale( 0.90, 0.90)
 
@@ -188,7 +188,7 @@ function scene:createScene( event )
 	img7.x=display.contentCenterX +230
 	img7.y=display.contentCenterY +20
 	img7.isVisible=false
-	img7.alpha=0
+	img7.alpha=1
 	img7.surfaceType="elefante"
 	--img3:scale( 0.14, 0.14)
 
@@ -196,7 +196,7 @@ function scene:createScene( event )
 	img8.x=display.contentCenterX +100
 	img8.y=display.contentCenterY +120
 	img8.isVisible=false
-	img8.alpha=0
+	img8.alpha=1
 	img8.surfaceType="hienas"
 	--img8:scale( 0.90, 0.90)
 
@@ -204,7 +204,7 @@ function scene:createScene( event )
 	img9.x=display.contentCenterX +250
 	img9.y=display.contentCenterY -180
 	img9.isVisible=false
-	img9.alpha=0
+	img9.alpha=1
 	img9.surfaceType="cebra"
 	--img9:scale( 0.14, 0.14)
 
@@ -213,7 +213,7 @@ function scene:createScene( event )
 	img10.x=display.contentCenterX + 100
 	img10.y=display.contentCenterY -100
 	img10.isVisible=false
-	img10.alpha=0
+	img10.alpha=1
 	img10.surfaceType="hipopotamo"
 	--img2:scale( 0.90, 0.90)
 
@@ -221,7 +221,7 @@ function scene:createScene( event )
 	img11.x=display.contentCenterX +300
 	img11.y=display.contentCenterY 
 	img11.isVisible=false
-	img11.alpha=0
+	img11.alpha=1
 	img11.surfaceType="avestruz"
 	--img3:scale( 0.14, 0.14)
 
@@ -229,7 +229,7 @@ function scene:createScene( event )
 	img12.x=display.contentCenterX +100
 	img12.y=display.contentCenterY +110
 	img12.isVisible=false
-	img12.alpha=0
+	img12.alpha=1
 	img12.surfaceType="rinoceronte"
 	--img12:scale( 0.90, 0.90)
 
@@ -278,6 +278,13 @@ function scene:createScene( event )
 	screenGroup:insert(corchea2)
 	screenGroup:insert(mundo)
 	screenGroup:insert(dicci)
+
+	screenGroup:insert(banner)
+	screenGroup:insert(pause)
+	screenGroup:insert(rewind)
+	screenGroup:insert(forward)
+	screenGroup:insert(play2)
+
 	screenGroup:insert(nota)
 	screenGroup:insert(arrow)
 	screenGroup:insert(arrow2)
@@ -298,10 +305,6 @@ function scene:createScene( event )
 	screenGroup:insert(img10)
 	screenGroup:insert(img11)
 	screenGroup:insert(img12)
-	screenGroup:insert(banner)
-	screenGroup:insert(pause)
-	screenGroup:insert(rewind)
-	screenGroup:insert(forward)
 
 
 end
@@ -312,9 +315,9 @@ function reHoja( event)
 
 if event.phase == "began" then
 
-		time[8]=timer.performWithDelay( 0, noText, 1)
-		time[9]=timer.performWithDelay( 1000, devuelveHoja, 1)
-		time[10]=timer.performWithDelay( 2000, onText, 1)
+		--time[8]=timer.performWithDelay( 0, noText, 1)
+		time[9]=timer.performWithDelay( 0, devuelveHoja, 1)
+		--time[10]=timer.performWithDelay( 2000, onText, 1)
 
 	end
 
@@ -333,14 +336,6 @@ function stopTime( event)
 
 end
 
-
-function goTime(event)
-
-	if event.phase == "began" then
-
-	end
-
-end
 
 
 
@@ -361,13 +356,17 @@ if (_G.hoja == 3) then
 
 
   	img5.isVisible=true
-  	transition.fadeIn( img5, {time=1000} )
+  	img12.isVisible=false
+  	--transition.fadeIn( img5, {time=1000} )
   	img6.isVisible=true
-  	transition.fadeIn( img6, {time=1000} )
+  	img11.isVisible=false
+  	--transition.fadeIn( img6, {time=1000} )
   	img7.isVisible=true
-  	transition.fadeIn( img7, {time=1000} )
+  	img10.isVisible=false
+  	--transition.fadeIn( img7, {time=1000} )
   	img8.isVisible=true
-  	transition.fadeIn( img8, {time=1000} )
+  	img9.isVisible=false
+  	--transition.fadeIn( img8, {time=1000} )
   	transition.fadeIn( arrow, {time=1000})
 
   	_G.hoja=2
@@ -393,13 +392,21 @@ if (_G.hoja == 3) then
 
 
   	img1.isVisible=true
-  	transition.fadeIn( img1, {time=1000} )
+  	img5.isVisible=false
+
+  	--transition.fadeIn( img1, {time=1000} )
   	img2.isVisible=true
-  	transition.fadeIn( img2, {time=1000} )
+  	img6.isVisible=false
+
+  	--transition.fadeIn( img2, {time=1000} )
   	img3.isVisible=true
-  	transition.fadeIn( img3, {time=1000} )
+  	img7.isVisible=false
+
+  	--transition.fadeIn( img3, {time=1000} )
   	img4.isVisible=true
-  	transition.fadeIn( img4, {time=1000} )
+  	img8.isVisible=false
+
+  	--transition.fadeIn( img4, {time=1000} )
   	transition.fadeOut( arrow2, {time=500})
   	
   	_G.hoja=1
@@ -415,9 +422,9 @@ function avHoja( event )
 
 	if event.phase == "began" then
 
-		time[5]=timer.performWithDelay( 0, noText, 1)
-		time[6]=timer.performWithDelay( 1000, validaHoja, 1)
-		time[7]=timer.performWithDelay( 2000, onText, 1)
+		--time[5]=timer.performWithDelay( 0, noText, 1)
+		time[6]=timer.performWithDelay( 0, validaHoja, 1)
+		--time[7]=timer.performWithDelay( 2000, onText, 1)
 
 	end
 
@@ -442,13 +449,24 @@ function validaHoja (event)
 
 
   	img5.isVisible=true
-  	transition.fadeIn( img5, {time=1000} )
+  	img5.alpha=1
+  	img1.isVisible=false
+  	--transition.fadeIn( img5, {time=1000} )
   	img6.isVisible=true
-  	transition.fadeIn( img6, {time=1000} )
+  	img6.alpha=1
+  	img2.isVisible=false
+
+  	--transition.fadeIn( img6, {time=1000} )
   	img7.isVisible=true
-  	transition.fadeIn( img7, {time=1000} )
+  	img7.alpha=1
+  	img3.isVisible=false
+
+  	--transition.fadeIn( img7, {time=1000} )
   	img8.isVisible=true
-  	transition.fadeIn( img8, {time=1000} )
+  	img8.alpha=1
+  	img4.isVisible=false
+
+  	--transition.fadeIn( img8, {time=1000} )
   	transition.fadeIn( arrow2, {time=1000} )
   	_G.hoja=2
 
@@ -470,13 +488,25 @@ function validaHoja (event)
 
 
   	img9.isVisible=true
-  	transition.fadeIn( img9, {time=1000} )
+  	img9.alpha=1
+  	img5.isVisible=false
+
+  	--transition.fadeIn( img9, {time=1000} )
   	img10.isVisible=true
-  	transition.fadeIn( img10, {time=1000} )
+  	img10.alpha=1
+  	img6.isVisible=false
+
+  	--transition.fadeIn( img10, {time=1000} )
   	img11.isVisible=true
-  	transition.fadeIn( img11, {time=1000} )
+  	img11.alpha=1
+  	img7.isVisible=false
+
+  	--transition.fadeIn( img11, {time=1000} )
   	img12.isVisible=true
-  	transition.fadeIn( img12, {time=1000} )
+  	img12.alpha=1
+  	img8.isVisible=false
+
+  	--transition.fadeIn( img12, {time=1000} )
   	transition.fadeOut( arrow, {time=500})
   	_G.hoja=3
   	
@@ -521,19 +551,7 @@ function destexto( event )
 	transition.fadeOut( text1, {time=500} )
 end
 
-function texto1( event )
-	text1.text= "a ambos les encanta pasar largas horas en el agua," .. "\ny de vez en cuando les gusta tomar el sol" .. "\nacostados a orillas del lago. "
-	transition.fadeIn( text1, {time=1000} )
-end
 
-function texto2( event )
-
-	sonido=audio.loadStream("music/cuento1/Parrafo 2.mp3", {loops = -1, channel = channel})
-	audio.play(sonido)
-	text1.text= "Un día, aburridos de hacer siempre lo mismo\n y con deseos de vivir nuevas aventuras,\ndecidieron salir a caminar, pasear y conocer el mundo."
-	transition.fadeIn( text1, {time=1000} )
-
-end
 
 function start( event )
 	
@@ -565,6 +583,7 @@ function sin_musica ( event )
 
 if event.phase == "began" then
 
+	_G.sinMusica=true
 	corchea.isVisible=false
 	corchea2.isVisible=true
 	audio.pause(_G.channel)
@@ -580,6 +599,7 @@ function con_musica ( event )
 
 if event.phase == "began" then
 
+	_G.sinMusica=false
 	corchea.isVisible=true
 	corchea2.isVisible=false
 	audio.resume(_G.channel)
@@ -596,14 +616,18 @@ function fade_out( event )
 	
  if event.phase == "began" then
 
-	stopTime(event)
-
+    stopTime(event)
 	channel2= audio.findFreeChannel()
 	_G.hoja=1
 	transition.fadeIn( equis, {time=1000} )
 	transition.fadeIn( nota, {time=1000} )
 	transition.fadeIn( arrow, {time=1000} )
 	onText(event)
+	img1.isVisible=true
+	img2.isVisible=true
+	img3.isVisible=true
+	img4.isVisible=true
+
 	transition.fadeIn( img1, {time=1000} )
 	transition.fadeIn( img2, {time=1000} )
 	transition.fadeIn( img3, {time=1000} )
@@ -619,6 +643,12 @@ function fade_out( event )
 	transition.to( corchea2, {time=1000, alpha=0.30} )
 	transition.to( mundo, {time=1000, alpha=0.30} )
 	transition.to( dicci, {time=1000, alpha=0.30} )
+
+	transition.to( banner, {time=1000, alpha=0.30} )
+	--transition.to( pause, {time=1000, alpha=0.30} )
+	transition.to( play2, {time=1000, alpha=0.30} )
+	transition.to( rewind, {time=1000, alpha=0.30} )
+	transition.to( forward, {time=1000, alpha=0.30} )
 
 	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = channel2, loops = 0})
     audio.play(palabra)
@@ -637,7 +667,6 @@ function fade_in( event )
 
  if event.phase == "began" then
 
-    goTime(event)
     transition.fadeOut( equis, {time=1000} )
 	transition.fadeOut( nota, {time=1000} )
 	transition.fadeOut( arrow, {time=1000} )
@@ -667,6 +696,15 @@ function fade_in( event )
 	transition.to( corchea2, {time=1000, alpha=1} )
 	transition.to( mundo, {time=1000, alpha=1} )
 	transition.to( dicci, {time=1000, alpha=1} )
+
+
+	transition.to( banner, {time=1000, alpha=1} )
+	--transition.to( pause, {time=1000, alpha=1} )
+	transition.to( play2, {time=1000, alpha=1} )
+	transition.to( rewind, {time=1000, alpha=1} )
+	transition.to( forward, {time=1000, alpha=1} )
+
+
 	audio.stop( channel2)
 	audio.dispose( channel2)
 
@@ -780,7 +818,7 @@ end
 
 function cancelAll(event)
 
-	 for i=0,2 do
+	 for i=0,1 do
 	 timer.cancel(time[i])
 	 end
 	 transition.cancel()
@@ -800,17 +838,23 @@ function texto0( event )
 	audio.play(sonido)
     icono.isVisible=true
 	transition.fadeIn( icono, {time=3000} )
-	time[1]=timer.performWithDelay( 11000, destexto,1)
-	time[2]=timer.performWithDelay( 12000, texto1, 1)
+	--time[1]=timer.performWithDelay( 11000, destexto,1)
+	time[1]=timer.performWithDelay( 12000, texto1, 1)
 
 end
 
+function texto1( event )
+	text1.text= "a ambos les encanta pasar largas horas en el agua," .. "\ny de vez en cuando les gusta tomar el sol" .. "\nacostados a orillas del lago. "
+	transition.fadeIn( text1, {time=1000} )
+end
 
-function verTexto(event)
- 
+function texto2( event )
 
- 
- 
+	sonido=audio.loadStream("music/cuento1/Parrafo 2.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
+	text1.text= "Un día, aburridos de hacer siempre lo mismo\n y con deseos de vivir nuevas aventuras,\ndecidieron salir a caminar, pasear y conocer el mundo."
+	transition.fadeIn( text1, {time=1000} )
+
 end
 
 
@@ -821,7 +865,7 @@ function avanzarTexto(event)
  if event.phase == "began" then
 -- destexto(event)
 
-	for i=0,2 do
+	for i=0,1 do
 	 timer.pause(time[i])
 	end
 
@@ -850,13 +894,12 @@ function avanzarTexto(event)
 end
 
 
-
 function retrocederTexto( event )
 	
 if event.phase == "began" then
 -- destexto(event)
    
-   for i=0,2 do
+   for i=0,1 do
 	 timer.pause(time[i])
 	end
 
@@ -867,7 +910,7 @@ if event.phase == "began" then
 
    audio.stop(channel)
    transition.cancel()
-   destexto(event)
+  -- destexto(event)
    contador= contador -1
 
 	if (contador == 1) then
@@ -890,7 +933,7 @@ function pauseTexto( event)
 	
 	if event.phase == "began" then
 
-	for i=0,2 do
+	for i=0,1 do
 	 timer.pause(time[i])
 	end
 
@@ -910,7 +953,7 @@ function resumeTexto(event)
 
 	if event.phase == "began" then
 	
-	for i=0,2 do
+	for i=0,1 do
 	 timer.resume(time[i])
 	end
 
