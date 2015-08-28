@@ -2,7 +2,7 @@ local storyboard = require ("storyboard")
 local scene= storyboard.newScene()
 local screenGroup, fondo, texto, nina, nino, boton, titulo, flag, text1, alert1, text2, sonido
 
-local otherChannel
+local otherChannel, channel2
 local time={}
 
 
@@ -59,6 +59,29 @@ function scene:createScene( event )
 	text2:setFillColor( 0, 0, 0)
 	text2.alpha=0
 
+
+	dialogNina= display.newImage("img/globo1.png")
+	dialogNina.x=display.contentCenterX
+	dialogNina.y=display.contentCenterY - 50
+	dialogNina.alpha=0
+	--dialog.isVisible=false
+	dialogNina:scale( 0.55, 0.40)
+
+	textNina=display.newText("Hola, yo seré quien\nte acompañe, en la\nsiguiente aventura.", display.contentCenterX + 10, display.contentCenterY -50, native.systemFont, 18)
+	textNina:setFillColor( 0, 0, 0)
+	textNina.alpha=0
+
+	dialogNino= display.newImage("img/globo1.png")
+	dialogNino.x=display.contentCenterX + 370
+	dialogNino.y=display.contentCenterY - 50
+	dialogNino.alpha=0
+	--dialog.isVisible=false
+	dialogNino:scale( 0.55, 0.40)
+
+	textNino=display.newText("Hola, yo seré quien\nte acompañe, en la\nsiguiente aventura.", display.contentCenterX + 380, display.contentCenterY -50, native.systemFont, 18)
+	textNino:setFillColor( 0, 0, 0)
+	textNino.alpha=0
+
 	
 	screenGroup:insert(fondo)
 	screenGroup:insert(nina)
@@ -69,6 +92,11 @@ function scene:createScene( event )
 	screenGroup:insert(alert1)
 	screenGroup:insert(text2)
 	screenGroup:insert(bueno)
+	screenGroup:insert(dialogNina)
+	screenGroup:insert(dialogNino)
+	screenGroup:insert(textNina)
+	screenGroup:insert(textNino)
+
 
 
 
@@ -87,7 +115,7 @@ function start( event )
 	  	  
 	  	  else
 
-	  	  	 validarIn("Espera!! debes elegir un personaje !!!")
+	  	  	 validarIn("Espera, debes elegir un personaje.")
 
 	  	  end
 
@@ -134,24 +162,63 @@ end
 
 function elegirNino( event )
 
-nina.strokeWidth = 0
-nino:setStrokeColor( 1, 1, 1 )
-nino.strokeWidth = 10
-_G.personaje="niño"
-flag=true
+	nina.strokeWidth = 0
+	nino:setStrokeColor( 1, 1, 1 )
+	nino.strokeWidth = 10
+	_G.personaje="niño"
+	flag=true
+	transition.fadeIn( dialogNino, {time=800})
+	transition.fadeIn( textNino, {time=1000})
+
+	transition.fadeOut( dialogNina, {time=400})
+	transition.fadeOut( textNina, {time=400})
+	timer.performWithDelay( 400, dialogo, 1)
+	nino:removeEventListener("touch", elegirNino)
+	nina:addEventListener("touch", elegirNina)
 
 end
 
 
 function elegirNina( event )
 	
-nino.strokeWidth = 0
-nina:setStrokeColor (1, 1, 1)
-nina.strokeWidth = 10	
-_G.personaje="niña"
-flag=true
+	nino.strokeWidth = 0
+	nina:setStrokeColor (1, 1, 1)
+	nina.strokeWidth = 10	
+	_G.personaje="niña"
+	flag=true
+	transition.fadeIn( dialogNina, {time=800})
+	transition.fadeIn( textNina, {time=1000})
+
+	transition.fadeOut( dialogNino, {time=400})
+	transition.fadeOut( textNino, {time=400})
+	timer.performWithDelay( 400, dialogo, 1)
+
+	nina:removeEventListener("touch", elegirNina)
+	nino:addEventListener("touch", elegirNino)
+
 
 end
+
+function dialogo( event )
+	
+
+		 audio.stop(channel2)
+		 audio.dispose(channel2)
+
+		 channel2=audio.findFreeChannel()
+
+		 if (_G.personaje == "niña") then
+		 sonido=audio.loadStream("music/explorador/Frase 402.mp3", {loops = -1, channel = channel2})
+		 audio.play(sonido)
+		 end
+
+		 if (_G.personaje == "niño") then
+		 sonido=audio.loadStream("music/explorador/Frase 401.mp3", {loops = -1, channel = channel2})
+		 audio.play(sonido)
+		 end
+
+end
+
 
 
 function startNube( event )
@@ -176,7 +243,7 @@ end
 
 function texto2( event )
 
-	text1.text= "Te invito a escribir tu nombre" .. "\nen el espacio en blanco y a elegir" .. "\nel personaje que te representará"
+	text1.text= "Te invito a seleccionar\nel personaje que te representará"
 	transition.fadeIn( text1, {time=1000} )
 end
 

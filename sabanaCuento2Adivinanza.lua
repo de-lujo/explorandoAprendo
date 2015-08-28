@@ -18,7 +18,7 @@ _G.Nu= false
 local time={}
 
 --audio.reserveChannels(4)
-local channel=audio.findFreeChannel()
+local channel--=audio.findFreeChannel()
 
 
 
@@ -153,10 +153,9 @@ function scene:createScene( event )
 
 
 	barra=display.newImage( "img/banner2.png")
-	barra:scale( 0.33, 0.26)
-	barra.x=display.contentCenterX + 330
-	barra.y=display.contentCenterY - 220
-
+	barra:scale( 1.20, 0.95)
+	barra.x=display.contentCenterX + 340
+	barra.y=display.contentCenterY - 260
 
 	pistas= display.newImage( "img/pista.png")
 	pistas.x=display.contentCenterX +220
@@ -216,7 +215,7 @@ function scene:createScene( event )
 	texto3.alpha=0
 
 
-nota=display.newImage( "img/book1.png")
+    nota=display.newImage( "img/book1.png")
 	nota.x=display.contentCenterX
 	nota.y=display.contentCenterY
 	nota.isVisible=true
@@ -242,7 +241,7 @@ nota=display.newImage( "img/book1.png")
 	equis.y= display.contentCenterY -200
 	equis.isVisible=true
 	equis.alpha=0
-	equis:scale( 0.09, 0.09 )
+	equis:scale( 0.50, 0.50 )
 
 	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, native.systemFont, 18)
 	te1.isVisible=true
@@ -375,6 +374,11 @@ nota=display.newImage( "img/book1.png")
 	--img12:scale( 0.90, 0.90)
 
 
+	skip=display.newImage("img/forward.png")
+	skip.x=display.contentCenterX + 430
+	skip.y=display.contentCenterY + 220
+	skip:scale(0.50,0.50)
+
 
 	screenGroup:insert(fondo)
 	screenGroup:insert(nube)
@@ -401,6 +405,7 @@ nota=display.newImage( "img/book1.png")
 	screenGroup:insert(mundo)
 	screenGroup:insert(dicci)
 	screenGroup:insert(pistas)
+	screenGroup:insert(skip)
 	screenGroup:insert(flechaA)
 	screenGroup:insert(flechaB)
     screenGroup:insert(alert1)
@@ -434,9 +439,9 @@ function reHoja( event)
 
 if event.phase == "began" then
 
-		time[10]=timer.performWithDelay( 0, noText, 1)
+		--time[10]=timer.performWithDelay( 0, noText, 1)
 		time[11]=timer.performWithDelay( 1000, devuelveHoja, 1)
-		time[12]=timer.performWithDelay( 2000, onText, 1)
+		--time[12]=timer.performWithDelay( 2000, onText, 1)
 
 	end
 
@@ -447,29 +452,11 @@ end
 
 function stopTime( event)
 
-	timer.pause(time[0])
-	timer.pause(time[1])
-	timer.pause(time[2])
-	timer.pause(time[3])
-	timer.resume(time[4])
-	timer.resume(time[5])
-	timer.resume(time[6])
 
 end
 
 
 function goTime(event)
-
-    timer.resume(time[0])
-	timer.resume(time[1])
-	timer.resume(time[2])
-	timer.resume(time[3])
-	timer.resume(time[4])
-	timer.resume(time[5])
-	timer.resume(time[6])
-	--[[timer.resume(time[7])
-	timer.resume(time[8])
-	timer.resume(time[9])]]
 
 
 end
@@ -493,13 +480,17 @@ if (_G.hoja == 3) then
 
 
   	img5.isVisible=true
-  	transition.fadeIn( img5, {time=1000} )
+  	img12.isVisible=false
+  	--transition.fadeIn( img5, {time=1000} )
   	img6.isVisible=true
-  	transition.fadeIn( img6, {time=1000} )
+  	img11.isVisible=false
+  	--transition.fadeIn( img6, {time=1000} )
   	img7.isVisible=true
-  	transition.fadeIn( img7, {time=1000} )
+  	img10.isVisible=false
+  	--transition.fadeIn( img7, {time=1000} )
   	img8.isVisible=true
-  	transition.fadeIn( img8, {time=1000} )
+  	img9.isVisible=false
+  	--transition.fadeIn( img8, {time=1000} )
   	transition.fadeIn( arrow, {time=1000})
 
   	_G.hoja=2
@@ -525,14 +516,23 @@ if (_G.hoja == 3) then
 
 
   	img1.isVisible=true
-  	transition.fadeIn( img1, {time=1000} )
+  	img5.isVisible=false
+
+  	--transition.fadeIn( img1, {time=1000} )
   	img2.isVisible=true
-  	transition.fadeIn( img2, {time=1000} )
+  	img6.isVisible=false
+
+  	--transition.fadeIn( img2, {time=1000} )
   	img3.isVisible=true
-  	transition.fadeIn( img3, {time=1000} )
+  	img7.isVisible=false
+
+  	--transition.fadeIn( img3, {time=1000} )
   	img4.isVisible=true
-  	transition.fadeIn( img4, {time=1000} )
+  	img8.isVisible=false
+
+  	--transition.fadeIn( img4, {time=1000} )
   	transition.fadeOut( arrow2, {time=500})
+  	
   	_G.hoja=1
 
     end
@@ -549,9 +549,9 @@ function avHoja( event )
 
 	if event.phase == "began" then
 
-		time[7]=timer.performWithDelay( 0, noText, 1)
+		--time[7]=timer.performWithDelay( 0, noText, 1)
 		time[8]=timer.performWithDelay( 1000, validaHoja, 1)
-		time[9]=timer.performWithDelay( 2000, onText, 1)
+		--time[9]=timer.performWithDelay( 2000, onText, 1)
 
 	end
 
@@ -576,16 +576,26 @@ function validaHoja (event)
 
 
   	img5.isVisible=true
-  	transition.fadeIn( img5, {time=1000} )
+  	img5.alpha=1
+  	img1.isVisible=false
+  	--transition.fadeIn( img5, {time=1000} )
   	img6.isVisible=true
-  	transition.fadeIn( img6, {time=1000} )
+  	img6.alpha=1
+  	img2.isVisible=false
+
+  	--transition.fadeIn( img6, {time=1000} )
   	img7.isVisible=true
-  	transition.fadeIn( img7, {time=1000} )
+  	img7.alpha=1
+  	img3.isVisible=false
+
+  	--transition.fadeIn( img7, {time=1000} )
   	img8.isVisible=true
-  	transition.fadeIn( img8, {time=1000} )
+  	img8.alpha=1
+  	img4.isVisible=false
+
+  	--transition.fadeIn( img8, {time=1000} )
   	transition.fadeIn( arrow2, {time=1000} )
   	_G.hoja=2
-
 
   	elseif (_G.hoja == 2) then
 
@@ -604,13 +614,25 @@ function validaHoja (event)
 
 
   	img9.isVisible=true
-  	transition.fadeIn( img9, {time=1000} )
+  	img9.alpha=1
+  	img5.isVisible=false
+
+  	--transition.fadeIn( img9, {time=1000} )
   	img10.isVisible=true
-  	transition.fadeIn( img10, {time=1000} )
+  	img10.alpha=1
+  	img6.isVisible=false
+
+  	--transition.fadeIn( img10, {time=1000} )
   	img11.isVisible=true
-  	transition.fadeIn( img11, {time=1000} )
+  	img11.alpha=1
+  	img7.isVisible=false
+
+  	--transition.fadeIn( img11, {time=1000} )
   	img12.isVisible=true
-  	transition.fadeIn( img12, {time=1000} )
+  	img12.alpha=1
+  	img8.isVisible=false
+
+  	--transition.fadeIn( img12, {time=1000} )
   	transition.fadeOut( arrow, {time=500})
   	_G.hoja=3
   	
@@ -655,9 +677,18 @@ function fade_out( event )
  if event.phase == "began" then
 
 
-	stopTime(event)
 	onText(event)
+	--cancelar(event)
 	_G.hoja=1
+
+	channel2= audio.findFreeChannel()
+	img1.isVisible=true
+	img2.isVisible=true
+	img3.isVisible=true
+	img4.isVisible=true
+
+
+
 	transition.fadeIn( equis, {time=1000} )
 	transition.fadeIn( nota, {time=1000} )
 	transition.fadeIn( arrow, {time=1000} )
@@ -678,11 +709,12 @@ function fade_out( event )
 	transition.to( pistas, {time=1000, alpha=0.30} )
 
 
-	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = 2, loops = -1})
+	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = channel2, loops = -1})
     audio.play(palabra)
 
+    cancelar(event)
     icono:removeEventListener( "touch", start)
-	boton:removeEventListener("touch",start)
+	boton:removeEventListener("touch", start)
 	mundo:removeEventListener( "touch", volver_ambiente)
 	corchea:removeEventListener( "touch", sin_musica )
 	pistas:removeEventListener( "touch", pistas_on )
@@ -696,8 +728,7 @@ function fade_in( event )
 
  if event.phase == "began" then
 
-    goTime(event)
-	audio.fadeOut( sonido, {time=1000} )
+    activar(event)
     transition.fadeOut( equis, {time=1000} )
 	transition.fadeOut( nota, {time=1000} )
 	transition.fadeOut( arrow, {time=1000} )
@@ -737,8 +768,9 @@ function fade_in( event )
 	pistas:addEventListener( "touch", pistas_on )
 
 
-	audio.stop( channel)
-	audio.dispose( channel )
+	audio.stop( channel2)
+	audio.dispose( channel2)
+
 
  end
 	
@@ -752,74 +784,74 @@ function musicDicci( event )
 
 	if event.phase == "began" then
 
-		audio.stop(channel)
+		audio.stop(channel2)
 
 		 if (self.surfaceType == "sabana") then
 
-		 sonido=audio.loadSound("music/diccionario/La sabana.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/La sabana.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "jirafa") then
 
-		 sonido=audio.loadSound("music/diccionario/Jirafa.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Jirafa.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "cocodrilo") then
 
-		 sonido=audio.loadSound("music/diccionario/Cocodrilo.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Cocodrilo.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "suricata") then
 
-		 sonido=audio.loadSound("music/diccionario/Suricata.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Suricata.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "nu") then
 
-		 sonido=audio.loadSound("music/diccionario/Nu.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Nu.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "leon") then
 
-		 sonido=audio.loadSound("music/diccionario/Leon.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Leon.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "elefante") then
 
-		 sonido=audio.loadSound("music/diccionario/Elefante.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Elefante.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "hienas") then
 
-		 sonido=audio.loadSound("music/diccionario/Hienas.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Hienas.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "cebra") then
 
-		 sonido=audio.loadSound("music/diccionario/Cebra.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Cebra.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "avestruz") then
 
-		 sonido=audio.loadSound("music/diccionario/Avestruz.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Avestruz.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "hipopotamo") then
 
-		 sonido=audio.loadSound("music/diccionario/Hipopotamo.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Hipopotamo.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "rinoceronte") then
 
-		 sonido=audio.loadSound("music/diccionario/Rinoceronte.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Rinoceronte.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 		end
@@ -880,15 +912,15 @@ end
 function texto_2( event )
 
 	flechaB.isVisible=false
-	texto1.text= "Observa cómo se juega." .. "\nSelecciona el ícono de la adivinanza" .."\nque indica la flecha."
+	texto1.text= "Selecciona el ícono de la adivinanza" .."\nque indica la flecha."
+	
+	channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 18.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
+
 	transition.fadeIn( texto1, {time=1000} )
 	transition.fadeIn( flechaA, {time=1000} )
 	signo:addEventListener( "touch", signo_on )
-	icono:addEventListener( "touch", start)
-	boton:addEventListener("touch", start)
-	mundo:addEventListener( "touch", volver_ambiente)
-	corchea:addEventListener( "touch", sin_musica )
-	dicci:addEventListener( "touch", fade_out)
 	arrow:addEventListener( "touch", avHoja)
 	arrow2:addEventListener( "touch", reHoja)
 	equis:addEventListener( "touch", fade_in)
@@ -904,10 +936,8 @@ function texto_2( event )
 	img10:addEventListener( "touch", musicDicci)
 	img11:addEventListener( "touch", musicDicci)
 	img12:addEventListener( "touch", musicDicci)
+	cancelar(event)
 	timer.performWithDelay(2000, blinkFlechaA, 1)
-
-	sonido=audio.loadStream("music/explorador/Frase 18.mp3", {loops = -1, channel = channel})
-	audio.play(sonido)
 	
 end
 
@@ -935,7 +965,9 @@ function texto_3(event)
 	corchea:addEventListener( "touch", sin_musica )
 	pistas:addEventListener( "touch", pistas_on)
 	dicci:addEventListener( "touch", fade_out)
-	animal0:addEventListener( "touch", animal0_on)
+	signo:addEventListener( "touch", signo_on )
+	activar(event)
+	skip.isVisible=false
 
 end
 
@@ -1019,7 +1051,6 @@ end
 function texto_5( event )
 	
  texto1.text= "Esa imagen no es" .. "\nvuelve intentarlo."
- transition.fadeIn( texto1, {time=1000} )
  sonido=audio.loadStream("music/explorador/Frase 21.mp3", {loops = -1, channel = channel})
  audio.play(sonido)
 
@@ -1036,13 +1067,14 @@ end
 
 function vuelve( event )
 	
-	timer.performWithDelay( 0, destexto, 1)
-	timer.performWithDelay( 1000, texto_5, 1)
+	 timer.performWithDelay( 0, cancelar, 1)
+	 timer.performWithDelay( 0, texto_5, 1)
 
 end
 
 function correcto( event )
 	
+	pistas:removeEventListener( "touch", pistas_on )
 	timer.performWithDelay( 0, destexto, 1)
 	timer.performWithDelay( 1000, texto_6, 1)
 
@@ -1054,6 +1086,32 @@ function final( event )
 	_G.adiv1="¡Felicitaciones!,".."\nhas completado el juego" .. "\nAhora podrás seguir" .."\nen la siguiente aventura"
 	icono.isVisible=true
 	timer.performWithDelay( 1000, texto_6, 1)
+	sonido=audio.loadStream("music/explorador/Frase 20.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
+
+
+end
+
+function activar( event )
+	-- body
+
+	    animal4:addEventListener("touch", animal4_on )
+ 		animal5:addEventListener("touch", animal5_on )
+ 		animal2:addEventListener("touch", animal2_on )
+ 		animal1:addEventListener("touch", animal1_on )
+ 		animal3:addEventListener("touch", animal3_on )
+ 		animal0:addEventListener( "touch", animal0_on )
+
+end
+
+function cancelar( event )
+	
+		animal4:removeEventListener("touch", animal4_on )
+ 		animal5:removeEventListener("touch", animal5_on )
+ 		animal2:removeEventListener("touch", animal2_on )
+ 		animal1:removeEventListener("touch", animal1_on )
+ 		animal3:removeEventListener("touch", animal3_on )
+ 		animal0:removeEventListener( "touch", animal0_on )
 
 end
 
@@ -1070,7 +1128,6 @@ function animal0_on(event)
 	   circulo2:setFillColor(0,1,0)
 	   _G.adiv1="¡Muy bien!, la adivinanza" .."\n corresponde a la Jirafa.".. "\n¡Vamos con la siguiente!"
 	   correcto ( event)
-	   pistas:removeEventListener( "touch", pistas_on)
 	   sonido=audio.loadStream("music/explorador/Frase 19.mp3", {loops = -1, channel = channel})
 	   audio.play(sonido)
 
@@ -1078,6 +1135,8 @@ function animal0_on(event)
 
 	  elseif (_G.count ~= 1) then
 		   	vuelve(event)
+		    timer.performWithDelay( 2000, activar, 1)
+
 
 	 end
 	
@@ -1085,7 +1144,7 @@ function animal0_on(event)
 
 	if event.phase == "ended" then
 		
-		fondo:removeEventListener( "touch", animal0_on )
+		--fondo:removeEventListener( "touch", animal0_on )
 
 	end
 
@@ -1111,6 +1170,8 @@ function animal3_on (event)
 
 	       if (_G.count ~= 1) then
 		   	vuelve(event)
+		    timer.performWithDelay( 2000, activar, 1)
+
 		   end
 	
 	   end 
@@ -1144,6 +1205,8 @@ function animal5_on (event)
 
 	   	if (_G.count ~= 1) then
 		   	vuelve(event)
+		    timer.performWithDelay( 2000, activar, 1)
+
 		   end
 	
 	   end 
@@ -1178,6 +1241,8 @@ function animal4_on (event)
 
 	   		if (_G.count ~= 1) then
 		   	vuelve(event)
+		   	timer.performWithDelay( 2000, activar, 1)
+
 		   end
 	
 		end 
@@ -1212,6 +1277,8 @@ function animal2_on (event)
 
 	   		if (_G.count ~= 1) then
 		   	 vuelve(event)
+		   	 timer.performWithDelay( 2000, activar, 1)
+
 		    end
 	
 		end
@@ -1250,6 +1317,8 @@ function animal1_on (event)
 
 	   		if (_G.count ~= 1) then
 		   	 vuelve(event)
+		     timer.performWithDelay( 2000, activar, 1)
+
 		    end
 	
 		end
@@ -1274,24 +1343,17 @@ function signo_on( event )
  		fadeOut(event)
  		flechaA.isVisible=false
  		transition.fadeIn( alert1, {time=1000} )
+ 		signo:removeEventListener( "touch", signo_on )
+ 		cancelar(event)
 
  		if (_G.count == 1) then
  		texto2.text= "Con su cuello largo saca las hojas " .. "\nde los árboles, con solo estirarse." 
 
- 		animal4:addEventListener("touch", animal4_on )
- 		animal5:addEventListener("touch", animal5_on )
- 		animal2:addEventListener("touch", animal2_on )
- 		animal1:addEventListener("touch", animal1_on )
- 		animal3:addEventListener("touch", animal3_on )
-
-		icono:removeEventListener( "touch", start)
+ 		icono:removeEventListener( "touch", start)
 		boton:removeEventListener("touch", start)
 		mundo:removeEventListener( "touch", volver_ambiente)
 		corchea:removeEventListener( "touch", sin_musica )
 		dicci:removeEventListener( "touch", fade_out)
-		pistas:removeEventListener( "touch", pistas_on )
-
-
 
  		elseif (_G.count == 2) then
  		texto2.text= "Somos las criaturas más astutas" .. "\ne inteligentes del reino animal." .. "\nSomos conocidas por nuestra" .. "\nparticular risa, aunque a veces".. "\nno simpatiza."
@@ -1330,7 +1392,7 @@ end
 
 function sonido_Adivinaza( event )
 
-	audio.stop(channel)
+	--audio.stop(channel)
 
     if (_G.count == 1) then
 
@@ -1371,7 +1433,6 @@ end
 
 function sonido_Pistas( event )
 
-	audio.stop(channel)
 
     if (_G.count == 1) then
 
@@ -1435,6 +1496,7 @@ function sin_musica ( event )
 
 if event.phase == "began" then
 
+	_G.sinMusica=true
 	corchea.isVisible=false
 	corchea2.isVisible=true
 	audio.pause(_G.channel)
@@ -1450,13 +1512,49 @@ function con_musica ( event )
 
 if event.phase == "began" then
 
+	_G.sinMusica=false
 	corchea.isVisible=true
 	corchea2.isVisible=false
 	audio.resume(_G.channel)
 	corchea:addEventListener( "touch", sin_musica)
 	corchea2:removeEventListener( "touch", con_musica )
 
+
 	end
+
+end
+
+
+function pistas_Out (event)
+
+	transition.to( fondo, {time=1500, alpha=0.30} )
+	transition.fadeIn( alert1, {time=1000} )
+	transition.fadeIn( texto3, {time=1500} )
+	transition.to( nube, {time=1500, alpha=0.30} )
+	transition.to( pistas, {time=1500, alpha=0.30} )
+	transition.to( texto1, {time=500, alpha=0.30 } )
+	transition.to( bannerDown, {time=1500, alpha=0.30} )
+	transition.to( boton, {time=1500, alpha=0.30} )
+	transition.to( corchea, {time=1500, alpha=0.30} )
+	transition.to( corchea2, {time=1500, alpha=0.30} )
+	transition.to( barra, {time=1500, alpha=0.30} )
+	transition.to( circulo2, {time=1500, alpha=0.30} )
+	transition.to( circulo3, {time=1500, alpha=0.30} )
+	transition.to( circulo4, {time=1500, alpha=0.30} )
+	transition.to( circulo6, {time=1500, alpha=0.30} )
+	transition.to( circulo7, {time=1500, alpha=0.30} )
+	transition.to( circulo8, {time=1500, alpha=0.30} )
+	transition.to( mundo, {time=1500, alpha=0.30} )
+	transition.to( dicci, {time=1500, alpha=0.30} )
+	transition.to( signo, {time=1500, alpha=0.30} )
+	transition.to( animal3, {time=1500, alpha=0.30} )
+	transition.to( animal1, {time=1500, alpha=0.30} )
+	transition.to( animal2, {time=1500, alpha=0.30} )
+	transition.to( animal4, {time=1500, alpha=0.30} )
+	transition.to( animal5, {time=1500, alpha=0.30} )
+
+
+
 
 end
 
@@ -1487,13 +1585,15 @@ function pistas_on ( event )
 
 
  	    fadeOut(event)
+ 	    signo:removeEventListener( "touch", signo_on )
  		flechaA.isVisible=false
  		transition.fadeIn( alert1, {time=1000} )
  		transition.fadeIn( texto2, {time=1000} )
  		sonido=audio.loadSound("music/pistas/Titulo.mp3", {loops = 0, channel = channel})
 	    audio.play(sonido)
+	    cancelar(event)
  	    --timer.performWithDelay( 0, destexto, 1)
- 		timer.performWithDelay( 4000, sonido_Pistas,1 )
+ 		timer.performWithDelay( 3000, sonido_Pistas, 1 )
  		timer.performWithDelay( 7000, fadeIn, 1 )
  		timer.performWithDelay( 9000, texto_3 )
 
@@ -1516,9 +1616,112 @@ function validar_Musica( event )
 
 end
 
+function cancelAll(event)
+
+	
+if event.phase == "began" then
+
+	for i=0,7 do
+	 timer.cancel(time[i])
+	end
+
+	 transition.cancel()
+	 audio.stop(channel)
+	 audio.stop( channel2 )
+	 audio.dispose(channel)
+	 audio.dispose( channel2 )
+
+
+	end
+
+end
+
+
+function tutorial( event )
+
+	time[1]=timer.performWithDelay( 6000, destexto ,1)
+	time[2]=timer.performWithDelay( 7000, texto_1, 1)
+	time[3]=timer.performWithDelay( 13000, destexto, 1)
+	time[4]=timer.performWithDelay( 14000, texto_4, 1)
+	time[5]=timer.performWithDelay( 20000, destexto, 1)
+	time[6]=timer.performWithDelay( 20000, fadeIn, 1)
+	time[7]=timer.performWithDelay( 21000, texto_2, 1 )
+
+end
+
+function texto_sinTuto(event)
+	
+	texto1.text= "Pulsa el botón para comenzar\nuna nueva adivinanza."
+	transition.fadeIn( texto1, {time=1000} )
+	mundo:addEventListener( "touch", volver_ambiente)
+	corchea:addEventListener( "touch", sin_musica )
+	--pistas:addEventListener( "touch", pistas_on)
+	dicci:addEventListener( "touch", fade_out)
+	cancelar(event)
+	--fondo:addEventListener( "touch", fondo_on)
+
+end
+
+
+
+
+function saltarTutorial( event )
+	
+if event.phase == "began" then
+
+
+	for i=1,7 do
+
+	timer.cancel( time[i] )
+
+	end
+
+	audio.stop(channel)
+	audio.dispose(channel)
+	audio.stop(channel2)
+	audio.dispose(channel2)
+	transition.cancel()
+	signo:addEventListener( "touch", signo_on )
+	timer.performWithDelay(0, fadeIn, 1)
+	flechaA.isVisible=false
+	flechaB.isVisible=false
+	transition.to( skip, {time=1000, alpha=0} )
+	timer.performWithDelay( 500, destexto, 1 )	
+	timer.performWithDelay( 1000, texto_sinTuto, 1 )
+
+ end
+
+end
+
+
 
 function scene:enterScene( event)
 	
+
+	fondo.enterFrame=validar_Musica
+	Runtime:addEventListener("enterFrame", fondo)
+
+    skip:addEventListener( "touch", saltarTutorial )
+    arrow:addEventListener( "touch", avHoja)
+	arrow2:addEventListener( "touch", reHoja)
+
+	icono:addEventListener( "touch", start)
+	boton:addEventListener("touch", start)
+
+	equis:addEventListener( "touch", fade_in)
+	img1:addEventListener( "touch", musicDicci)
+	img2:addEventListener( "touch", musicDicci)
+	img3:addEventListener( "touch", musicDicci)
+	img4:addEventListener( "touch", musicDicci)
+	img5:addEventListener( "touch", musicDicci)
+	img6:addEventListener( "touch", musicDicci)
+	img7:addEventListener( "touch", musicDicci)
+	img8:addEventListener( "touch", musicDicci)
+	img9:addEventListener( "touch", musicDicci)
+	img10:addEventListener( "touch", musicDicci)
+	img11:addEventListener( "touch", musicDicci)
+	img12:addEventListener( "touch", musicDicci)
+
 
 	if (_G.sinMusica == true ) then
 
@@ -1531,15 +1734,7 @@ function scene:enterScene( event)
 	end
 
 	transition.fadeIn( texto1, {time=1000})
-	time[0]=timer.performWithDelay( 6000, destexto ,1)
-	time[1]=timer.performWithDelay( 7000, texto_1, 1)
-	time[2]=timer.performWithDelay( 13000, destexto, 1)
-	time[3]=timer.performWithDelay( 14000, texto_4, 1)
-	time[4]=timer.performWithDelay( 20000, destexto, 1)
-	time[5]=timer.performWithDelay( 20000, fadeIn, 1)
-	time[6]=timer.performWithDelay( 21000, texto_2, 1 )
-	
-	
+	time[0]=timer.performWithDelay( 0, tutorial(event), 1)
 
 end
 
@@ -1555,9 +1750,8 @@ function scene:exitScene( event )
 	icono:removeEventListener( "touch", start)
 	mundo:removeEventListener( "touch", volver_ambiente)
 	corchea:removeEventListener( "touch", sin_musica )
-	dicci:removeEventListener( "touch", fade_out)
-	equis:removeEventListener( "touch", fade_in)
-	storyboard.removeScene("sabanaCuento1Adivinanza")
+	cancelAll(event)
+	storyboard.removeScene("sabanaCuento2Adivinanza")
 
 
 	

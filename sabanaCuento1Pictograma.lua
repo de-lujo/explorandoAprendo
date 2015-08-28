@@ -407,7 +407,7 @@ function onCollision (event)
 		  self:removeEventListener( "touch", move_image )
 		  _G.collision= true
 		  mostrarSig(5)
-		   audio.pause( _G.channel)
+		  audio.pause( _G.channel)
 		  sonido=audio.loadStream("music/pictograma/cuento1.mp3", {loops = -1, channel = channel})
 		  audio.play(sonido)
 		  
@@ -567,6 +567,10 @@ end
 
 function scene:enterScene( event)
 
+	--fondo.enterFrame=validar_Musica
+	--Runtime:addEventListener("enterFrame", fondo)
+
+
     animal1:addEventListener( "touch", move_image)
     animal2:addEventListener( "touch", move_image)
     animal3:addEventListener( "touch", move_image)
@@ -590,7 +594,7 @@ function scene:enterScene( event)
     animal2:addEventListener( "collision", onCollision)
     animal4:addEventListener( "collision", onCollision)
     animal5:addEventListener( "collision", onCollision)
-    _G.okPictograma= true
+   -- _G.okPictograma= true
 
     if (_G.sinMusica == true ) then
 
@@ -609,9 +613,6 @@ end
 
 function scene:exitScene( event )
 
-	fondo.enterFrame=validar_Musica
-	Runtime:addEventListener("enterFrame", fondo)
-
 	animal1:removeEventListener( "touch", move_image)
     animal2:removeEventListener( "touch", move_image)
     animal3:removeEventListener( "touch", move_image)
@@ -622,10 +623,11 @@ function scene:exitScene( event )
     
   
     audio.stop(audioChannel)
+    audio.dispose( audioHandle )
+    audio.stop(channel)
+    transition.cancel()
+    audio.dispose( channel )
     os.remove( system.pathForFile( "ian.wav", system.DocumentsDirectory ) )
-
-
-
    	physics.removeBody( animal3 )
    	physics.removeBody( tran1 )
     storyboard.removeScene("sabanaCuento1Pictograma")

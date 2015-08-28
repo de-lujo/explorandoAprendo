@@ -28,7 +28,7 @@ function scene:createScene( event )
 	
 
 	explorador=display.newImage("img/explorador.png",300,400)
-	explorador.x=display.contentCenterX -150
+	explorador.x=display.contentCenterX -180
 	explorador.y=display.contentCenterY +200
 	explorador:scale( 0.40, 0.40 )
 	explorador.alpha=0
@@ -46,18 +46,16 @@ function scene:createScene( event )
 	boton:scale( 0.30, 0.30 )
 
 	dialog= display.newImage("img/dialogo4.png")
-	dialog.x=display.contentCenterX +60
-	dialog.y=display.contentCenterY +190
+	dialog.x=display.contentCenterX +70
+	dialog.y=display.contentCenterY +200
 	dialog.alpha=0
-	dialog:scale( 0.60, 0.60)
+	dialog:scale( 0.75, 0.75)
 
-	text1= display.newText( _G.name .. "\n¿Te gusto el cuento?\nAhora que actividad te gustaría hacer\n Pictogramas Musicales o Adivinanzas", display.contentCenterX, display.contentCenterY, native.systemFont, 18 )
-	text1.x=display.contentCenterX +80
+	text1= display.newText( _G.name .. "\n¿Te gusto el cuento? Ahora,\n¿Qué actividad te gustaría hacer?\n¿Pictogramas Musicales o Adivinanzas?", display.contentCenterX, display.contentCenterY, native.systemFont, 18 )
+	text1.x=display.contentCenterX +130
 	text1.y=display.contentCenterY +190
 	text1:setFillColor( 0, 0, 0)
 	text1.alpha=0
-
-
 
 
 	screenGroup:insert(fondo)
@@ -110,8 +108,8 @@ function start( event)
 	if event.phase == "began" then
 
 	  --audio.fadeOut({channel=1, time =2000} )
-	  _G.cuento1=true
-	  storyboard.gotoScene("elegirCuento","fade",400)
+	  --_G.cuento1=true
+	  storyboard.gotoScene("sabanaCuento5","fade",400)
 	end
 end
 
@@ -148,9 +146,9 @@ function scene:enterScene( event)
 
 	ambiente1:addEventListener( "touch", redirCuento1)
 	ambiente2:addEventListener( "touch", redirCuento2)
-	boton:addEventListener( "touch", start )
+	boton:addEventListener("touch", start )
 
-	if (_G.okAdivinanza == true) then
+	--[[if (_G.okAdivinanza == true) then
 
 	ambiente1:removeEventListener( "touch", redirCuento1)
 	
@@ -163,7 +161,7 @@ function scene:enterScene( event)
 
 	end
 
-	if (_G.okAdivinanza == true and _G.okPictograma == true) then
+	 if (_G.okAdivinanza == true and _G.okPictograma == true) then
 
 	text1.text="Muy Bien, continuemos..." .. "\nPresiona la flecha derecha"
     boton:removeEventListener( "touch", start )
@@ -171,7 +169,7 @@ function scene:enterScene( event)
     transition.fadeIn( icono, {time=1000})
     icono:addEventListener( "touch", start )
 
-    end
+    end]]
 	
 	move_explorador(event)
 

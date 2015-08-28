@@ -1,9 +1,10 @@
 local storyboard = require ("storyboard")
 local scene= storyboard.newScene()
-local screenGroup, fondo, texto, nina, nino, boton, titulo, flag, text1, alert1,text2, personaje,sonido
+local screenGroup, fondo, texto, nina, nino, boton, titulo, flag, text1, alert1,text2, personaje, sonido
 
 local otherChannel
 local time={}
+
 
 function scene:createScene( event )
 
@@ -112,7 +113,7 @@ function start( event )
 
 	   else
 
-	   	validarIn("Espera. Debes ingresar el nombre")
+	   	validarIn("Espera, debes ingresar el nombre.")
 
 	   end
 
@@ -272,6 +273,7 @@ function scene:enterScene( event)
 	else
 
 		texto.text=_G.name
+
 	end
 
 	fondo.enterFrame=validar_Musica
@@ -295,7 +297,7 @@ function scene:exitScene( event )
 
    texto:removeSelf()
    boton:removeEventListener("touch", start)
-   boton:removeEventListener( "touch", back )
+   boton1:removeEventListener( "touch", back )
    cancelAll(event)
    storyboard.removeScene("personaje2")
 

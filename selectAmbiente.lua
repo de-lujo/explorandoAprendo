@@ -33,7 +33,7 @@ function scene:createScene( event )
 
 	screenGroup= self.view
 
-	fondo=display.newImage("img/mapa.png")
+	fondo=display.newImage("img/paisaje.png")
 	fondo.x=display.contentCenterX
 	fondo.y=display.contentCenterY
 	fondo.alpha=0.80

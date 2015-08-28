@@ -26,9 +26,9 @@ function scene:createScene( event )
 	nube.alpha=0
 
 	barra=display.newImage( "img/banner2.png")
-	barra:scale( 0.24, 0.26)
-	barra.x=display.contentCenterX + 380
-	barra.y=display.contentCenterY - 220
+	barra:scale( 1, 0.95)
+	barra.x=display.contentCenterX + 375
+	barra.y=display.contentCenterY - 260
 
 	corchea= display.newImage( "img/corchea.png")
 	corchea.x= display.contentCenterX + 380
@@ -73,32 +73,32 @@ function scene:createScene( event )
 	nota.alpha=0
 	nota:scale( 0.88, 0.70 )
 
-	text1 = display.newText("Caminaron, caminaron y siguieron caminando, cuando\nde pronto ¡PLAP! ¡PLEP! un Ñu en el camino.", 0, 0, native.systemFont, 18 )
+	text1 = display.newText("Un día, en las llanuras abiertas de la gran Sabana,\ncomenzaron a ocurrir cosas muy muy extrañas y curiosas." , 0, 0, native.systemFont, 18 )
 	text1:setFillColor( 0, 0, 0)
 	text1.x= display.contentCenterX-245
 	text1.y= display.contentCenterY-200
 	text1.alpha=0
 
-	arrow= display.newImage( "img/286.png")
+	arrow= display.newImage( "img/flechaDerecha.png")
 	arrow.x=display.contentCenterX +390
 	arrow.y=display.contentCenterY +210
 	arrow.isVisible=true
 	arrow.alpha=0
-	arrow:scale( 0.09, 0.09 )
+	arrow:scale( 0.50, 0.50 )
 
-	arrow2 = display.newImage( "img/287.png")
+	arrow2 = display.newImage( "img/flechaIzquierda.png")
 	arrow2.x=display.contentCenterX -390
 	arrow2.y=display.contentCenterY +210
 	arrow2.isVisible=true
 	arrow2.alpha=0
-	arrow2:scale( 0.09, 0.09 )
+	arrow2:scale( 0.50, 0.50 )
 
 	equis = display.newImage( "img/X.png")
 	equis.x= display.contentCenterX +390
 	equis.y= display.contentCenterY -200
 	equis.isVisible=true
 	equis.alpha=0
-	equis:scale( 0.09, 0.09 )
+	equis:scale( 0.50, 0.50 )
 
 	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, native.systemFont, 18)
 	te1.isVisible=true
@@ -233,36 +233,36 @@ function scene:createScene( event )
 	--img12:scale( 0.90, 0.90)
 
 	banner=display.newImage( "img/banner2.png")
-	banner:scale( 0.20, 0.20)
+	banner:scale( 0.80, 0.80)
 	banner.x=display.contentCenterX -240
-	banner.y=display.contentCenterY - 60
+	banner.y=display.contentCenterY - 80
 	banner.alpha=0
 
 
 	pause=display.newImage( "img/pause.png")
 	pause:scale( 0.40, 0.40)
 	pause.x=display.contentCenterX -240
-	pause.y=display.contentCenterY - 90
+	pause.y=display.contentCenterY - 80
 	pause.alpha=0
 
 	play2=display.newImage( "img/play2.png")
 	play2:scale( 0.40, 0.40)
 	play2.x=display.contentCenterX -240
-	play2.y=display.contentCenterY - 90
+	play2.y=display.contentCenterY - 80
 	play2.alpha=0
-
 
 
 	rewind=display.newImage( "img/rewind.png")
 	rewind:scale( 0.40, 0.40)
 	rewind.x=display.contentCenterX -300
-	rewind.y=display.contentCenterY - 90
-	rewind.alpha=0
+	rewind.y=display.contentCenterY - 80
+	rewind.alpha=1
+	rewind.isVisible=false
 
 	forward=display.newImage( "img/forward.png")
 	forward:scale( 0.40, 0.40)
 	forward.x=display.contentCenterX -180
-	forward.y=display.contentCenterY - 90
+	forward.y=display.contentCenterY - 80
 	forward.alpha=0
 
 
@@ -816,7 +816,7 @@ end
 
 function cancelAll(event)
 
-	 timer.cancel(time[0])
+	-- timer.cancel(time[0])
 	 transition.cancel()
 	 audio.stop(channel)
 	 audio.dispose(channel)
@@ -833,7 +833,7 @@ function texto0( event )
 	sonido=audio.loadStream("music/cuento1/Parrafo 6.mp3", {loops = -1, channel = channel})
 	audio.play(sonido)
     icono.isVisible=true
-	transition.fadeIn( icono, {time=3000} )
+	--transition.fadeIn( icono, {time=3000} )
 	--time[1]=timer.performWithDelay( 11000, destexto,1)
 	--time[1]=timer.performWithDelay( 12000, texto1, 1)
 
@@ -857,6 +857,7 @@ function texto3( event )
 	audio.play(sonido)
 	text1.text="Cocodrilo e Hipopótamo hicieron sus cuernos\ncon ramas que encontraron en el lugar,\ny siguieron su camino."
 	transition.fadeIn( text1, {time=1000} )
+	transition.fadeIn( icono, {time=2000} )
 
 end
 
@@ -879,15 +880,18 @@ function avanzarTexto(event)
 
 	if (contador == 1) then
 
+		rewind.isVisible=false
 		texto0(event) 
 
 
 	elseif (contador == 2) then
 
+		rewind.isVisible=true
 		texto1(event)
 
 	elseif (contador == 3 or contador == 4) then
 
+		forward.isVisible=false
 		texto3(event)
 	end
 
@@ -915,10 +919,12 @@ if event.phase == "began" then
 
 	if (contador == 3) then
 
+		forward.isVisible=true
 		texto1(event) 
 
 	elseif (contador == 2 or contador == 1) then
 
+		rewind.isVisible=false
 		texto0(event)
 
 	 end
@@ -934,7 +940,7 @@ function pauseTexto( event)
 	if event.phase == "began" then
 
 
-	timer.pause(time[0])
+	--timer.pause(time[0])
 
 	pause.alpha=0
 	pause:removeEventListener( "touch", pauseTexto)
@@ -952,7 +958,7 @@ function resumeTexto(event)
 
 	if event.phase == "began" then
 	
-	 timer.resume(time[0])
+	 --timer.resume(time[0])
 
 	play2.alpha=0	
 	play2:removeEventListener( "touch", resumeTexto)
@@ -971,11 +977,11 @@ function scene:enterScene( event)
 
 	fondo.enterFrame=validar_Musica
 	Runtime:addEventListener("enterFrame", fondo)
-	transition.fadeIn( nube, {time=2000} )
-	transition.fadeIn( rewind, {time=2000} )
-	transition.fadeIn( pause, {time=2000} )
-	transition.fadeIn( forward, {time=2000} )
-	transition.fadeIn( banner, {time=2000} )
+	transition.fadeIn( nube, {time=1000} )
+	--transition.fadeIn( rewind, {time=1000} )
+	transition.fadeIn( pause, {time=1000} )
+	transition.fadeIn( forward, {time=1000} )
+	transition.fadeIn( banner, {time=1000} )
 	
 	icono:addEventListener( "touch", start)
 	boton:addEventListener("touch",back)

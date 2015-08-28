@@ -30,9 +30,9 @@ function scene:createScene( event )
 	personaje.alpha=0
 
 	barra=display.newImage( "img/banner2.png")
-	barra:scale( 0.24, 0.26)
-	barra.x=display.contentCenterX + 380
-	barra.y=display.contentCenterY - 220
+	barra:scale( 1, 0.95)
+	barra.x=display.contentCenterX + 375
+	barra.y=display.contentCenterY - 260
 
 
 	corchea= display.newImage( "img/corchea.png")
@@ -72,16 +72,16 @@ function scene:createScene( event )
 	boton:scale( 0.30, 0.30 )
 
 	text3= display.newText( _G.name .. "\n¡¡Bienvenido a la Sabana!!", 0, 0, native.systemFont, 18 )
-	text3.x=display.contentCenterX-120
+	text3.x=display.contentCenterX-110
 	text3.y=display.contentCenterY +25
 	text3:setFillColor( 0, 0, 0)
 	text3.alpha=0
 
-	dialog= display.newImage("img/dialogo.png")
+	dialog= display.newImage("img/globo1.png")
 	dialog.x=display.contentCenterX-120
-	dialog.y=display.contentCenterY +60
+	dialog.y=display.contentCenterY +30
 	dialog.alpha=0
-	dialog:scale( 0.65, 0.50)
+	dialog:scale( 0.70, 0.50)
 
 	flecha1= display.newImage( "img/flecha1.png")
 	flecha1.x=display.contentCenterX + 300
@@ -127,7 +127,7 @@ function scene:createScene( event )
 	equis.y= display.contentCenterY -200
 	equis.isVisible=true
 	equis.alpha=0
-	equis:scale( 0.09, 0.09 )
+	equis:scale( 0.50, 0.50 )
 
 	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, native.systemFont, 18)
 	te1.isVisible=true

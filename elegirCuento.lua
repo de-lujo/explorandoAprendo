@@ -51,13 +51,13 @@ function scene:createScene( event )
 
 
     dialog= display.newImage("img/dialogo4.png")
-	dialog.x=display.contentCenterX +60
-	dialog.y=display.contentCenterY +190
+	dialog.x=display.contentCenterX +70
+	dialog.y=display.contentCenterY +200
 	dialog.alpha=0
-	dialog:scale( 0.60, 0.60)
+	dialog:scale( 0.65, 0.65)
 
 	text1= display.newText( _G.name .. "\nEscoge una historia para ".."\ncomenzar la aventura.", display.contentCenterX, display.contentCenterY, native.systemFont, 18 )
-	text1.x=display.contentCenterX +100
+	text1.x=display.contentCenterX +120
 	text1.y=display.contentCenterY +190
 	text1:setFillColor( 0, 0, 0)
 	text1.alpha=0
@@ -142,6 +142,17 @@ function validar_Musica( event )
 
 end
 
+function cancelAll(event)
+
+	 --timer.cancel(time[0])
+	 --transition.cancel()
+	 audio.stop(channel)
+	 audio.dispose(channel)
+	 --audio.stop( channel2 )
+	 --audio.dispose(channel2)
+
+end
+
 
 
 
@@ -176,10 +187,13 @@ end
 
 
 
+
+
 function scene:exitScene( event )
 	
    icono:removeEventListener( "touch", finAmbiente )
    boton:removeEventListener("touch",back)
+   cancelAll(event)
    ambiente1:removeEventListener( "touch", redirCuento1)
    ambiente2:removeEventListener( "touch", redirCuento2)
    storyboard.removeScene("elegirCuento")

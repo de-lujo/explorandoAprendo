@@ -106,8 +106,8 @@ function start( event)
 	
 	if event.phase == "began" then
 
-	  _G.cuento2=true
-	  storyboard.gotoScene("elegirCuento","fade",400)
+	  --_G.cuento2=true
+	  storyboard.gotoScene("sabana2Cuento5","fade",400)
 	end
 end
 
@@ -128,7 +128,7 @@ function scene:enterScene( event)
 	ambiente2:addEventListener( "touch", redirCuento2)
 	boton:addEventListener( "touch", start )
 
-	if (_G.okAdivinanza == true and _G.okPictograma == true) then
+	--[[if (_G.okAdivinanza == true and _G.okPictograma == true) then
 
     text1.text="Muy Bien, continuemos..." .. "\nPresiona la flecha derecha"
 	ambiente1:removeEventListener( "touch", redirCuento1)
@@ -139,7 +139,7 @@ function scene:enterScene( event)
 
     icono:addEventListener("touch", start )
 
-    end
+    end]]
 
      move_explorador(event)
 

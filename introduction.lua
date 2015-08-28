@@ -72,11 +72,11 @@ function scene:createScene( event )
 
 
 	dialog= display.newImage("img/dialogo4.png")
-	dialog.x=display.contentCenterX-150
-	dialog.y=display.contentCenterY+140 
+	dialog.x=display.contentCenterX-140
+	dialog.y=display.contentCenterY+145 
 	dialog.alpha=0
 	dialog.isVisible=false
-	dialog:scale( 0.65, 0.65)
+	dialog:scale( 0.70, 0.70)
 
 	text1= display.newText("¡Hola!!".."\nSoy Pablo el explorador".. "\nvengo de un país" .. "\nllamado Chile", display.contentCenterX-263, display.contentCenterY-130, newFont, 18 )
 	text1.x=display.contentCenterX-100
@@ -221,7 +221,7 @@ function scene:enterScene(event)
 
 	audio.play(sonido)
 	time[0]=timer.performWithDelay( 0, desaTitulo, 1)
-	timer.performWithDelay( 0, button_in, 1)
+	--timer.performWithDelay( 0, button_in, 1)
 
 	time[1]=timer.performWithDelay( 5000, animaTitulo, 1)
 	time[2]=timer.performWithDelay( 6200, image, 1)
