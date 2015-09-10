@@ -1,11 +1,12 @@
 local storyboard = require ("storyboard")
 local scene= storyboard.newScene()
-local sonido
+local sonido, nombre
 local fondo, boton, icono, explorador, planeta, titulo, icono2, equis, text1, text2, text3, personaje, screenGroup
 _G.rutaM2="music/fondo/juego2.mp3"
 
 local time={}
 local channel
+local newFont=_G.font
 
 
 function scene:createScene( event )
@@ -23,7 +24,8 @@ function scene:createScene( event )
 	explorador:scale( 0.40, 0.40 )
 	explorador.alpha=0
 
-	personaje=display.newImage("img/".._G.personaje..".png",300,400)
+
+	personaje=display.newImage(_G.rutaNombre,300,400)
 	personaje.x=display.contentCenterX -170
 	personaje.y=display.contentCenterY +200
 	personaje:scale( 0.30, 0.30 )
@@ -71,9 +73,9 @@ function scene:createScene( event )
 	boton.alpha=0  
 	boton:scale( 0.30, 0.30 )
 
-	text3= display.newText( _G.name .. "\n¡¡Bienvenido a la Sabana!!", 0, 0, native.systemFont, 18 )
-	text3.x=display.contentCenterX-110
-	text3.y=display.contentCenterY +25
+	text3= display.newText( _G.name .. "\nHaz llegado a La Sabana,\nun lugar donde encontrarás\nmuchos animales salvajes\ny poca vegetación.", 0, 0, newFont, _G.tamano )
+	text3.x=display.contentCenterX-100
+	text3.y=display.contentCenterY +20
 	text3:setFillColor( 0, 0, 0)
 	text3.alpha=0
 
@@ -81,7 +83,7 @@ function scene:createScene( event )
 	dialog.x=display.contentCenterX-120
 	dialog.y=display.contentCenterY +30
 	dialog.alpha=0
-	dialog:scale( 0.70, 0.50)
+	dialog:scale( 0.80, 0.60)
 
 	flecha1= display.newImage( "img/flecha1.png")
 	flecha1.x=display.contentCenterX + 300
@@ -129,28 +131,29 @@ function scene:createScene( event )
 	equis.alpha=0
 	equis:scale( 0.50, 0.50 )
 
-	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, native.systemFont, 18)
+
+	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, newFont, 16)
 	te1.isVisible=true
 	te1.x=display.contentCenterX -220
 	te1.y=display.contentCenterY -180
 	te1:setFillColor( 0, 0, 0)
 	te1.alpha=0
 
-	te2= display.newText("JIRAFA: Es el mamífero más alto, se caracteriza\npor tener un largo cuello y manchas en la pelaje.\nSe alimenta de hojas, ramas de árboles y frutos.", 0, 0, native.systemFont, 18)
+	te2= display.newText("JIRAFA: Es el mamífero más alto, se caracteriza\npor tener un largo cuello y manchas en la pelaje.\nSe alimenta de hojas, ramas de árboles y frutos.", 0, 0, newFont, 16)
 	te2.isVisible= true
 	te2:setFillColor( 0, 0, 0)
 	te2.x=display.contentCenterX -205
 	te2.y=display.contentCenterY -80
 	te2.alpha=0
 
-	te3= display.newText("COCODRILO: Gran reptil carnívoro que vive en\nlugares de agua dulce como ríos y lagos.\nSu mayor característica, es su piel escamosa,\ndura y seca.", 0, 0, native.systemFont, 18)
+	te3= display.newText("COCODRILO: Gran reptil carnívoro que vive en\nlugares de agua dulce como ríos y lagos.\nSu mayor característica, es su piel escamosa,\ndura y seca.", 0, 0, newFont, 16)
 	te3.isVisible= true
 	te3:setFillColor( 0, 0, 0)
 	te3.x=display.contentCenterX -205
 	te3.y=display.contentCenterY +30
 	te3.alpha=0
 
-	te4= display.newText("SURICATA: Pequeño mamífero que vive en\ncuevas subterráneas. Se alimenta de insectos,\naunque a veces come huevos y vegetales.", 0, 0, native.systemFont, 18)
+	te4= display.newText("SURICATA: Pequeño mamífero que vive en\ncuevas subterráneas. Se alimenta de insectos,\naunque a veces come huevos y vegetales.", 0, 0, newFont, 16)
 	te4.isVisible= true
 	te4:setFillColor( 0, 0, 0)
 	te4.x=display.contentCenterX -210
@@ -261,7 +264,29 @@ function scene:createScene( event )
 	img12.surfaceType="rinoceronte"
 	--img12:scale( 0.90, 0.90)
 
+	alert1=display.newImage("img/cuadro3.png")
+	alert1.x=display.contentCenterX
+	alert1.y=display.contentCenterY -30
+	alert1:scale( 0.60, 0.60 )
+	alert1.alpha=0
 
+	botonAceptar=display.newImage("img/aceptar.png")
+	botonAceptar.x=display.contentCenterX +100
+	botonAceptar.y=display.contentCenterY +40  
+	botonAceptar.alpha=0
+	botonAceptar:scale( 0.50, 0.50 )
+
+	botonCancelar=display.newImage("img/cancelar.png")
+	botonCancelar.x=display.contentCenterX -100
+	botonCancelar.y=display.contentCenterY +43 
+	botonCancelar.alpha=0
+	botonCancelar:scale( 0.50, 0.50 )
+
+	texto21=display.newText("¿ Quieres salir ?", 0 , 0, newFont, 18)
+	texto21.x= display.contentCenterX 
+	texto21.y= display.contentCenterY - 50
+	texto21:setFillColor( 0,0,0 )
+	texto21.alpha=0
 
 
 
@@ -300,6 +325,13 @@ function scene:createScene( event )
 	screenGroup:insert(img10)
 	screenGroup:insert(img11)
 	screenGroup:insert(img12)
+	screenGroup:insert(alert1)
+	screenGroup:insert(botonAceptar)
+	screenGroup:insert(botonCancelar)
+	screenGroup:insert(texto21)
+
+
+
 
 end
 
@@ -308,9 +340,9 @@ function reHoja( event)
 
 if event.phase == "began" then
 
-		time[16]=timer.performWithDelay( 0, noText, 1)
+		--time[16]=timer.performWithDelay( 0, noText, 1)
 		time[17]=timer.performWithDelay( 1000, devuelveHoja, 1)
-		time[18]=timer.performWithDelay( 2000, onText, 1)
+		--time[18]=timer.performWithDelay( 2000, onText, 1)
 
 	end
 
@@ -358,6 +390,7 @@ end
 
 
 
+
 function devuelveHoja( event )
 
 if (_G.hoja == 3) then
@@ -375,13 +408,17 @@ if (_G.hoja == 3) then
 
 
   	img5.isVisible=true
-  	transition.fadeIn( img5, {time=1000} )
+  	img12.isVisible=false
+  	--transition.fadeIn( img5, {time=1000} )
   	img6.isVisible=true
-  	transition.fadeIn( img6, {time=1000} )
+  	img11.isVisible=false
+  	--transition.fadeIn( img6, {time=1000} )
   	img7.isVisible=true
-  	transition.fadeIn( img7, {time=1000} )
+  	img10.isVisible=false
+  	--transition.fadeIn( img7, {time=1000} )
   	img8.isVisible=true
-  	transition.fadeIn( img8, {time=1000} )
+  	img9.isVisible=false
+  	--transition.fadeIn( img8, {time=1000} )
   	transition.fadeIn( arrow, {time=1000})
 
   	_G.hoja=2
@@ -407,20 +444,26 @@ if (_G.hoja == 3) then
 
 
   	img1.isVisible=true
-  	transition.fadeIn( img1, {time=1000} )
+  	img5.isVisible=false
+
+  	--transition.fadeIn( img1, {time=1000} )
   	img2.isVisible=true
-  	transition.fadeIn( img2, {time=1000} )
+  	img6.isVisible=false
+
+  	--transition.fadeIn( img2, {time=1000} )
   	img3.isVisible=true
-  	transition.fadeIn( img3, {time=1000} )
+  	img7.isVisible=false
+
+  	--transition.fadeIn( img3, {time=1000} )
   	img4.isVisible=true
-  	transition.fadeIn( img4, {time=1000} )
+  	img8.isVisible=false
+
+  	--transition.fadeIn( img4, {time=1000} )
   	transition.fadeOut( arrow2, {time=500})
+  	
   	_G.hoja=1
 
     end
-
-
-
 
 
 
@@ -431,9 +474,9 @@ function avHoja( event )
 
 	if event.phase == "began" then
 
-		time[13]=timer.performWithDelay( 0, noText, 1)
-		time[14]=timer.performWithDelay( 1000, validaHoja, 1)
-		time[15]=timer.performWithDelay( 2000, onText, 1)
+		--time[5]=timer.performWithDelay( 0, noText, 1)
+		time[6]=timer.performWithDelay( 0, validaHoja, 1)
+		--time[7]=timer.performWithDelay( 2000, onText, 1)
 
 	end
 
@@ -458,13 +501,24 @@ function validaHoja (event)
 
 
   	img5.isVisible=true
-  	transition.fadeIn( img5, {time=1000} )
+  	img5.alpha=1
+  	img1.isVisible=false
+  	--transition.fadeIn( img5, {time=1000} )
   	img6.isVisible=true
-  	transition.fadeIn( img6, {time=1000} )
+  	img6.alpha=1
+  	img2.isVisible=false
+
+  	--transition.fadeIn( img6, {time=1000} )
   	img7.isVisible=true
-  	transition.fadeIn( img7, {time=1000} )
+  	img7.alpha=1
+  	img3.isVisible=false
+
+  	--transition.fadeIn( img7, {time=1000} )
   	img8.isVisible=true
-  	transition.fadeIn( img8, {time=1000} )
+  	img8.alpha=1
+  	img4.isVisible=false
+
+  	--transition.fadeIn( img8, {time=1000} )
   	transition.fadeIn( arrow2, {time=1000} )
   	_G.hoja=2
 
@@ -486,13 +540,25 @@ function validaHoja (event)
 
 
   	img9.isVisible=true
-  	transition.fadeIn( img9, {time=1000} )
+  	img9.alpha=1
+  	img5.isVisible=false
+
+  	--transition.fadeIn( img9, {time=1000} )
   	img10.isVisible=true
-  	transition.fadeIn( img10, {time=1000} )
+  	img10.alpha=1
+  	img6.isVisible=false
+
+  	--transition.fadeIn( img10, {time=1000} )
   	img11.isVisible=true
-  	transition.fadeIn( img11, {time=1000} )
+  	img11.alpha=1
+  	img7.isVisible=false
+
+  	--transition.fadeIn( img11, {time=1000} )
   	img12.isVisible=true
-  	transition.fadeIn( img12, {time=1000} )
+  	img12.alpha=1
+  	img8.isVisible=false
+
+  	--transition.fadeIn( img12, {time=1000} )
   	transition.fadeOut( arrow, {time=500})
   	_G.hoja=3
   	
@@ -501,6 +567,7 @@ function validaHoja (event)
     end
 
 end
+
 
 
 function noText( event )
@@ -536,37 +603,48 @@ function fade_out( event )
 	
  if event.phase == "began" then
 
-
-	stopTime(event)
-	onText(event)
+	channel2= audio.findFreeChannel()
 	_G.hoja=1
 	transition.fadeIn( equis, {time=1000} )
 	transition.fadeIn( nota, {time=1000} )
 	transition.fadeIn( arrow, {time=1000} )
+	onText(event)
+	img1.isVisible=true
+	img2.isVisible=true
+	img3.isVisible=true
+	img4.isVisible=true
+
 	transition.fadeIn( img1, {time=1000} )
 	transition.fadeIn( img2, {time=1000} )
 	transition.fadeIn( img3, {time=1000} )
 	transition.fadeIn( img4, {time=1000} )
+
 	transition.to( fondo, {time=1000, alpha=0.30} )
 	transition.to( nube, {time=1000, alpha=0.30} )
 	transition.to( text1, {time=1000, alpha=0.30} )
 	transition.to( boton, {time=1000, alpha=0.30} )
-	transition.to( explorador, {time=1000, alpha=0.30} )
 	transition.to( icono, {time=1000, alpha=0.30} )
 	transition.to( barra, {time=1000, alpha=0.30} )
 	transition.to( corchea, {time=1000, alpha=0.30} )
 	transition.to( corchea2, {time=1000, alpha=0.30} )
 	transition.to( mundo, {time=1000, alpha=0.30} )
 	transition.to( dicci, {time=1000, alpha=0.30} )
+	transition.to( banner, {time=1000, alpha=0.30} )
+	transition.to( explorador, {time=1000, alpha=0} )
 
-	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = 2, loops = -1})
+	--transition.to( pause, {time=1000, alpha=0.30} )
+	transition.to( play2, {time=1000, alpha=0.30} )
+	transition.to( rewind, {time=1000, alpha=0.30} )
+	transition.to( forward, {time=1000, alpha=0.30} )
+
+	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = channel2, loops = 0})
     audio.play(palabra)
-    explorador.isVisible=false
 
     icono:removeEventListener( "touch", start)
-	boton:removeEventListener("touch",back)
+	boton:removeEventListener("touch", back)
 	mundo:removeEventListener( "touch", volver_ambiente)
-	corchea:removeEventListener( "touch", sin_musica )
+	--corchea:removeEventListener( "touch", sin_musica )
+	dicci:removeEventListener( "touch", fade_out )
 
 end
 
@@ -577,9 +655,7 @@ function fade_in( event )
 
  if event.phase == "began" then
 
-    goTime(event)
-	audio.fadeOut( sonido, {time=1000} )
-    transition.fadeOut( equis, {time=1000} )
+	transition.fadeOut( equis, {time=1000} )
 	transition.fadeOut( nota, {time=1000} )
 	transition.fadeOut( arrow, {time=1000} )
 	transition.fadeOut( arrow2, {time=1000} )
@@ -597,9 +673,8 @@ function fade_in( event )
 	transition.fadeOut( img11, {time=1000} )
 	transition.fadeOut( img12, {time=1000} )
 
-	explorador.isVisible=true
+
 	transition.to( fondo, {time=1000, alpha=1} )
-	transition.to( explorador, {time=1000, alpha=1} )
 	transition.to( nube, {time=1000, alpha=1} )
 	transition.to( text1, {time=1000, alpha=1} )
 	transition.to( boton, {time=1000, alpha=1} )
@@ -609,14 +684,25 @@ function fade_in( event )
 	transition.to( corchea2, {time=1000, alpha=1} )
 	transition.to( mundo, {time=1000, alpha=1} )
 	transition.to( dicci, {time=1000, alpha=1} )
-	
-	icono:addEventListener( "touch", start)
+	transition.to( explorador, {time=1000, alpha=1} )
+
+
+
+	transition.to( banner, {time=1000, alpha=1} )
+	--transition.to( pause, {time=1000, alpha=1} )
+	transition.to( play2, {time=1000, alpha=1} )
+	transition.to( rewind, {time=1000, alpha=1} )
+	transition.to( forward, {time=1000, alpha=1} )
+
+
+	audio.stop( channel2)
+	audio.dispose( channel2)
+
+    icono:addEventListener( "touch", start)
 	boton:addEventListener("touch",back)
 	mundo:addEventListener( "touch", volver_ambiente)
 	corchea:addEventListener( "touch", sin_musica )
-
-	audio.stop( channel)
-	audio.dispose( channel )
+	dicci:addEventListener( "touch", fade_out )
 
  end
 	
@@ -708,30 +794,95 @@ function musicDicci( event )
 end
 
 
-function start( event )
+function volver_ambiente( event )
 	
 	if event.phase == "began" then
 
 
-	  audio.stop( _G.channel )
-	  storyboard.gotoScene("elegirCuento","fade",400)
+
+	  transition.fadeIn( texto21, {time=1000})
+	  transition.fadeIn( botonAceptar, {time=1000})
+	  transition.fadeIn( botonCancelar, {time=1000})
+	  transition.fadeIn( alert1, {time=1000})	
+	  fadeOut()	
+	  transition.to( dicci, {time=1000, alpha=0.30})	
+	  transition.to( personaje, {time=1000, alpha=0.30})
+	  transition.to( dialog, {time=1000, alpha=0.30} )	
+	  transition.to( explorador, {time=1000, alpha=0.30} )	
+
+	  channel2= audio.findFreeChannel()
+	  palabra= audio.loadStream("music/explorador/salir.mp3", {channel = channel2, loops = 0})
+      audio.play(palabra)
+
+
+	  botonAceptar:addEventListener("touch", aceptar)
+	  botonCancelar:addEventListener("touch", cancelar)
+	  mundo:removeEventListener("touch", volver_ambiente)
+	  dicci:removeEventListener( "touch", fade_out)
+	  boton:removeEventListener("touch", back)
+      icono:removeEventListener( "touch", start)
+	  --audio.stop(_G.channel)
+	  --storyboard.gotoScene("elegirCuento","fade",400)
 	end
 end
+
+
+function aceptar( event)
+	
+	if event.phase == "began" then
+
+		audio.stop(_G.channel)
+	  	storyboard.gotoScene("selectAmbiente","fade",400)
+
+	end
+end
+
+function cancelar( event)
+	
+	if event.phase == "began" then
+
+	  transition.fadeOut( texto21, {time=500})
+	  transition.fadeOut( botonAceptar, {time=500})
+	  transition.fadeOut( botonCancelar, {time=500})
+	  transition.fadeOut( alert1, {time=500})
+	  fadeIn()
+	  --transition.fadeIn( dicci, {time=500} )
+	  transition.fadeIn( personaje, {time=500} )
+	  transition.fadeIn( dialog, {time=500} )
+	  transition.fadeIn( explorador, {time=500} )
+	  transition.fadeIn( text3, {time=1000} )
+	 		 
+
+	  botonAceptar:removeEventListener("touch", aceptar)
+	  botonCancelar:removeEventListener("touch", cancelar)
+	  mundo:addEventListener("touch",volver_ambiente)
+	  dicci:addEventListener( "touch", fade_out)
+	  boton:addEventListener("touch", back)
+      icono:addEventListener( "touch", start)
+
+
+		
+	end
+end
+
+
 
 function back( event )
 	
 	if event.phase == "began" then
 
-	  storyboard.gotoScene("selectAmbiente","fade",400)
+	  storyboard.gotoScene("personaje2","fade",400)
 	end
 end
 
 
-function volver_ambiente( event )
+function start( event )
 	
 	if event.phase == "began" then
 
-	  storyboard.gotoScene("selectAmbiente","fade",400)
+	  audio.stop(_G.channel)
+	  storyboard.gotoScene("elegirCuento","fade",400)
+	
 	end
 
 
@@ -770,7 +921,7 @@ end
 
 
 
-function fadeOut( event )
+function fadeOut()
 	
 transition.to( fondo, {time=1500, alpha=0.50} )
 transition.to( boton, {time=1500, alpha=0.50} )
@@ -786,7 +937,7 @@ transition.fadeOut( text3, {time=500} )
 
 end
 
-function fadeIn( event )
+function fadeIn()
 	
 transition.fadeIn( fondo, {time=1500} )
 transition.fadeIn( boton, {time=1500} )
@@ -810,14 +961,17 @@ function texto1( event )
 
 	transition.fadeIn( text3, {time=1000} )
 	channel= audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 8.mp3", {loops = -1, channel = channel})
+	sonido=audio.loadStream("music/explorador/Frase 7.mp3", {loops = -1, channel = channel})
 	audio.play(sonido)
 end
 
 function texto10( event )
 	
-	text3.text="\nPara comenzar tienes que ".."\nconocer algunas herramientas."
+	text3.text="\nAntes de iniciar, te invitamos".."\na conocer algunas herramientas\nque puedes utilizar:"
 	transition.fadeIn( text3, {time=1000} )
+	channel= audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 8.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
 	
 end
 
@@ -827,14 +981,16 @@ function texto2( event )
 
 	explorador=display.newImage("img/explorador.png",300,400)
 	explorador.x=display.contentCenterX -300
-	explorador.y=display.contentCenterY +200
+	explorador.y=display.contentCenterY +190
 	explorador:scale( 0.40, 0.40 )
 	screenGroup:insert( explorador)
 
 	transition.fadeIn( flecha1, {time=1000} )
-	text3.text= "Diccionario:".. "\nPuedes presionarlo cada" .. "\nvez que exista algo" .. "\nque desees conocer."
+
+	text3.text= "Diccionario:".. "\nPuedes presionarlo cada vez" .. "\nque quieras consultar lo que" .. "\nsignifica una palabra\no cómo se escribe."
 	transition.fadeIn( text3, {time=1000} )
 
+	channel= audio.findFreeChannel()
 	sonido=audio.loadStream("music/explorador/Frase 9.mp3", {loops = -1, channel = channel})
 	audio.play(sonido)
 
@@ -844,12 +1000,14 @@ end
 function texto3( event )
 
 
-	text3.text= "Planeta tierra: ".. "\nte llevará al menú" .. "\nde la última actividad."
+	text3.text="Planeta tierra: ".. "\nTe llevará a la última actividad."
 	transition.fadeIn( flecha3, {time=1000} )
 	transition.fadeOut( flecha1, {time=500} )
 	transition.fadeIn( text3, {time=1000} )
 	transition.to( dicci, {time=500, alpha=0.50} )
 	transition.fadeIn(mundo, {time= 1000})
+
+	channel= audio.findFreeChannel()
 	sonido=audio.loadStream("music/explorador/Frase 10.mp3", {loops = -1, channel = channel})
 	audio.play(sonido)
 
@@ -858,12 +1016,15 @@ end
 
 function texto4( event)
 	
-	text3.text= "Música:".."\nsi quieres apagar la" .. "\nmúsica de fondo tienes" .. "\nque presionar este botón." 
+	text3.text= "Música:".."\nsi quieres apagar la" .. "\nmúsica de fondo tienes" .. "\nque presionar este icono."
+
 	transition.fadeIn( flecha2, {time=1000} )
     transition.fadeOut( flecha3, {time=500} )
 	transition.fadeIn( text3, {time=1000} )
 	transition.to( mundo, {time=500, alpha=0.50} )
 	transition.fadeIn( corchea,{time= 1000})
+
+	channel= audio.findFreeChannel()
 	sonido=audio.loadStream("music/explorador/Frase 11.mp3", {loops = -1, channel = channel})
 	audio.play(sonido)
 
@@ -876,13 +1037,17 @@ function texto5( event)
 
 	explorador=display.newImage("img/explorador2.png",300,400)
 	explorador.x=display.contentCenterX -300
-	explorador.y=display.contentCenterY +200
+	explorador.y=display.contentCenterY +190
 	explorador:scale( 0.40, 0.40 )
 	screenGroup:insert( explorador)
 
-	text3.text= "¿Listo para comenzar?" 
+	text3.text= "Empecemos!!!" 
 	
 	transition.fadeIn( text3, {time=1000} )
+
+	channel= audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 12.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
 
 	
 end
@@ -893,19 +1058,21 @@ function texto6( event)
 
 	explorador=display.newImage("img/explorador3.png",300,400)
 	explorador.x=display.contentCenterX -300
-	explorador.y=display.contentCenterY +200
+	explorador.y=display.contentCenterY +190
 	explorador:scale( 0.40, 0.40 )
-	screenGroup:insert( explorador)
+	screenGroup:insert(explorador)
 
 	icono.isVisible=true
 	transition.fadeIn( icono, {time=3000} )
-	text3.text= "¡¡Continuemos!!" .. "\n\nPresiona la flecha".. "\nderecha para continuar."
+	text3.text= "¡¡Continuemos!!"
 	transition.fadeIn( text3, {time=1000} )
-	boton:addEventListener("touch",back)
-	icono:addEventListener( "touch", start)
+	--boton:addEventListener("touch",back)
+	--icono:addEventListener( "touch", start)
 	mundo:addEventListener( "touch", volver_ambiente)
 	corchea:addEventListener( "touch", sin_musica )
 	dicci:addEventListener( "touch", fade_out)
+	
+	channel= audio.findFreeChannel()
 	sonido=audio.loadStream("music/explorador/Frase 13.mp3", {loops = -1, channel = channel})
 	audio.play(sonido)
 
@@ -918,8 +1085,8 @@ function validar_Musica( event )
 	if (audio.isChannelActive(_G.channel) == false) then
 
 		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.30, { channel=_G.channel })
-		audio.setMaxVolume( 0.40, { channel=_G.channel })
+		audio.setVolume( 0.03, { channel=_G.channel })
+		audio.setMaxVolume( 0.03, {channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -928,10 +1095,10 @@ function validar_Musica( event )
 end
 
 
-function cancelAll(event)
+function cancelAll()
 
-	 for i=0,12 do
-	 timer.cancel(time[i])
+	 for i=1,12 do
+	  timer.cancel(time[i])
 	 end
 
 	 transition.cancel()
@@ -962,30 +1129,28 @@ function scene:enterScene( event)
 	img10:addEventListener( "touch", musicDicci)
 	img11:addEventListener( "touch", musicDicci)
 	img12:addEventListener( "touch", musicDicci)
-	boton:addEventListener("touch",back)
+	boton:addEventListener("touch", back)
 	icono.isVisible=true
 	icono:addEventListener( "touch", start)
     transition.fadeIn( icono, {time=3000} )
-
-
 
 	transition.fadeIn( explorador, {time=1000} )
 	transition.fadeIn( personaje, {time=1000} )
 	transition.fadeIn( dialog, {time=1000} )
 	transition.fadeIn( boton, {time=1000} )
-	time[0]=timer.performWithDelay( 2000, texto1, 1)
-	time[1]=timer.performWithDelay( 5000, destexto, 1)
-	time[2]=timer.performWithDelay( 6000, texto10, 1)
-	time[3]=timer.performWithDelay( 10000, fadeOut, 1)
-	time[4]=timer.performWithDelay( 11000, texto2, 1)
-	time[5]=timer.performWithDelay( 19000, destexto, 1)
-	time[6]=timer.performWithDelay( 21000, texto3, 1)
+	time[0]=timer.performWithDelay( 0, texto1, 1)
+	time[1]=timer.performWithDelay( 8000, destexto, 1)
+	time[2]=timer.performWithDelay( 9000, texto10, 1)
+	time[3]=timer.performWithDelay( 14000, fadeOut, 1)
+	time[4]=timer.performWithDelay( 16000, texto2, 1)
+	time[5]=timer.performWithDelay( 23000, destexto, 1)
+	time[6]=timer.performWithDelay( 24000, texto3, 1)
 	time[7]=timer.performWithDelay( 28000, destexto, 1)
 	time[8]=timer.performWithDelay( 29000, texto4, 1)
 	time[9]=timer.performWithDelay( 35000, fadeIn, 1)
 	time[10]=timer.performWithDelay( 37000, texto5, 1)
-	time[11]=timer.performWithDelay( 42000, destexto, 1)
-	time[12]=timer.performWithDelay( 44000, texto6, 1)
+	time[11]=timer.performWithDelay( 39000, destexto, 1)
+	time[12]=timer.performWithDelay( 40000, texto6, 1)
 
 
 
@@ -1000,8 +1165,9 @@ function scene:exitScene( event )
    dicci:removeEventListener( "touch", fade_out)
    equis:removeEventListener( "touch", fade_in)
    boton:removeEventListener("touch", back)
-   cancelAll(event)
+   cancelAll()
    storyboard.removeScene("sabanaIntro")
+
 
 end
 

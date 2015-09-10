@@ -4,13 +4,14 @@ local screenGroup, fondo, texto, nina, nino, boton, titulo, flag, text1, alert1,
 
 local otherChannel
 local time={}
+local newFont=_G.font
 
 
 function scene:createScene( event )
 
 	screenGroup= self.view
 
-	fondo=display.newImage("img/mapa.png",1024,600)
+	fondo=display.newImage("img/paisaje.png",1024,600)
 	fondo.x=display.contentCenterX
 	fondo.y=display.contentCenterY
 	fondo.alpha=0.75
@@ -28,13 +29,13 @@ function scene:createScene( event )
 	boton1.alpha=0  
 	boton1:scale( 0.30, 0.30 )
 
-	titulo = display.newText("Ingresa tu nombre", display.contentCenterX, display.contentCenterY , native.systemFont, 18 )
+	titulo = display.newText("Ingresa tu nombre", display.contentCenterX, display.contentCenterY-100, newFont, _G.tamano)
 	titulo:setFillColor( 0, 0, 0)
 	titulo.alpha=0
 
 	texto= native.newTextField( 200, 150, 220, 45 )
 	texto.x= display.contentCenterX 
-	texto.y= display.contentCenterY + 80
+	texto.y= display.contentCenterY -20
 	texto.alpha=0
 
 
@@ -47,39 +48,34 @@ function scene:createScene( event )
 	nube.alpha=0
 
 
-	text1= display.newText("Antes de comenzar..." .. "\nme gustaría saber tu nombre...", display.contentCenterX-263, display.contentCenterY-220, "fonts/3.otf", 18 )
+	text1= display.newText("Antes de comenzar," .. "\nme gustaría saber tu nombre,\nescríbelo en el recuadro.", display.contentCenterX-263, display.contentCenterY-220, newFont, _G.tamano )
 	text1:setFillColor( 0, 0, 0)
 	text1.alpha=0
 
+	
 	alert1=display.newImage("img/cuadro3.png")
 	alert1.x=display.contentCenterX
-	alert1.y=display.contentCenterY
-	alert1:scale( 0.24, 0.24)
+	alert1.y=display.contentCenterY -30
+	alert1:scale( 0.40, 0.40 )
 	alert1.alpha=0
 
-	text2=display.newText("", display.contentCenterX, display.contentCenterY - 50, native.systemFont, 18)
+	text2=display.newText("", display.contentCenterX, display.contentCenterY - 50, newFont, _G.tamano)
 	text2:setFillColor( 0, 0, 0)
 	text2.alpha=0
 
-	recta = display.newRoundedRect( display.contentCenterX, display.contentCenterY, 180, 80, 12 )
+	recta = display.newRoundedRect( display.contentCenterX, display.contentCenterY -100, 180, 80, 12 )
 	recta.strokeWidth = 3
 	recta:setStrokeColor( 0, 0, 0 )
 	--recta:setFillColor( .827, .902, .898)
 	recta.alpha=0
 	recta.isVisible=true
 
-	personaje=display.newImage("img/".._G.personaje..".png",300,400)
+	personaje=display.newImage(_G.rutaNombre ,300,400)
 	personaje.x=display.contentCenterX -220
-	personaje.y=display.contentCenterY +100
+	personaje.y=display.contentCenterY +50
 	personaje:scale( 0.40, 0.40 )
 	personaje.alpha=0
 	
-    bueno=display.newImage("img/bueno.png")
-	bueno.x=display.contentCenterX -20
-	bueno.y=display.contentCenterY +30
-	bueno:scale( 0.15, 0.15 )
-	bueno.alpha=0
-
 
 	screenGroup:insert(fondo)
 	screenGroup:insert(boton)
@@ -92,7 +88,6 @@ function scene:createScene( event )
 	screenGroup:insert(personaje)
 	screenGroup:insert(alert1)
 	screenGroup:insert(text2)
-	screenGroup:insert(bueno)
 
 
 
@@ -109,11 +104,12 @@ function start( event )
        if (texto.text ~= "") then
 
 	 		 _G.name=texto.text
-	 		 storyboard.gotoScene("selectAmbiente","fade",400)
+	 		 storyboard.gotoScene("sabanaIntro","fade",400)
 
 	   else
 
-	   	validarIn("Espera, debes ingresar el nombre.")
+	   	timer.performWithDelay( 0, validarIn, 1)
+	   	timer.performWithDelay( 3000, validarOut, 1)
 
 	   end
 
@@ -132,17 +128,28 @@ function back( event )
 end
 
 
-function validarIn( name )
+function validarIn()
 
-	alert1:addEventListener( "touch", validarNombreOut)
-	text2.text=name
+	text2.text="Recuerda escribir tu nombre."
+	boton:removeEventListener( "touch", start )
+	boton1:removeEventListener( "touch", back )
+	transition.pause()
+	audio.pause(otherChannel)
+
+
+	channel2= audio.findFreeChannel()
+	sonido2=audio.loadStream("music/explorador/Frase 6.mp3", {loops = -1, channel = channel2})
+    audio.play(sonido2)
+
+
+	for i=0,3 do
+	 timer.pause(time[i])
+	end
 
 	transition.fadeIn( alert1, { time= 1000} )
 	transition.fadeIn( text2, { time= 1000} )
-	transition.fadeIn( bueno, { time= 1000} )
 	transition.to(fondo, { time= 1000, alpha=0.30} )
-	transition.to(nina, { time= 1000, alpha=0.30} )
-	transition.to(nino, { time= 1000, alpha=0.30} )
+	transition.to(personaje, { time= 1000, alpha=0.30} )
 	transition.to(boton, { time= 1000, alpha=0.30} )
 	transition.to(boton1, { time= 1000, alpha=0.30} )
 	transition.to(recta, { time= 1000, alpha=0.30} )
@@ -150,16 +157,23 @@ function validarIn( name )
 	transition.to(nube, { time= 1000, alpha=0.30} )
 	transition.to(texto, { time= 1000, alpha=0.30} )
 	transition.to(text1, { time= 1000, alpha=0.30} )
+	
 
 end
 
-function validarNombreOut( name )
+function validarOut()
 
+    boton:addEventListener( "touch", start )
+	boton1:addEventListener( "touch", back )
+	transition.resume()
+	audio.resume( otherChannel )
 
-	alert1:removeEventListener( "touch", validarNombreOut)
+	for i=0,3 do
+	 timer.resume(time[i])
+	end
+
 	transition.fadeOut( alert1, {time=1000} )
 	transition.fadeOut( text2, {time=1000})
-	transition.fadeOut( bueno, {time=1000} )
 
 	transition.to(fondo, { time= 1000, alpha=0.75} )
 	transition.to(boton, { time= 1000, alpha=1} )
@@ -169,35 +183,11 @@ function validarNombreOut( name )
 	transition.to(text1, { time= 1000, alpha=1} )
 	transition.to(texto, { time= 1000, alpha=1} )
 	transition.to(recta, { time= 1000, alpha=1} )
-
-
-
-end
-
-
-
-
-
-function elegirNino( event )
-
-nina.strokeWidth = 0
-nino:setStrokeColor( 1, 1, 1 )
-nino.strokeWidth = 10
-_G.personaje="niño"
-flag=true
+	transition.to( personaje, {time= 1000, alpha=1} )
 
 end
 
 
-function elegirNina( event )
-	
-nino.strokeWidth = 0
-nina:setStrokeColor (1, 1, 1)
-nina.strokeWidth = 10	
-_G.personaje="niña"
-flag=true
-
-end
 
 
 function startNube( event )
@@ -218,21 +208,21 @@ end
 
 function texto1( event )
 	transition.fadeIn( text1, {time=1000} )
-end
-
-function texto2( event )
-
-	text1.text= "¿Cómo te llamas?" .. "\nescribe tu nombre"
-	transition.fadeIn( text1, {time=1000} )
 	otherChannel= audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 2.mp3", {loops = -1, channel = otherChannel})
+	sonido=audio.loadStream("music/explorador/Frase 5.mp3", {loops = -1, channel = otherChannel})
 	audio.play(sonido)
 end
 
+
+
 function texto3( event )
 	
-	text1.text= "Para continuar, presiona la flecha"
+	text1.text= "Para continuar, presiona la flecha."
 	transition.fadeIn( text1, {time=1000} )
+
+	otherChannel= audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 3.mp3", {loops = -1, channel = otherChannel})
+	audio.play(sonido)
 
 end
 
@@ -242,8 +232,8 @@ function validar_Musica( event )
 	if (audio.isChannelActive(_G.channel) == false) then
 
 		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.30, { channel=_G.channel })
-		audio.setMaxVolume( 0.40, { channel=_G.channel })
+		audio.setVolume( 0.03, { channel=_G.channel })
+		audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -253,12 +243,13 @@ end
 
 function cancelAll()
 
-	 for i=0,5 do
+	 for i=0,3 do
 	 timer.cancel(time[i])
 	 end
 
 	 transition.cancel()
 	 audio.stop(otherChannel)
+	 audio.dispose(otherChannel)
 
 end
 
@@ -281,12 +272,10 @@ function scene:enterScene( event)
 	boton:addEventListener( "touch", start)
 	boton1:addEventListener( "touch", back )
 
-	time[0]=timer.performWithDelay( 0, startNube, 1)
-	time[1]=timer.performWithDelay( 1500, texto1, 1)
-	time[2]=timer.performWithDelay( 5500, destexto,1)
-	time[3]=timer.performWithDelay( 6500, texto2, 1)
-	time[4]=timer.performWithDelay( 13500, destexto,1)
-	time[5]=timer.performWithDelay( 14000, texto3, 1)
+	 time[0]=timer.performWithDelay( 0, startNube, 1)
+	 time[1]=timer.performWithDelay( 1000, texto1, 1)
+	 time[2]=timer.performWithDelay( 8000, destexto,1)
+	 time[3]=timer.performWithDelay( 8500, texto3, 1)
 
 	
 

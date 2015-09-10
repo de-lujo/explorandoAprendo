@@ -1,8 +1,17 @@
 local storyboard = require ("storyboard")
 local scene= storyboard.newScene()
-local fondo, boton, icono, ambiente1, ambiente2, planeta, explorador, bannerDown
-local animal1, animal2, animal3, hoja, tran1, grabar, play, screenGroup, letra, sonido
+local fondo, boton, icono, ambiente1, ambiente2, planeta, explorador, bannerDown, tempo
+local animal1, animal2, animal3, hoja, tran1, grabar, play, screenGroup, letra, sonido, channel2
 local chocar=false
+local newFont=_G.font
+local contador=1
+local variar=1
+local validar=1
+local time={}
+
+_G.okPictograma=true
+
+_G.explicar=false
 
 local channel=audio.findFreeChannel( )
 
@@ -33,7 +42,7 @@ function scene:createScene( event )
 	fondo.y=display.contentHeight/2
 	fondo.surfaceType = "fondo"
 	fondo.alpha=0.50
-	physics.addBody( fondo, "static")
+	physics.addBody( fondo, "kinematic")
 
 
 	animal1= display.newImage( "img/Cebra.png" )
@@ -74,11 +83,13 @@ function scene:createScene( event )
 	cuadro1.x= display.contentCenterX -100
 	cuadro1.y= display.contentCenterY -220
 	cuadro1.strokeWidth = 3
+	--cuadro1.alpha=0
 	cuadro1:setStrokeColor( 0, 0, 0 )
 
-	tran1 = display.newRoundedRect( 0, 0, 15, 15, 0 )
-	tran1.x= display.contentCenterX -70
+	tran1 = display.newRoundedRect( 0, 0, 5, 5, 0 )
+	tran1.x= display.contentCenterX -100
 	tran1.y= display.contentCenterY -220
+	tran1:setStrokeColor( 0, 0, 0 )
 	tran1.surfaceType = "ian"
 	physics.addBody( tran1, "static")
 
@@ -89,8 +100,8 @@ function scene:createScene( event )
 	cuadro2:setStrokeColor( 0, 0, 0 )
 	cuadro2.alpha=0
 
-	tran2 = display.newRoundedRect( 0, 0, 15, 15, 0 )
-	tran2.x= display.contentCenterX +210
+	tran2 = display.newRoundedRect( 0, 0, 5, 5, 0 )
+	tran2.x= display.contentCenterX +180
 	tran2.y= display.contentCenterY -160 
 	tran2.surfaceType = "ian2"
 	physics.addBody( tran2, "static")
@@ -106,8 +117,8 @@ function scene:createScene( event )
 	cuadro3.alpha=0
 
 
-	tran3 = display.newRoundedRect( 0, 0, 15, 15, 0 )
-	tran3.x= display.contentCenterX + 170
+	tran3 = display.newRoundedRect( 0, 0, 5, 5, 0 )
+	tran3.x= display.contentCenterX + 130
 	tran3.y= display.contentCenterY -60 
 	tran3.surfaceType = "ian3"
 	tran3.isVisible=false
@@ -123,8 +134,8 @@ function scene:createScene( event )
 	cuadro4.alpha=0
 
 
-	tran4 = display.newRoundedRect( 0, 0, 15, 15, 0 )
-	tran4.x= display.contentCenterX + 30
+	tran4 = display.newRoundedRect( 0, 0, 5, 5, 0 )
+	tran4.x= display.contentCenterX - 10
 	tran4.y= display.contentCenterY + 20 
 	tran4.surfaceType = "ian4"
 	tran4.isVisible=false
@@ -139,8 +150,8 @@ function scene:createScene( event )
 	cuadro5:setStrokeColor( 0, 0, 0 )
 	cuadro5.alpha=0
 
-	tran5 = display.newRoundedRect( 0, 0, 15, 15, 0 )
-	tran5.x= display.contentCenterX + 100
+	tran5 = display.newRoundedRect( 0, 0, 5, 5, 0 )
+	tran5.x= display.contentCenterX + 60
 	tran5.y= display.contentCenterY + 180
 	tran5.surfaceType = "ian5"
 	tran5.isVisible=false
@@ -153,69 +164,69 @@ function scene:createScene( event )
 	bannerDown.y= display.contentCenterY 
 	bannerDown.strokeWidth = 6
 	bannerDown:setStrokeColor( 0, 0, 0 )
-	bannerDown:setFillColor( .827, .902, .898)
+	bannerDown:setFillColor( .98, .941, .745)
 
-	letra= display.newText("Coco, coco, ", 0, 0, native.systemFont, 16)
+	letra= display.newText("Coco, coco, ", 0, 0, newFont, 16)
 	letra.x= display.contentCenterX -220
 	letra.y=display.contentCenterY -220
 	letra.alpha=1
 	letra:setFillColor( 0, 0, 0)
 
-	letra2= display.newText(", sumergido en un río, levantando sus ojitos,", 0, 0, native.systemFont, 16)
+	letra2= display.newText(", sumergido en un río, levantando sus ojitos,", 0, 0, newFont, 16)
 	letra2.x= display.contentCenterX +140
 	letra2.y=display.contentCenterY -220
-	letra2.alpha=1
+	letra2.alpha=0
 	letra2:setFillColor( 0, 0, 0)
 
-	letra3= display.newText("para ver a sus amigos. Ahí viene una rayada, es la ", 0, 0, native.systemFont, 16)
+	letra3= display.newText("para ver a sus amigos. Ahí viene una rayada, es la ", 0, 0, newFont, 16)
 	letra3.x= display.contentCenterX -80
 	letra3.y=display.contentCenterY -160
 	letra3.alpha=0
 	letra3:setFillColor( 0, 0, 0)
 
-	letra4= display.newText("en la sabana. Más atrás con grandes cuernos", 0, 0, native.systemFont, 16)
+	letra4= display.newText("en la sabana. Más atrás con grandes cuernos", 0, 0, newFont, 16)
 	letra4.x= display.contentCenterX -100
 	letra4.y=display.contentCenterY -70
 	letra4.alpha=0
 	letra4:setFillColor( 0, 0, 0)
 
-    letra5= display.newText("en la sabana.", 0, 0, native.systemFont, 16)
+    letra5= display.newText("en la sabana.", 0, 0, newFont, 16)
 	letra5.x= display.contentCenterX +240
 	letra5.y=display.contentCenterY -70
 	letra5.alpha=0
 	letra5:setFillColor( 0, 0, 0)
 
-	letra6= display.newText("Se divisan muchas plumas,", 0, 0, native.systemFont, 16)
+	letra6= display.newText("Se divisan muchas plumas,", 0, 0, newFont, 16)
 	letra6.x= display.contentCenterX -170
 	letra6.y=display.contentCenterY +10
 	letra6.alpha=0
 	letra6:setFillColor( 0, 0, 0)
 
-	letra7= display.newText("en la sabana.", 0, 0, native.systemFont, 16)
+	letra7= display.newText("en la sabana.", 0, 0, newFont, 16)
 	letra7.x= display.contentCenterX +100
 	letra7.y=display.contentCenterY +10
 	letra7.alpha=0
 	letra7:setFillColor( 0, 0, 0)
 
-	letra8= display.newText("Esperemos un momento, falta alguien por nombrar, animalito corpulento", 0, 0, native.systemFont, 16)
+	letra8= display.newText("Esperemos un momento, falta alguien por nombrar, animalito corpulento", 0, 0, newFont, 16)
 	letra8.x= display.contentCenterX -10
 	letra8.y=display.contentCenterY +110
 	letra8.alpha=0
 	letra8:setFillColor( 0, 0, 0)
 
-	letra9= display.newText("bajo el agua debe estar, Hipo, hipo, ", 0, 0, native.systemFont, 16)
+	letra9= display.newText("bajo el agua debe estar, Hipo, hipo, ", 0, 0, newFont, 16)
 	letra9.x= display.contentCenterX -140
 	letra9.y=display.contentCenterY +170
 	letra9.alpha=0
 	letra9:setFillColor( 0, 0, 0)
 
-	letra10= display.newText("a mi lado tú estas,", 0, 0, native.systemFont, 16)
+	letra10= display.newText("a mi lado tú estas,", 0, 0, newFont, 16)
 	letra10.x= display.contentCenterX +200
 	letra10.y=display.contentCenterY +170
 	letra10.alpha=0
 	letra10:setFillColor( 0, 0, 0)
 
-	letra11= display.newText("¡Comencemos a bailar!.", 0, 0, native.systemFont, 16)
+	letra11= display.newText("¡Comencemos a bailar!.", 0, 0, newFont, 16)
 	letra11.x= display.contentCenterX -180
 	letra11.y=display.contentCenterY +240
 	letra11.alpha=0
@@ -243,9 +254,8 @@ function scene:createScene( event )
 	barra.y= display.contentCenterY -140
 	barra.strokeWidth = 6
 	barra:setStrokeColor( 0, 0, 0 )
-	barra:setFillColor( .827, .902, .898)
+	barra:setFillColor( .98, .941, .745)
 	barra.alpha=0
-
 
     
 	icono=display.newImage("img/flecha01.png")
@@ -261,15 +271,15 @@ function scene:createScene( event )
 	boton:scale( 0.30, 0.30 )
 
 
-	nube=display.newRoundedRect( display.contentCenterX, display.contentCenterY, 180, 100, 12 )
+	nube=display.newRoundedRect( display.contentCenterX, display.contentCenterY, 200, 110, 12 )
 	nube.x=display.contentCenterX-400
 	nube.y=display.contentCenterY-220
 	nube.strokeWidth = 6
 	nube:setStrokeColor( 0, 0, 0 )
-	nube:setFillColor( .827, .902, .898)
-	nube.alpha=0
+	--nube:setFillColor( .827, .902, .898)
+	nube.alpha=1
 
-	texto1= display.newText("Ahora Graba" .. "\ntu ¡canción!", 0, 0, native.systemFont, 16)
+	texto1= display.newText("¡Pon mucha atención!\nPara que puedas\ncompletar la canción.", 0, 0, newFont, 16)
 	texto1.x= display.contentCenterX -400
 	texto1.y=display.contentCenterY -220
 	texto1.alpha=0
@@ -282,10 +292,34 @@ function scene:createScene( event )
 	flechaB.alpha=0
 	flechaB:scale(0.04, 0.035)
 
- 
+
+	nube2=display.newRoundedRect( display.contentCenterX, display.contentCenterY, 100, 50, 12 )
+	nube2.x=display.contentCenterX-450
+	nube2.y=display.contentCenterY -130
+	nube2.strokeWidth = 6
+	nube2:setStrokeColor( 0, 0, 0 )
+	nube2:setFillColor( .98, .941, .745)
+	nube2.alpha=1
+
+	pause=display.newImage( "img/pause.png")
+	pause:scale( 0.35, 0.35)
+	pause.x=display.contentCenterX -450
+	pause.y=display.contentCenterY - 130
+	pause.alpha=0
+
+	play2=display.newImage( "img/play2.png")
+	play2:scale( 0.35, 0.35)
+	play2.x=display.contentCenterX -450
+	play2.y=display.contentCenterY - 130
+	play2.alpha=1
+
 
 	screenGroup:insert(fondo)
 	screenGroup:insert(bannerDown)
+	screenGroup:insert(nube2)
+	screenGroup:insert(play2)
+	screenGroup:insert(pause)
+
 	screenGroup:insert(cuadro1)
 	screenGroup:insert(cuadro2)
 	screenGroup:insert(cuadro3)
@@ -322,6 +356,116 @@ function scene:createScene( event )
 	screenGroup:insert(texto1)
 
 
+
+
+end
+
+function  listen_on( event )
+
+	if event.phase == "began" then
+
+		 audio.pause( _G.channel)
+
+		 audio.stop(channel2)
+		 audio.dispose(channel2)
+		 channel1= audio.findFreeChannel()
+
+		 audio.setVolume( 0.10, { channel=channel2})
+		 audio.setMaxVolume( 0.10, { channel=_channel2})
+
+		 play2:removeEventListener( "touch", listen_on)
+		 play2.alpha=0
+
+		 pause.alpha=1
+		 pause:addEventListener( "touch", listen_off)
+
+
+		if (contador ==  1) then
+
+			 sonido=audio.loadStream("music/pictograma/picto1-coco.mp3", {loops = -1, channel = channel2})
+			 tempo=audio.getDuration(sonido)
+			 audio.play(sonido)
+			 time[0]=timer.performWithDelay( tempo -3000, sin_pause, 1)
+
+
+		elseif (contador == 2) then
+
+			sonido=audio.loadStream("music/pictograma/picto1-cebra.mp3", {loops = -1, channel = channel2})
+		    tempo=audio.getDuration(sonido)
+		    audio.play(sonido)
+		    time[0]=timer.performWithDelay( tempo -2000, sin_pause, 1)
+
+
+		elseif (contador == 3) then
+
+			sonido=audio.loadStream("music/pictograma/picto1-nu.mp3", {loops = -1, channel = channel2})
+		    tempo=audio.getDuration(sonido)
+		    audio.play(sonido)
+		    time[0]=timer.performWithDelay( tempo -2000, sin_pause, 1)
+
+
+		elseif (contador == 4) then
+
+			sonido=audio.loadStream("music/pictograma/picto1-avestruz.mp3", {loops = -1, channel = channel2})
+		    tempo=audio.getDuration(sonido)
+		    audio.play(sonido)
+		    time[0]=timer.performWithDelay( tempo -2000, sin_pause, 1)
+
+
+		elseif (contador == 5) then
+
+			sonido=audio.loadStream("music/pictograma/picto1-hipo.mp3", {loops = -1, channel = channel2})
+		    tempo=audio.getDuration(sonido)
+		    audio.play(sonido)
+		    time[0]=timer.performWithDelay( tempo -2000, sin_pause, 1)
+
+		end
+
+
+	end 
+
+end
+
+function sin_pause()
+
+		 play2:addEventListener( "touch", listen_on)
+		 play2.alpha=1
+
+		 pause.alpha=0
+		 pause:removeEventListener( "touch", listen_off)
+
+		 audio.stop(channel2)
+		 audio.dispose(channel2)
+
+		 audio.setVolume( 0.02, { channel=_G.channel})
+		 audio.setMaxVolume( 0.02, { channel=_G.channel})
+
+
+		 audio.resume( _G.channel)
+
+end
+
+
+
+function listen_off(event)
+	
+	if event.phase == "began" then
+
+
+	     play2:addEventListener( "touch", listen_on)
+		 play2.alpha=1
+
+		 pause.alpha=0
+		 pause:removeEventListener( "touch", listen_off)
+
+		 audio.stop(channel2)
+		 audio.dispose(channel2)
+		 timer.cancel(time[0])
+		 audio.resume( _G.channel)
+
+
+	end
+
 end
 
 
@@ -352,8 +496,16 @@ function move_image( event )
 
     elseif event.phase == "ended"  or event.phase == "cancelled" then
 
+
+    	  audio.stop(channel2)
+	      audio.dispose(channel2)
+	      channel2=audio.findFreeChannel()
+	      audio.setVolume( 1, { channel=channel2})
+	      audio.setMaxVolume( 1, { channel=channel2})
+
     	  physics.addBody( self, "dynamic", { isSensor=true} )
-	   	  display.getCurrentStage():setFocus(nil)	   	  
+	   	  display.getCurrentStage():setFocus(nil)
+
 	end
 
 end
@@ -364,52 +516,74 @@ function onCollision (event)
 
 	local self= event.target
 
-
 	if (event.phase == "began") then
+
 
 	 if (event.other.surfaceType ~= "fondo"  and _G.collision == false) then
 
 
-		  if (self.surfaceType == "cocodrilo" and event.other.surfaceType =="ian") then
+		  if (self.surfaceType == "cocodrilo" and event.other.surfaceType =="ian"  and contador == 1) then
 
 		  self:removeEventListener( "touch", move_image )
 		  _G.collision= true
+		   contador=2
+		   texto1.text="Perfecto,\nes el cocodrilo,\ncontinúa"
 		   mostrarSig(1)
-		   sonido=audio.loadStream("music/explorador/Frase 32.mp3", {loops = -1, channel = channel})
+		   sonido=audio.loadStream("music/explorador/cocodrilo2.mp3", {loops = -1, channel = channel2})
 		   audio.play(sonido)
 
-		  elseif (self.surfaceType == "cebra" and event.other.surfaceType == "ian2") then
+		  elseif (self.surfaceType == "cebra" and event.other.surfaceType == "ian2" and contador == 2) then
 
 		  self:removeEventListener( "touch", move_image )
 		  _G.collision= true
+		  contador=3
+		  texto1.text="Perfecto,\nes la cebra,\ncontinúa"
 		  mostrarSig(2)
-		   sonido=audio.loadStream("music/explorador/Frase 32.mp3", {loops = -1, channel = channel})
-		   audio.play(sonido)
+		  sonido=audio.loadStream("music/explorador/cebra2.mp3", {loops = -1, channel = channel2})
+		  audio.play(sonido)
 
-		  elseif (self.surfaceType == "nu" and event.other.surfaceType == "ian3") then
+		  elseif (self.surfaceType == "nu" and event.other.surfaceType == "ian3" and contador == 3 ) then
 
 		  self:removeEventListener( "touch", move_image )
 		  _G.collision= true
+		  contador=4
+		  texto1.text="Perfecto,\nes el ñu,\ncontinúa"
 		  mostrarSig(3)
-		  sonido=audio.loadStream("music/explorador/Frase 32.mp3", {loops = -1, channel = channel})
+		  sonido=audio.loadStream("music/explorador/nu2.mp3", {loops = -1, channel = channel2})
 		  audio.play(sonido)
 
-		  elseif (self.surfaceType == "avestruz" and event.other.surfaceType == "ian4") then
+		  elseif (self.surfaceType == "avestruz" and event.other.surfaceType == "ian4" and contador == 4) then
 
 		  self:removeEventListener( "touch", move_image )
 		  _G.collision= true
+		  contador=5
+		  texto1.text="Perfecto,\nes la avestruz,\ncontinúa"
 		  mostrarSig(4)
-		  sonido=audio.loadStream("music/explorador/Frase 32.mp3", {loops = -1, channel = channel})
-		   audio.play(sonido)
+		  sonido=audio.loadStream("music/explorador/avestruz2.mp3", {loops = -1, channel = channel2})
+		  audio.play(sonido)
 
-		  elseif (self.surfaceType == "hipopotamo" and event.other.surfaceType == "ian5") then
+		  elseif (self.surfaceType == "hipopotamo" and event.other.surfaceType == "ian5" and contador == 5) then
 
 		  self:removeEventListener( "touch", move_image )
 		  _G.collision= true
+		  contador=6
 		  mostrarSig(5)
-		  audio.pause( _G.channel)
-		  sonido=audio.loadStream("music/pictograma/cuento1.mp3", {loops = -1, channel = channel})
+		  texto1.text="¡Te felicito, eres \nmuy hábil para esto!"
+
+		  sonido=audio.loadStream("music/explorador/Frase 33.mp3", {loops = -1, channel = channel2})
 		  audio.play(sonido)
+
+		  transition.fadeOut( nube2, {time=1000} )
+		  transition.fadeOut( play2, {time=1000} )
+		  transition.fadeOut( pause, {time=1000} )
+
+		  audio.pause( _G.channel)
+
+		  --audio.setVolume( 0.40, { channel=channel})
+	      --audio.setMaxVolume( 0.50, { channel=channel})
+
+		  --sonido=audio.loadStream("music/pictograma/cuento1.mp3", {loops = -1, channel = channel2})
+		  --audio.play(sonido)
 		  
 		  end
 
@@ -419,16 +593,59 @@ function onCollision (event)
 	 	--physics.removeBody( event.other.surfaceType)
 	  	transition.moveTo( self, {x=_G.moveX, y=_G.moveY} )
 	  	_G.collision= true
-	  	sonido=audio.loadStream("music/explorador/Frase 30.mp3", {loops = -1, channel = channel})
+
+	  if (validar == 1) then
+
+	  	validar=2
+	  	audio.stop(channel2)
+	  	audio.dispose(channel2)
+	  	channel2=audio.findFreeChannel()
+	  	audio.setVolume( 1, { channel=channel2})
+	    audio.setMaxVolume( 1, { channel=channel2})
+
+        variar=math.random()
+
+
+		if ( variar < 0.33) then
+	  	
+	  	texto1.text="¡¡Ánimo!!"
+	  	sonido=audio.loadStream("music/explorador/animo.mp3", {loops = -1, channel = channel2})
 		audio.play(sonido)
-	  	--print( self.surfaceType )
+		timer.performWithDelay( 1, validar_on, 1)
+
+	    elseif (variar < 0.66) then
+
+	    texto1.text="¡¡Tú puedes!!"
+	    sonido=audio.loadStream("music/explorador/puedes.mp3", {loops = -1, channel = channel2})
+		audio.play(sonido)
+		timer.performWithDelay( 1000, validar_on, 1)
+
+
+	    elseif (variar < 1) then
+
+	    texto1.text="¿Estás seguro?"
+	    sonido=audio.loadStream("music/explorador/seguro.mp3", {loops = -1, channel = channel2})
+		audio.play(sonido)
+		timer.performWithDelay( 1000, validar_on, 1)
+
+
+	    end
 
     	
        end
 
+      end
+
 	end
 
 end 
+
+function validar_on()
+	
+	validar=1
+
+end
+
 
 
 function mostrarSig( count)
@@ -438,7 +655,9 @@ function mostrarSig( count)
 
 		transition.fadeIn( cuadro2, {time=1000} )
 		tran2.isVisible=true
+		tran2.bodyType="static"
 		transition.fadeIn( tran2, {time=1000} )
+		transition.fadeIn( letra2, {time=1000} )
 		transition.fadeIn( letra3, {time=1000} )
 
 	elseif (count == 2) then
@@ -447,22 +666,21 @@ function mostrarSig( count)
 		tran3.isVisible=true
 		transition.fadeIn( tran3, {time=1000} )
 		transition.fadeIn( letra4, {time=1000} )
-		transition.fadeIn( letra5, {time=1000} )
-
+		
 
 	elseif (count == 3) then
 		transition.fadeIn( cuadro4, {time=1000} )
 		tran4.isVisible=true
 		transition.fadeIn( tran4, {time=1000} )
 		transition.fadeIn( letra6, {time=1000} )
-		transition.fadeIn( letra7, {time=1000} )
-
+		transition.fadeIn( letra5, {time=1000} )
 
 	elseif (count == 4) then
 
 		transition.fadeIn( cuadro5, {time=1000} )
 		tran5.isVisible=true
 		transition.fadeIn( tran5, {time=1000} )
+		transition.fadeIn( letra7, {time=1000} )
 		transition.fadeIn( letra8, {time=1000} )
 		transition.fadeIn( letra9, {time=1000} )
 
@@ -470,21 +688,56 @@ function mostrarSig( count)
 
 		transition.fadeIn( letra10, {time=1000} )
 		transition.fadeIn( letra11, {time=1000} )
-		transition.fadeIn( boton, {time=1000} )
+		--timer.performWithDelay( 2000,)
 		grabar.isVisible=true
-		transition.fadeIn( grabar, {time=1000} )
-		transition.fadeIn( barra, {time=1000} )
-		transition.fadeIn( nube, {time=1000} )
-		transition.fadeIn( texto1, {time=1000} )
+		--transition.fadeIn( icono,{time=1000})
+		timer.performWithDelay( 3000, texto_grabar, 1)
+
+		
+		
 		--sonido=audio.loadStream("music/explorador/Frase35.mp3", {loops = -1, channel = channel})
 		--audio.play(sonido)
-		transition.fadeIn( flechaB, {time=1000} )
-		timer.performWithDelay( 2000, blink, 1 )
+		
 
 	end
 
 
 end
+
+function texto_grabar()
+
+		texto1.text= "Ahora cantemos\njuntos la canción,\ny si quieres puedes\ngrabar tu voz."
+
+		transition.fadeIn( grabar, {time=1000} )
+		transition.fadeIn( boton, {time=1000} )
+		transition.fadeIn( barra, {time=1000} )
+		transition.fadeIn( nube, {time=1000} )
+		transition.fadeIn( flechaB, {time=1000} )
+		timer.performWithDelay( 2000, blink, 1 )
+
+		channel=audio.findFreeChannel()
+		audio.setVolume( 1, { channel=channel})
+		audio.setMaxVolume( 1, { channel=channel})
+
+		sonido=audio.loadStream("music/explorador/Frase 34.mp3", {loops = -1, channel = channel})
+		audio.play(sonido)
+
+		timer.performWithDelay( 5000, cancion_on, 1)
+
+
+	end
+
+	function cancion_on()
+
+		--audio.stop( _G.channel)
+		channel=audio.findFreeChannel()
+		audio.setVolume( 0.10, { channel=channel})
+		audio.setMaxVolume( 0.10, { channel=_channel})
+		sonido=audio.loadStream("music/pictograma/cuento1.mp3", {loops = -1, channel = channel})
+		audio.play(sonido)
+		transition.fadeIn( icono,{time=1000})
+
+	end
 
 
 
@@ -501,7 +754,9 @@ function record(event)
     
   if event.phase == "began" then    
 
-  	flechaB.isVisible=false  
+  	flechaB.isVisible=false
+  	os.remove( system.pathForFile( "ian.wav", system.DocumentsDirectory ))
+
 
        if (audioHandle ~= nil) then
                 
@@ -509,13 +764,23 @@ function record(event)
                 if (audio.isChannelActive(audioChannel)) then
                     audio.stop(audioChannel)
                 end
-                        
+                      
                 audio.dispose(audioHandle)
-            end 
+        end 
             
-                    r:startRecording()
-                    play.isVisible=true
-                    transition.fadeIn( play, {time=2000})
+        r:startRecording()
+        play.isVisible=true
+        transition.fadeIn( play, {time=2000})
+
+        audio.stop(channel)
+	    audio.dispose(channel)
+	    channel=audio.findFreeChannel()
+
+
+        sonido=audio.loadStream("music/pictograma/cuento1.mp3", {loops = -1, channel = channel})
+		audio.play(sonido)
+		grabar:removeEventListener( "touch", record)
+
 
     end
 end
@@ -525,7 +790,12 @@ function stop(event)
 
     if event.phase == "began" then
 
+     audio.stop(channel)
+     audio.dispose(channel)
+
      r:stopRecording()
+     grabar:addEventListener( "touch", record)
+
 
      audioHandle = audio.loadSound( "ian.wav", system.DocumentsDirectory )
         
@@ -539,7 +809,6 @@ function start( event )
 	
 	if event.phase == "began" then
 
-
 	  audio.resume( _G.channel)
 	  storyboard.gotoScene("selectJuegos","fade",400)
 	end
@@ -551,12 +820,20 @@ function validar_Musica( event )
 	if (audio.isChannelActive(_G.channel) == false) then
 
 		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.30, { channel=_G.channel })
-		audio.setMaxVolume( 0.40, { channel=_G.channel })
+		audio.setVolume( 0.03, { channel=_G.channel })
+		audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM2, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
 	end
+
+end
+
+function texto_1()
+	
+	transition.fadeIn( texto1, {time=1000} )
+	sonido=audio.loadStream("music/explorador/Frase 32.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
 
 end
 
@@ -567,9 +844,12 @@ end
 
 function scene:enterScene( event)
 
-	--fondo.enterFrame=validar_Musica
-	--Runtime:addEventListener("enterFrame", fondo)
+	fondo.enterFrame=validar_Musica
+	Runtime:addEventListener("enterFrame", fondo)
 
+	_G.okPictograma=true
+	--audio.setVolume( 0.05, { channel=_G.channel })
+	--audio.setMaxVolume( 0.10, { channel=_G.channel })
 
     animal1:addEventListener( "touch", move_image)
     animal2:addEventListener( "touch", move_image)
@@ -579,9 +859,7 @@ function scene:enterScene( event)
 
     grabar:addEventListener( "touch", record)
     play:addEventListener( "touch", stop)
-
-    sonido=audio.loadStream("music/explorador/Parrafo 27.mp3", {loops = -1, channel = channel})
-	audio.play(sonido)
+    play2:addEventListener( "touch", listen_on)
 
     --timer.performWithDelay( 4000, show_letra, 1)
 
@@ -606,6 +884,8 @@ function scene:enterScene( event)
 
 	end
 
+	timer.performWithDelay( 0, texto_1, 1)
+
 
 end
 
@@ -622,11 +902,16 @@ function scene:exitScene( event )
     tran1:removeEventListener( "collision", onCollision )
     
   
+    channel=audio.findFreeChannel()
+	audio.setVolume( 1, { channel=channel})
+	audio.setMaxVolume( 1, { channel=channel})
+	
     audio.stop(audioChannel)
-    audio.dispose( audioHandle )
+    audio.dispose(audioChannel)
     audio.stop(channel)
+    audio.dispose(channel)
     transition.cancel()
-    audio.dispose( channel )
+    --audio.dispose( channel )
     os.remove( system.pathForFile( "ian.wav", system.DocumentsDirectory ) )
    	physics.removeBody( animal3 )
    	physics.removeBody( tran1 )

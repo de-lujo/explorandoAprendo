@@ -4,6 +4,7 @@ local sonido
 local fondo, boton, icono, ambiente1, ambiente2, planeta, screenGroup, titulo
 local channel
 local time={}
+local newFont=_G.font
 
 
 local sheetOptions=
@@ -71,7 +72,7 @@ function scene:createScene( event )
 	nube:setStrokeColor( 0, 0, 0 )
 	--nube.alpha=0
 
-	text1= display.newText("Ahora solo tienes que escoger" .. "\na qué lugar quieres ir", display.contentCenterX - 300, display.contentCenterY-200, native.systemFont, 18 )
+	text1= display.newText("Ahora solo tienes que escoger" .. "\na qué lugar quieres ir", display.contentCenterX - 300, display.contentCenterY-200, newFont, _G.tamano )
 	text1:setFillColor(0, 0, 0)
 	--text1.alpha=0
 	
@@ -217,7 +218,7 @@ function scene:exitScene( event )
 
    ambiente2:removeEventListener( "touch", redirCuento2)
    boton:removeEventListener( "touch", start)
-   cancelAll(event)
+   cancelAll()
    storyboard.removeScene("selectAmbiente")
 
 end

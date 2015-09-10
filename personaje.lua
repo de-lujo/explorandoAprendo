@@ -2,7 +2,8 @@ local storyboard = require ("storyboard")
 local scene= storyboard.newScene()
 local screenGroup, fondo, texto, nina, nino, boton, titulo, flag, text1, alert1, text2, sonido
 
-local otherChannel, channel2
+local otherChannel, channel2, sonido2
+local newFont=_G.font
 local time={}
 
 
@@ -10,7 +11,7 @@ function scene:createScene( event )
 
 	screenGroup= self.view
 
-	fondo=display.newImage("img/mapa.png",1024,600)
+	fondo=display.newImage("img/paisaje.png",1024,600)
 	fondo.x=display.contentCenterX
 	fondo.y=display.contentCenterY
 	fondo.alpha=0.75
@@ -30,12 +31,6 @@ function scene:createScene( event )
 	boton.y=display.contentCenterY + 200
 	boton:scale( 0.30, 0.30 )
 
-	bueno=display.newImage("img/bueno.png")
-	bueno.x=display.contentCenterX -20
-	bueno.y=display.contentCenterY +30
-	bueno:scale( 0.15, 0.15 )
-	bueno.alpha=0
-
 
 	nube=display.newRoundedRect( display.contentCenterX, display.contentCenterY, 350, 120, 12 )
 	nube.x=display.contentCenterX-270
@@ -45,17 +40,17 @@ function scene:createScene( event )
 	nube.alpha=0
 
 
-	text1= display.newText("Ahora elige a tu personaje" .. "\npara comenzar esta aventura", display.contentCenterX-263, display.contentCenterY-220, "fonts/3.otf", 18 )
+	text1= display.newText("Primero elige tu personaje" .. "\nquien te acompañará durante\nesta aventura.", display.contentCenterX-263, display.contentCenterY-220, newFont, _G.tamano )
 	text1:setFillColor( 0, 0, 0)
 	text1.alpha=0
 
 	alert1=display.newImage("img/cuadro3.png")
 	alert1.x=display.contentCenterX
-	alert1.y=display.contentCenterY
-	alert1:scale( 0.24, 0.24 )
+	alert1.y=display.contentCenterY -30
+	alert1:scale( 0.40, 0.40 )
 	alert1.alpha=0
 
-	text2=display.newText("", display.contentCenterX, display.contentCenterY -50, native.systemFont, 18)
+	text2=display.newText("", display.contentCenterX, display.contentCenterY -50, newFont, _G.tamano)
 	text2:setFillColor( 0, 0, 0)
 	text2.alpha=0
 
@@ -64,10 +59,10 @@ function scene:createScene( event )
 	dialogNina.x=display.contentCenterX
 	dialogNina.y=display.contentCenterY - 50
 	dialogNina.alpha=0
-	--dialog.isVisible=false
+	dialogNina.isVisible=false
 	dialogNina:scale( 0.55, 0.40)
 
-	textNina=display.newText("Hola, yo seré quien\nte acompañe, en la\nsiguiente aventura.", display.contentCenterX + 10, display.contentCenterY -50, native.systemFont, 18)
+	textNina=display.newText("", display.contentCenterX + 10, display.contentCenterY -50, newFont, _G.tamano)
 	textNina:setFillColor( 0, 0, 0)
 	textNina.alpha=0
 
@@ -75,10 +70,10 @@ function scene:createScene( event )
 	dialogNino.x=display.contentCenterX + 370
 	dialogNino.y=display.contentCenterY - 50
 	dialogNino.alpha=0
-	--dialog.isVisible=false
+	dialogNino.isVisible=false
 	dialogNino:scale( 0.55, 0.40)
 
-	textNino=display.newText("Hola, yo seré quien\nte acompañe, en la\nsiguiente aventura.", display.contentCenterX + 380, display.contentCenterY -50, native.systemFont, 18)
+	textNino=display.newText("", display.contentCenterX + 380, display.contentCenterY -50, newFont, _G.tamano)
 	textNino:setFillColor( 0, 0, 0)
 	textNino.alpha=0
 
@@ -86,16 +81,17 @@ function scene:createScene( event )
 	screenGroup:insert(fondo)
 	screenGroup:insert(nina)
 	screenGroup:insert(nino)
+	screenGroup:insert(dialogNina)
+	screenGroup:insert(dialogNino)
+	screenGroup:insert(textNina)
+	screenGroup:insert(textNino)
 	screenGroup:insert(boton)
 	screenGroup:insert(nube)
 	screenGroup:insert(text1)
 	screenGroup:insert(alert1)
 	screenGroup:insert(text2)
-	screenGroup:insert(bueno)
-	screenGroup:insert(dialogNina)
-	screenGroup:insert(dialogNino)
-	screenGroup:insert(textNina)
-	screenGroup:insert(textNino)
+
+	
 
 
 
@@ -110,12 +106,14 @@ function start( event )
 
 	 	  if (flag == true ) then
 
-	 		 --_G.name=texto.text
+	 		 _G.rutaNombre= "img/".. _G.personaje ..".png"
+
 	 		 storyboard.gotoScene("personaje2","fade",400)
 	  	  
 	  	  else
 
-	  	  	 validarIn("Espera, debes elegir un personaje.")
+	  	  	 timer.performWithDelay( 0, validarIn, 1)
+	  	  	 timer.performWithDelay( 3000, validarNombreOut, 1)
 
 	  	  end
 
@@ -123,14 +121,29 @@ function start( event )
 end
 
 
-function validarIn( name )
+function validarIn()
 
-	bueno:addEventListener( "touch", validarNombreOut)
-	text2.text=name
+	text2.text="Recuerda elegir tu personaje."
+	boton:removeEventListener( "touch", start )
+	nino:removeEventListener( "touch", elegirNino )
+	nina:removeEventListener("touch", elegirNina)
+	audio.pause(otherChannel)
+
+	channel2= audio.findFreeChannel()
+	sonido2=audio.loadStream("music/explorador/Frase 4.mp3", {loops = -1, channel = channel2})
+    audio.play(sonido2)
+
+
+	for i=0,3 do
+	 timer.pause(time[i])
+	end
 
 	transition.fadeIn( alert1, { time= 1000} )
 	transition.fadeIn( text2, { time= 1000} )
-	transition.fadeIn( bueno, { time= 1000} )
+	transition.to( dialogNina, {time=1000, alpha=0.30} )
+	transition.to( dialogNino, {time=1000, alpha=0.30} )
+	transition.to( textNina, {time=1000, alpha=0.30} )
+	transition.to( textNino, {time=1000, alpha=0.30} )
 	transition.to(fondo, { time= 1000, alpha=0.30} )
 	transition.to(nina, { time= 1000, alpha=0.30} )
 	transition.to(nino, { time= 1000, alpha=0.30} )
@@ -140,19 +153,30 @@ function validarIn( name )
 
 end
 
-function validarNombreOut( name )
+function validarNombreOut()
 
+	audio.resume(otherChannel)
 
-	bueno:removeEventListener( "touch", validarNombreOut)
+	for i=0,3 do
+	 timer.resume(time[i])
+	end
+
+	boton:addEventListener( "touch", start )
+	nino:addEventListener( "touch", elegirNino )
+	nina:addEventListener("touch", elegirNina)
+	
 	transition.fadeOut( alert1, {time=1000} )
 	transition.fadeOut( text2, {time=1000})
-	transition.fadeOut( bueno, {time=1000} )
 	transition.to(fondo, { time= 1000, alpha=0.75} )
 	transition.to(nina, { time= 1000, alpha=1} )
 	transition.to(nino, { time= 1000, alpha=1} )
 	transition.to(boton, { time= 1000, alpha=1} )
 	transition.to(nube, { time= 1000, alpha=1} )
 	transition.to(text1, { time= 1000, alpha=1} )
+	transition.to( dialogNina, {time=1000, alpha=1} )
+	transition.to( dialogNino, {time=1000, alpha=1} )
+	transition.to( textNina, {time=1000, alpha=1} )
+	transition.to( textNino, {time=1000, alpha=1} )
 
 end
 
@@ -167,11 +191,14 @@ function elegirNino( event )
 	nino.strokeWidth = 10
 	_G.personaje="niño"
 	flag=true
+
+	textNino.isVisible=true
+	textNino.text="Hola, yo seré quien\nte acompañe, en la\nsiguiente aventura."
+	dialogNino.isVisible=true
 	transition.fadeIn( dialogNino, {time=800})
 	transition.fadeIn( textNino, {time=1000})
-
-	transition.fadeOut( dialogNina, {time=400})
-	transition.fadeOut( textNina, {time=400})
+	dialogNina.isVisible=false
+	textNina.isVisible=false
 	timer.performWithDelay( 400, dialogo, 1)
 	nino:removeEventListener("touch", elegirNino)
 	nina:addEventListener("touch", elegirNina)
@@ -180,17 +207,23 @@ end
 
 
 function elegirNina( event )
+
+
 	
 	nino.strokeWidth = 0
 	nina:setStrokeColor (1, 1, 1)
 	nina.strokeWidth = 10	
 	_G.personaje="niña"
 	flag=true
+
+	textNina.isVisible=true
+	textNina.text="Hola, yo seré quien\nte acompañe, en la\nsiguiente aventura."
+	dialogNina.isVisible=true
 	transition.fadeIn( dialogNina, {time=800})
 	transition.fadeIn( textNina, {time=1000})
 
-	transition.fadeOut( dialogNino, {time=400})
-	transition.fadeOut( textNino, {time=400})
+	dialogNino.isVisible=false
+	textNino.isVisible=false	
 	timer.performWithDelay( 400, dialogo, 1)
 
 	nina:removeEventListener("touch", elegirNina)
@@ -202,9 +235,8 @@ end
 function dialogo( event )
 	
 
-		 audio.stop(channel2)
-		 audio.dispose(channel2)
-
+		 --audio.pause(channel2)
+		 --audio.dispose(channel2)
 		 channel2=audio.findFreeChannel()
 
 		 if (_G.personaje == "niña") then
@@ -228,29 +260,34 @@ function startNube( event )
 
 end
 
-function destexto( event )
+function destexto()
 	transition.fadeOut( text1, {time=500} )
 end
 
 function texto1( event )
 
 	transition.fadeIn( text1, {time=1000} )
+
 	otherChannel= audio.findFreeChannel()
 	sonido=audio.loadStream("music/explorador/Frase 2.mp3", {loops = -1, channel = otherChannel})
 	audio.play(sonido)
 
 end
 
-function texto2( event )
 
-	text1.text= "Te invito a seleccionar\nel personaje que te representará"
-	transition.fadeIn( text1, {time=1000} )
-end
-
-function texto3( event )
+function texto3()
 	
-	text1.text= "Para continuar, presiona la flecha"
+
+	text1.text= "Para continuar, presiona la flecha."
 	transition.fadeIn( text1, {time=1000} )
+
+	audio.stop(channel2)
+	audio.dispose(channel2)
+
+	otherChannel= audio.findFreeChannel()
+
+	sonido=audio.loadStream("music/explorador/Frase 3.mp3", {loops = -1, channel = otherChannel})
+	audio.play(sonido)
 
 end
 
@@ -260,8 +297,8 @@ function validar_Musica( event )
 	if (audio.isChannelActive(_G.channel) == false) then
 
 		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.30, { channel=_G.channel })
-		audio.setMaxVolume( 0.40, { channel=_G.channel })
+		audio.setVolume( 0.03, { channel=_G.channel })
+		audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -273,10 +310,14 @@ function cancelAll()
 
 	 for i=0,3 do
 	 timer.cancel(time[i])
-	 end
+	end
+
 
 	 transition.cancel()
 	 audio.stop(otherChannel)
+	 audio.stop(channel2)
+	 audio.dispose(otherChannel)
+	 audio.dispose(channel2)
 
 end
 
@@ -290,10 +331,11 @@ function scene:enterScene( event)
 	boton:addEventListener( "touch", start)
 	nino:addEventListener( "touch", elegirNino)
 	nina:addEventListener( "touch", elegirNina)
+
 	time[0]=timer.performWithDelay( 0, startNube, 1)
-	time[1]=timer.performWithDelay( 1500, texto1, 1)
-	time[2]=timer.performWithDelay( 13500, destexto,1)
-	time[3]=timer.performWithDelay( 14000, texto3, 1)
+	time[1]=timer.performWithDelay( 1000, texto1, 1)
+	time[2]=timer.performWithDelay( 9000, destexto,1)
+	time[3]=timer.performWithDelay( 9500, texto3, 1)
 
 	fondo.enterFrame=validar_Musica
 	Runtime:addEventListener("enterFrame", fondo)
@@ -307,7 +349,7 @@ function scene:exitScene( event )
    boton:removeEventListener("touch", start)
    nino:removeEventListener( "touch", elegirNino)
    nina:removeEventListener( "touch", elegirNina)
-   cancelAll(event)
+   cancelAll()
    storyboard.removeScene("personaje")
 
    

@@ -2,14 +2,14 @@ local storyboard = require "storyboard"
 local scene= storyboard.newScene()
 
 
-local planeta, fondo, planeta, boton, titulo, screenGroup, dialog, text1, newFont
+local planeta, fondo, planeta, boton, titulo, screenGroup, dialog, text1
 local sonido= audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
-audio.setVolume( 0.30, { channel=_G.channel })
-audio.setMaxVolume( 0.40, { channel=_G.channel })
 local time={}
 
 
 local sonido2, otherChannel
+
+local newFont=_G.font
 
 local sheetOptions=
 {
@@ -37,7 +37,7 @@ function scene:createScene( event )
 
 	screenGroup= self.view
 
-	fondo=display.newImage("img/mapa.png",1024,600)
+	fondo=display.newImage("img/paisaje.png",1024,600)
 	fondo.x=display.contentCenterX
 	fondo.y=display.contentCenterY
 	fondo.alpha=0.70
@@ -68,8 +68,6 @@ function scene:createScene( event )
 	explorador.alpha=0
 	explorador:scale( 0.40, 0.40 )
 
-    newFont= native.newFont( "fonts/5.otf", 14)
-
 
 	dialog= display.newImage("img/dialogo4.png")
 	dialog.x=display.contentCenterX-140
@@ -78,8 +76,8 @@ function scene:createScene( event )
 	dialog.isVisible=false
 	dialog:scale( 0.70, 0.70)
 
-	text1= display.newText("¡Hola!!".."\nSoy Pablo el explorador".. "\nvengo de un país" .. "\nllamado Chile", display.contentCenterX-263, display.contentCenterY-130, newFont, 18 )
-	text1.x=display.contentCenterX-100
+	text1= display.newText("¡Hola! Soy valentina\nla exploradora vengo de Chile,\nun país al sur del mundo... ", display.contentCenterX-263, display.contentCenterY-130, newFont, _G.tamano)
+	text1.x=display.contentCenterX-90
 	text1.y=display.contentCenterY +140
 	text1:setFillColor( 0, 0, 0)
 	text1.alpha=0
@@ -188,7 +186,7 @@ end
 
 function texto2( event ) --16000
 
-	text1.text="pero me encanta conocer ".."\ndistintos lugares del mundo ".. "\n¡Acompáñame!"
+	text1.text="y me encanta conocer\n distintos lugares."
 	transition.to(text1, {time=1000, alpha=1} ) --17000
 	explorador4.alpha=0
 	explorador3.alpha=1
@@ -229,10 +227,10 @@ function scene:enterScene(event)
 	time[4]=timer.performWithDelay( 9300, letra, 1)
 	time[5]=timer.performWithDelay( 10500, texto, 1 )
 	time[6]=timer.performWithDelay( 16000, destexto, 1)
-	time[7]=timer.performWithDelay( 17000, texto2, 1 )
-	time[8]=timer.performWithDelay( 22000, destexto, 1) 
-	time[9]=timer.performWithDelay( 23000, texto3, 1 )
-	time[10]=timer.performWithDelay( 24500, button_in, 1)
+	time[7]=timer.performWithDelay( 16500, texto2, 1 )
+	time[8]=timer.performWithDelay( 19000, destexto, 1) 
+	time[9]=timer.performWithDelay( 19500, texto3, 1 )
+	time[10]=timer.performWithDelay( 21500, button_in, 1)
 
 
 end
@@ -240,7 +238,7 @@ end
 function scene:exitScene( event )
 
 	boton:removeEventListener("touch",start)
-	cancelAll(event)
+	cancelAll()
 	storyboard.removeScene("introduction")
 
 end

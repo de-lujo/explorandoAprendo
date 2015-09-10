@@ -6,6 +6,7 @@ local time={0,0,0}
 local sonido, palabra, banner
 local channel,channel2
 local contador=1
+local newFont=_G.font
 
 
 
@@ -73,7 +74,7 @@ function scene:createScene( event )
 	nota.alpha=0
 	nota:scale( 0.88, 0.70 )
 
-	text1 = display.newText("Un día, en las llanuras abiertas de la gran Sabana,\ncomenzaron a ocurrir cosas muy muy extrañas y curiosas." , 0, 0, native.systemFont, 18 )
+	text1 = display.newText("Un día, en las llanuras abiertas de la gran Sabana,\ncomenzaron a ocurrir cosas muy muy extrañas y curiosas." , 0, 0, newFont, _G.tamano)
 	text1:setFillColor( 0, 0, 0)
 	text1.x= display.contentCenterX-245
 	text1.y= display.contentCenterY-200
@@ -100,28 +101,28 @@ function scene:createScene( event )
 	equis.alpha=0
 	equis:scale( 0.50, 0.50 )
 
-	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, native.systemFont, 18)
+	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, newFont, _G.tamano)
 	te1.isVisible=true
 	te1.x=display.contentCenterX -220
 	te1.y=display.contentCenterY -180
 	te1:setFillColor( 0, 0, 0)
 	te1.alpha=0
 
-	te2= display.newText("JIRAFA: Es el mamífero más alto, se caracteriza\npor tener un largo cuello y manchas en la pelaje.\nSe alimenta de hojas, ramas de árboles y frutos.", 0, 0, native.systemFont, 18)
+	te2= display.newText("JIRAFA: Es el mamífero más alto, se caracteriza\npor tener un largo cuello y manchas en la pelaje.\nSe alimenta de hojas, ramas de árboles y frutos.", 0, 0, newFont, _G.tamano)
 	te2.isVisible= true
 	te2:setFillColor( 0, 0, 0)
 	te2.x=display.contentCenterX -205
 	te2.y=display.contentCenterY -80
 	te2.alpha=0
 
-	te3= display.newText("COCODRILO: Gran reptil carnívoro que vive en\nlugares de agua dulce como ríos y lagos.\nSu mayor característica, es su piel escamosa,\ndura y seca.", 0, 0, native.systemFont, 18)
+	te3= display.newText("COCODRILO: Gran reptil carnívoro que vive en\nlugares de agua dulce como ríos y lagos.\nSu mayor característica, es su piel escamosa,\ndura y seca.", 0, 0, newFont, _G.tamano)
 	te3.isVisible= true
 	te3:setFillColor( 0, 0, 0)
 	te3.x=display.contentCenterX -205
 	te3.y=display.contentCenterY +30
 	te3.alpha=0
 
-	te4= display.newText("SURICATA: Pequeño mamífero que vive en\ncuevas subterráneas. Se alimenta de insectos,\naunque a veces come huevos y vegetales.", 0, 0, native.systemFont, 18)
+	te4= display.newText("SURICATA: Pequeño mamífero que vive en\ncuevas subterráneas. Se alimenta de insectos,\naunque a veces come huevos y vegetales.", 0, 0, newFont, _G.tamano)
 	te4.isVisible= true
 	te4:setFillColor( 0, 0, 0)
 	te4.x=display.contentCenterX -210
@@ -265,6 +266,30 @@ function scene:createScene( event )
 	forward.y=display.contentCenterY - 80
 	forward.alpha=0
 
+	alert1=display.newImage("img/cuadro3.png")
+	alert1.x=display.contentCenterX
+	alert1.y=display.contentCenterY -30
+	alert1:scale( 0.60, 0.60 )
+	alert1.alpha=0
+	
+	botonAceptar=display.newImage("img/aceptar.png")
+	botonAceptar.x=display.contentCenterX +100
+	botonAceptar.y=display.contentCenterY +40  
+	botonAceptar.alpha=0
+	botonAceptar:scale( 0.50, 0.50 )
+
+	botonCancelar=display.newImage("img/cancelar.png")
+	botonCancelar.x=display.contentCenterX -100
+	botonCancelar.y=display.contentCenterY +43 
+	botonCancelar.alpha=0
+	botonCancelar:scale( 0.50, 0.50 )
+
+	texto21=display.newText("¿ Quieres salir ?", 0 , 0, newFont, 18)
+	texto21.x= display.contentCenterX 
+	texto21.y= display.contentCenterY - 50
+	texto21:setFillColor( 0,0,0 )
+	texto21.alpha=0
+
 
 
 	screenGroup:insert(fondo)
@@ -304,6 +329,11 @@ function scene:createScene( event )
 	screenGroup:insert(img10)
 	screenGroup:insert(img11)
 	screenGroup:insert(img12)
+
+	screenGroup:insert(alert1)
+	screenGroup:insert(botonAceptar)
+	screenGroup:insert(botonCancelar)
+	screenGroup:insert(texto21)
 
 
 end
@@ -539,6 +569,7 @@ function noText( event )
 end
 
 function onText( event )
+
 	transition.fadeIn( te1, {time=1000} )
 	transition.fadeIn( te2, {time=1000} )
 	transition.fadeIn( te3, {time=1000} )
@@ -560,6 +591,7 @@ function start( event )
 	end
 end
 
+
 function back( event )
 	
 	if event.phase == "began" then
@@ -568,15 +600,128 @@ function back( event )
 	end
 end
 
+
 function volver_ambiente( event )
+	
+	if event.phase == "began" then		
+
+	  transition.pause()
+	  audio.pause(channel)
+	  fadeOut()
+	  pause.alpha=0
+	  pause:removeEventListener("touch", pauseTexto)
+	  play2.alpha=1
+	  play2:addEventListener("touch", resumeTexto)	
+	  
+	  --channel2= audio.findFreeChannel()
+	  --palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = channel2, loops = 0})
+      --audio.play(palabra)
+	  
+	  transition.fadeIn( texto21, {time=1000})
+	  transition.fadeIn( botonAceptar, {time=1000})
+	  transition.fadeIn( botonCancelar, {time=1000})
+	  transition.fadeIn( alert1, {time=1000})
+
+      channel2= audio.findFreeChannel()
+	  palabra= audio.loadStream("music/explorador/salir.mp3", {channel = channel2, loops = 0})
+      audio.play(palabra)
+
+	  botonAceptar:addEventListener("touch", aceptar)
+	  botonCancelar:addEventListener("touch", cancelar)
+
+	  mundo:removeEventListener("touch", volver_ambiente)
+	  dicci:removeEventListener( "touch", fade_out)
+	  boton:removeEventListener("touch", back)
+      icono:removeEventListener( "touch", start)
+	  --audio.stop(_G.channel)
+	  --storyboard.gotoScene("elegirCuento","fade",400)
+	end
+end
+
+
+function aceptar( event)
 	
 	if event.phase == "began" then
 
-	  storyboard.gotoScene("selectAmbiente","fade",400)
+		audio.stop(_G.channel)
+	  	storyboard.gotoScene("elegirCuento","fade",400)
+
 	end
+end
+
+function cancelar( event)
+	
+	if event.phase == "began" then
+
+	  transition.fadeOut( texto21, {time=500})
+	  transition.fadeOut( botonAceptar, {time=500})
+	  transition.fadeOut( botonCancelar, {time=500})
+	  transition.fadeOut( alert1, {time=500})	
+
+	  audio.resume( channel2 )
+
+	  fadeIn()				 
+
+	  botonAceptar:removeEventListener("touch", aceptar)
+	  botonCancelar:removeEventListener("touch", cancelar)
+	  mundo:addEventListener("touch",volver_ambiente)
+	  dicci:addEventListener( "touch", fade_out)
+	  boton:addEventListener("touch", back)
+      icono:addEventListener( "touch", start)
+
+		
+	end
+end
+
+function fadeOut()
+	
+	transition.to( fondo, {time=1000, alpha=0.30} )
+	transition.to( nube, {time=1000, alpha=0.30} )
+	transition.to( text1, {time=1000, alpha=0.30} )
+	transition.to( boton, {time=1000, alpha=0.30} )
+	transition.to( icono, {time=1000, alpha=0.30} )
+	transition.to( barra, {time=1000, alpha=0.30} )
+	transition.to( corchea, {time=1000, alpha=0.30} )
+	transition.to( corchea2, {time=1000, alpha=0.30} )
+	transition.to( mundo, {time=1000, alpha=0.30} )
+	transition.to( dicci, {time=1000, alpha=0.30} )
+
+	transition.to( banner, {time=1000, alpha=0.30} )
+	transition.to( play2, {time=1000, alpha=0.30} )
+	transition.to( rewind, {time=1000, alpha=0.30} )
+	transition.to( forward, {time=1000, alpha=0.30} )
 
 
 end
+
+
+function fadeIn()
+	
+	
+	transition.to( fondo, {time=1000, alpha=1} )
+	transition.to( nube, {time=1000, alpha=1} )
+	transition.to( text1, {time=1000, alpha=1} )
+	transition.to( boton, {time=1000, alpha=1} )
+	transition.to( icono, {time=1000, alpha=1} )
+	transition.to( barra, {time=1000, alpha=1} )
+	transition.to( corchea, {time=1000, alpha=1} )
+	transition.to( corchea2, {time=1000, alpha=1} )
+	transition.to( mundo, {time=1000, alpha=1} )
+	transition.to( dicci, {time=1000, alpha=1} )
+
+
+	transition.to( banner, {time=1000, alpha=1} )
+	--transition.to( pause, {time=1000, alpha=1} )
+	transition.to( play2, {time=1000, alpha=1} )
+	transition.to( rewind, {time=1000, alpha=1} )
+	transition.to( forward, {time=1000, alpha=1} )			
+
+
+
+
+end
+
+
 
 function sin_musica ( event )
 
@@ -656,6 +801,7 @@ function fade_out( event )
 	boton:removeEventListener("touch",back)
 	mundo:removeEventListener( "touch", volver_ambiente)
 	corchea:removeEventListener( "touch", sin_musica )
+	dicci:removeEventListener( "touch", fade_out )
 
  end
 
@@ -711,6 +857,8 @@ function fade_in( event )
 	boton:addEventListener("touch",back)
 	mundo:addEventListener( "touch", volver_ambiente)
 	corchea:addEventListener( "touch", sin_musica )
+	dicci:addEventListener( "touch", fade_out )
+
 
  end
 	
@@ -725,6 +873,8 @@ function musicDicci( event )
 	if event.phase == "began" then
 
 		audio.stop(channel2)
+	    audio.dispose( channel2)
+	    channel2= audio.findFreeChannel()
 
 		 if (self.surfaceType == "sabana") then
 
@@ -733,65 +883,65 @@ function musicDicci( event )
 
 		 elseif (self.surfaceType == "jirafa") then
 
-		 sonido=audio.loadSound("music/diccionario/Jirafa.mp3", {loops = 0, channel =channel})
+		 sonido=audio.loadSound("music/diccionario/Jirafa.mp3", {loops = 0, channel =channel2})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "cocodrilo") then
 
-		 sonido=audio.loadSound("music/diccionario/Cocodrilo.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Cocodrilo.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "suricata") then
 
-		 sonido=audio.loadSound("music/diccionario/Suricata.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Suricata.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "nu") then
 
-		 sonido=audio.loadSound("music/diccionario/Nu.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Nu.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "leon") then
 
-		 sonido=audio.loadSound("music/diccionario/Leon.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Leon.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "elefante") then
 
-		 sonido=audio.loadSound("music/diccionario/Elefante.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Elefante.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "hienas") then
 
-		 sonido=audio.loadSound("music/diccionario/Hienas.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Hienas.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "cebra") then
 
-		 sonido=audio.loadSound("music/diccionario/Cebra.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Cebra.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "avestruz") then
 
-		 sonido=audio.loadSound("music/diccionario/Avestruz.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Avestruz.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "hipopotamo") then
 
-		 sonido=audio.loadSound("music/diccionario/Hipopotamo.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Hipopotamo.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "rinoceronte") then
 
-		 sonido=audio.loadSound("music/diccionario/Rinoceronte.mp3", {loops = 0, channel = channel})
+		 sonido=audio.loadSound("music/diccionario/Rinoceronte.mp3", {loops = 0, channel = channel2})
 		 audio.play(sonido)
 
 		end
@@ -806,8 +956,8 @@ function validar_Musica( event )
 	if (audio.isChannelActive(_G.channel) == false) then
 
 		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.20, { channel=_G.channel })
-		audio.setMaxVolume( 0.30, { channel=_G.channel })
+		audio.setVolume( 0.03, { channel=_G.channel })
+		audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM2, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -815,11 +965,8 @@ function validar_Musica( event )
 
 end
 
-function cancelAll(event)
+function cancelAll()
 
-	 for i=0,1 do
-	 timer.cancel(time[i])
-	 end
 	 transition.cancel()
 	 audio.stop(channel)
 	 audio.dispose(channel)
@@ -838,16 +985,22 @@ function texto0( event )
     icono.isVisible=true
 	--transition.fadeIn( icono, {time=3000} )
 	--time[1]=timer.performWithDelay( 11000, destexto,1)
-	time[1]=timer.performWithDelay( 12000, texto1, 1)
+	--time[1]=timer.performWithDelay( 12000, texto1, 1)
 
 end
 
 function texto1( event )
+
+	contador=3
+	sonido=audio.loadStream("music/cuento1/Parrafo 1_2.mp3", {loops = -1, channel = channel})
+	audio.play(sonido)
 	text1.text= "a ambos les encanta pasar largas horas en el agua," .. "\ny de vez en cuando les gusta tomar el sol" .. "\nacostados a orillas del lago. "
 	transition.fadeIn( text1, {time=1000} )
 end
 
 function texto2( event )
+
+	contador=4
 
 	sonido=audio.loadStream("music/cuento1/Parrafo 2.mp3", {loops = -1, channel = channel})
 	audio.play(sonido)
@@ -884,9 +1037,13 @@ function avanzarTexto(event)
 
 	elseif (contador == 2) then
 
+		rewind.isVisible=true
+		texto1(event)
+
+	elseif (contador == 3 or contador == 4) then
+
 		forward.isVisible=false
 		texto2(event)
-
 	end
 
 
@@ -915,16 +1072,15 @@ if event.phase == "began" then
   -- destexto(event)
    contador= contador -1
 
-	if (contador == 1) then
+	if (contador == 3) then
 
 		forward.isVisible=true
+		texto1(event) 
+
+	elseif (contador == 2 or contador == 1) then
+
 		rewind.isVisible=false
-		texto0(event) 
-
-	elseif (contador == 2) then
-
-		forward.isVisible=true
-		texto2(event)
+		texto0(event)
 
 	 end
 
@@ -1043,7 +1199,7 @@ function scene:exitScene( event )
    mundo:removeEventListener( "touch", volver_ambiente)
    corchea:removeEventListener( "touch", sin_musica )
    dicci:removeEventListener( "touch", fade_out)
-   cancelAll(event)
+   cancelAll()
    storyboard.removeScene("sabanaCuento1")
 
 
