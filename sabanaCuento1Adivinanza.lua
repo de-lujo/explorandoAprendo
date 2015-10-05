@@ -15,6 +15,7 @@ local primera=true
 local valida=true
 
 _G.okAdivinanza=true
+_G.explicar=false
 
 _G.pistaOK= false
 _G.count=2
@@ -23,12 +24,10 @@ _G.Hi= false
 _G.Ce= false
 _G.Av= false
 _G.Nu= false
-_G.explicar=false
 
 local time={}
 
 local channel2, channel
-
 
 
 function scene:createScene( event )
@@ -252,28 +251,28 @@ function scene:createScene( event )
 	equis.alpha=0
 	equis:scale( 0.50, 0.50 )
 
-	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, newFont, _G.tamano)
+	te1= display.newText("LA SABANA: Es un lugar que se caracteriza \npor su poca vegetación, su suelo es seco y\npresenta poca cantidad de hierba y arbustos.",0,0, newFont, _G.tamDic)
 	te1.isVisible=true
 	te1.x=display.contentCenterX -220
 	te1.y=display.contentCenterY -180
 	te1:setFillColor( 0, 0, 0)
 	te1.alpha=0
 
-	te2= display.newText("JIRAFA: Es el mamífero más alto, se caracteriza\npor tener un largo cuello y manchas en la pelaje.\nSe alimenta de hojas, ramas de árboles y frutos.", 0, 0, newFont, _G.tamano)
+	te2= display.newText("JIRAFA: Es el mamífero más alto, se caracteriza\npor tener un largo cuello y manchas en la pelaje.\nSe alimenta de hojas, ramas de árboles y frutos.", 0, 0, newFont, _G.tamDic)
 	te2.isVisible= true
 	te2:setFillColor( 0, 0, 0)
 	te2.x=display.contentCenterX -205
 	te2.y=display.contentCenterY -80
 	te2.alpha=0
 
-	te3= display.newText("COCODRILO: Gran reptil carnívoro que vive en\nlugares de agua dulce como ríos y lagos.\nSu mayor característica, es su piel escamosa,\ndura y seca.", 0, 0, newFont, _G.tamano)
+	te3= display.newText("COCODRILO: Gran reptil carnívoro que vive en\nlugares de agua dulce como ríos y lagos.\nSu mayor característica, es su piel escamosa,\ndura y seca.", 0, 0, newFont, _G.tamDic)
 	te3.isVisible= true
 	te3:setFillColor( 0, 0, 0)
 	te3.x=display.contentCenterX -205
 	te3.y=display.contentCenterY +30
 	te3.alpha=0
 
-	te4= display.newText("SURICATA: Pequeño mamífero que vive en\ncuevas subterráneas. Se alimenta de insectos,\naunque a veces come huevos y vegetales.", 0, 0, newFont, _G.tamano)
+	te4= display.newText("SURICATA: Pequeño mamífero que vive en\ncuevas subterráneas. Se alimenta de insectos,\naunque a veces come huevos y vegetales.", 0, 0, newFont, _G.tamDic)
 	te4.isVisible= true
 	te4:setFillColor( 0, 0, 0)
 	te4.x=display.contentCenterX -210
@@ -401,7 +400,7 @@ function scene:createScene( event )
 	botonCancelar.alpha=0
 	botonCancelar:scale( 0.50, 0.50 )
 
-	texto21=display.newText("¿ Quieres salir ?", 0 , 0, newFont, 18)
+	texto21=display.newText("¿ Quieres salir ?", 0 , 0, newFont, _G.tamano)
 	texto21.x= display.contentCenterX 
 	texto21.y= display.contentCenterY - 50
 	texto21:setFillColor( 0,0,0 )
@@ -515,7 +514,7 @@ if (_G.hoja == 3) then
   	img8.isVisible=true
   	img9.isVisible=false
   	--transition.fadeIn( img8, {time=1000} )
-  	transition.fadeIn( arrow, {time=1000})
+  	transition.fadeIn( arrow, {time=300})
 
   	_G.hoja=2
 
@@ -555,7 +554,7 @@ if (_G.hoja == 3) then
   	img8.isVisible=false
 
   	--transition.fadeIn( img4, {time=1000} )
-  	transition.fadeOut( arrow2, {time=500})
+  	transition.fadeOut( arrow2, {time=300})
   	
   	_G.hoja=1
 
@@ -616,7 +615,7 @@ function validaHoja (event)
   	img4.isVisible=false
 
   	--transition.fadeIn( img8, {time=1000} )
-  	transition.fadeIn( arrow2, {time=1000} )
+  	transition.fadeIn( arrow2, {time=300} )
   	_G.hoja=2
 
 
@@ -656,7 +655,7 @@ function validaHoja (event)
   	img8.isVisible=false
 
   	--transition.fadeIn( img12, {time=1000} )
-  	transition.fadeOut( arrow, {time=500})
+  	transition.fadeOut( arrow, {time=300})
   	_G.hoja=3
   	
 
@@ -703,14 +702,16 @@ function fade_out( event )
 	onText()
 	valida= false
 
-	--audio.stop(channel2)
-	--audio.dispose(channel2)
+	audio.stop(_G.channel3)
+	audio.stop(_G.channel2)
+
+	--audio.dispose(_G.channel3)
 	--cancelar()
 	--transition.pause()
 	--audio.pause(channel)
 
 	_G.hoja=1
-	channel2= audio.findFreeChannel()
+	--channel2= audio.findFreeChannel()
 	img1.isVisible=true
 	img2.isVisible=true
 	img3.isVisible=true
@@ -737,10 +738,12 @@ function fade_out( event )
 	transition.to( pistas, {time=1000, alpha=0.30} )
 
 
-	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = channel2, loops = 0})
+	palabra= audio.loadStream("music/diccionario/titulo.mp3", {channel = _G.channel3, loops = 0})
     audio.play(palabra)
 
+    if (listo == false) then
     cancelar()
+    end
 
     icono:removeEventListener( "touch", start)
 	boton:removeEventListener("touch", volver_ambiente)
@@ -771,6 +774,7 @@ function fade_in( event )
 	    if (primera == true) then
 
     		pistas:removeEventListener("touch", pistas_on)
+    		cancelar()
 
     	end
 
@@ -819,8 +823,9 @@ function fade_in( event )
 
 	--audio.stop(channel)
 	--audio.dispose(channel)
-	audio.stop(channel2)
-	audio.dispose(channel2)
+	audio.stop(_G.channel3)
+	audio.stop(_G.channel2)
+
 
  end
 	
@@ -834,77 +839,78 @@ function musicDicci( event )
 
 	if event.phase == "began" then
 
-		audio.stop(channel2)
-		audio.dispose(channel2)
+		audio.stop(_G.channel3)
+	    audio.stop(_G.channel2)
+
 
 		--channel2=audio.findFreeChannel()
 
 		 if (self.surfaceType == "sabana") then
 
-		 sonido=audio.loadSound("music/diccionario/La sabana.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/La sabana.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "jirafa") then
 
-		 sonido=audio.loadSound("music/diccionario/Jirafa.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Jirafa.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "cocodrilo") then
 
-		 sonido=audio.loadSound("music/diccionario/Cocodrilo.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Cocodrilo.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 		 elseif (self.surfaceType == "suricata") then
 
-		 sonido=audio.loadSound("music/diccionario/Suricata.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Suricata.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "nu") then
 
-		 sonido=audio.loadSound("music/diccionario/Nu.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Nu.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "leon") then
 
-		 sonido=audio.loadSound("music/diccionario/Leon.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Leon.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "elefante") then
 
-		 sonido=audio.loadSound("music/diccionario/Elefante.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Elefante.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "hienas") then
 
-		 sonido=audio.loadSound("music/diccionario/Hienas.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Hienas.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "cebra") then
 
-		 sonido=audio.loadSound("music/diccionario/Cebra.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Cebra.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "avestruz") then
 
-		 sonido=audio.loadSound("music/diccionario/Avestruz.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Avestruz.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "hipopotamo") then
 
-		 sonido=audio.loadSound("music/diccionario/Hipopotamo.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Hipopotamo.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 
 		 elseif (self.surfaceType == "rinoceronte") then
 
-		 sonido=audio.loadSound("music/diccionario/Rinoceronte.mp3", {loops = 0, channel = channel2})
+		 sonido=audio.loadSound("music/diccionario/Rinoceronte.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 
 		end
@@ -925,8 +931,8 @@ function texto_1( event )
 	texto1.text= "Para comenzar debes escuchar\natentamente y luego elige el animal\nque consideras adecuado."
 	transition.fadeIn( texto1, {time=1000} )
 
-	channel=audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 22.mp3", {loops = -1, channel = channel})
+	--channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 22.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 end
@@ -940,8 +946,8 @@ function texto_4( event )
 	transition.fadeIn( flechaB, {time=1000} )
 	timer.performWithDelay( 2000, blinkFlechaB, 1)
 
-	channel=audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 23.mp3", {loops = -1, channel = channel})
+	--channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 23.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 end
@@ -952,15 +958,15 @@ function texto_2( event )
 	flechaB.isVisible=false
 	texto1.text= "Ahora solo debes presionar\nel Boton que indica la flecha."
 	
-	channel=audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 24.mp3", {loops = -1, channel = channel})
+	--channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 24.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 	transition.fadeIn( texto1, {time=1000} )
 	transition.fadeIn( flechaA, {time=1000} )
 	signo:addEventListener( "touch", signo_on )
 
-	cancelar()
+	--cancelar()
 	timer.performWithDelay(2000, blinkFlechaA, 1)
 	
 end
@@ -985,8 +991,8 @@ function texto_3(event)
 	primera=false
 	texto1.text= "Selecciona la imagen\n¿A quién pertenece?"
 	transition.fadeIn( texto1, {time=1000} )	
-	channel=audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 25.mp3", {loops = -1, channel = channel})
+	--channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 25.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 	icono:addEventListener( "touch", start)
@@ -996,6 +1002,7 @@ function texto_3(event)
 	pistas:addEventListener( "touch", pistas_on)
 	dicci:addEventListener( "touch", fade_out)
 	signo:addEventListener( "touch", signo_on )
+	
 	activar()
 	skip.isVisible=false
 
@@ -1094,9 +1101,11 @@ if event.phase == "began" then
 	
 	if (valida == true) then
 
-	cancelar()
-	timer.performWithDelay( 0, mensaje, 1)
-	timer.performWithDelay( 2000, activar, 1)
+		if (listo == false) then
+   			 cancelar()
+   			 timer.performWithDelay( 0, mensaje, 1)
+   			 timer.performWithDelay( 2000, activar, 1)
+    	end
     end
 
   end
@@ -1110,8 +1119,10 @@ function correcto()
 	dicci:removeEventListener( "touch", fade_out)
 	mundo:removeEventListener( "touch", volver_ambiente)
 	signo:removeEventListener( "touch", signo_on)
+
 	cancelar()
 	listo=true
+
 	time[8]=timer.performWithDelay( 0, destexto, 1)
 	time[9]=timer.performWithDelay( 1000, texto_6, 1)
 	time[10]=timer.performWithDelay( 5000, destexto, 1)
@@ -1128,7 +1139,7 @@ function prox_adivinanza()
 
 	texto1.text="Sigue con la próxima adivinanza…"
 	transition.fadeIn( texto1, {time=1000} )
-	sonido=audio.loadStream("music/explorador/Frase 29.mp3", {loops = -1, channel = channel})
+	sonido=audio.loadStream("music/explorador/Frase 29.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 end
@@ -1139,7 +1150,7 @@ function final()
 	_G.adiv1= "¡Felicitaciones!"
 	icono.isVisible=true
 	timer.performWithDelay( 1000, texto_6, 1)
-	sonido=audio.loadStream("music/explorador/Frase 28.mp3", {loops = -1, channel = channel})
+	sonido=audio.loadStream("music/explorador/Frase 28.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 end
@@ -1150,7 +1161,7 @@ function final_2()
 	_G.adiv1= "Para seguir jugando presiona la flecha"
 	icono.isVisible=true
 	timer.performWithDelay( 1000, texto_6, 1)
-	sonido=audio.loadStream("music/explorador/Frase 27.mp3", {loops = -1, channel = channel})
+	sonido=audio.loadStream("music/explorador/Frase 27.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 
@@ -1183,27 +1194,29 @@ end
 
         variar=math.random()
 
-        channel= audio.findFreeChannel()
+        audio.stop(_G.channel2)
+
+        --channel= audio.findFreeChannel()
 
 		if ( variar < 0.33) then
 	  	
 	  	texto1.text="¿Necesitas ayuda?\nSelecciona una pista."
 
-	  	sonido=audio.loadStream("music/explorador/Frase 26.mp3", {loops = -1, channel = channel})
+	  	sonido=audio.loadStream("music/explorador/Frase 26.mp3", {loops = -1, channel = _G.channel2})
 		audio.play(sonido)
 
 	    elseif (variar < 0.66) then
 
 	    texto1.text="Vuelve a intentarlo."
 
-	  	sonido=audio.loadStream("music/explorador/vuelve.mp3", {loops = -1, channel = channel})
+	  	sonido=audio.loadStream("music/explorador/vuelve.mp3", {loops = -1, channel = _G.channel2})
 		audio.play(sonido)
 
 	    elseif (variar < 1) then
 
 	    texto1.text="¡¡Tú puedes!!"
 
-	  	sonido=audio.loadStream("music/explorador/puedes.mp3", {loops = -1, channel = channel})
+	  	sonido=audio.loadStream("music/explorador/puedes.mp3", {loops = -1, channel = _G.channel2})
 		audio.play(sonido)
 
 	    end
@@ -1215,6 +1228,7 @@ function animal3_on (event)
 
 	if event.phase == "began" then
 
+	 if (valida == true) then
 
 	   if (_G.count == 2 and _G.Co == true) then
 
@@ -1223,7 +1237,7 @@ function animal3_on (event)
 	   circulo3:setFillColor(0,1,0)
 	   _G.adiv1="¡Muy bien!, la adivinanza" .."\n corresponde al Cocodrilo."
 	   correcto()
-	   sonido=audio.loadStream("music/explorador/cocodrilo1.mp3", {loops = -1, channel = channel})
+	   sonido=audio.loadStream("music/explorador/cocodrilo1.mp3", {loops = -1, channel = _G.channel2})
 	   audio.play(sonido)
 
 	   else
@@ -1234,6 +1248,8 @@ function animal3_on (event)
 		   end
 	
 	   end 
+
+	 end
 
 	end
 
@@ -1250,6 +1266,8 @@ function animal5_on (event)
 
 	if event.phase == "began" then
 
+	 if (valida == true) then
+
 	  if (_G.count == 3 and _G.Hi == true) then
 
 	    stopAudio()
@@ -1257,7 +1275,7 @@ function animal5_on (event)
 	    circulo4:setFillColor(0,1,0)
 	    _G.adiv1="¡Muy bien!, la adivinanza" .."\n corresponde al Hipopótamo."
 	    correcto()
-	    sonido=audio.loadStream("music/explorador/hipo1.mp3", {loops = -1, channel = channel})
+	    sonido=audio.loadStream("music/explorador/hipo1.mp3", {loops = -1, channel = _G.channel2})
 	   audio.play(sonido)
 
 	  else
@@ -1271,6 +1289,7 @@ function animal5_on (event)
 	
 	   end 
 
+	 end
 
 	end
 
@@ -1286,6 +1305,8 @@ function animal4_on (event)
 
 	if event.phase == "began" then
 	
+	  if (valida == true) then
+
 		if (_G.count == 4 and _G.Ce == true) then
 
 		    stopAudio()
@@ -1293,7 +1314,7 @@ function animal4_on (event)
 	   		circulo6:setFillColor(0,1,0)
 	   		_G.adiv1="¡Muy bien!, la adivinanza" .."\n corresponde a la Cebra."
 	   	    correcto()
-	   	    sonido=audio.loadStream("music/explorador/cebra1.mp3", {loops = -1, channel = channel})
+	   	    sonido=audio.loadStream("music/explorador/cebra1.mp3", {loops = -1, channel = _G.channel2})
 	        audio.play(sonido)
 
 
@@ -1306,6 +1327,8 @@ function animal4_on (event)
 		   end
 	
 		end 
+
+	 end
 	
 	end
   	
@@ -1322,6 +1345,8 @@ function animal2_on (event)
 
 	if event.phase == "began" then
 
+	  if (valida == true) then
+
 		if (_G.count == 5 and _G.Av == true) then
 
 
@@ -1330,7 +1355,7 @@ function animal2_on (event)
 	        circulo7:setFillColor(0,1,0)
 	        _G.adiv1="¡Muy bien!, la adivinanza" .."\n corresponde a la Avestruz."
 	        correcto()
-	        sonido=audio.loadStream("music/explorador/avestruz1.mp3", {loops = -1, channel = channel})
+	        sonido=audio.loadStream("music/explorador/avestruz1.mp3", {loops = -1, channel = _G.channel2})
 	        audio.play(sonido)
 
 
@@ -1344,6 +1369,8 @@ function animal2_on (event)
 		    end
 	
 		end
+
+	 end
 
 	
 	end
@@ -1361,6 +1388,8 @@ function animal1_on (event)
 
 	if event.phase == "began" then
 
+	  if (valida == true) then
+
 		if (_G.count == 6 and _G.Nu == true) then
 
 			stopAudio()
@@ -1375,7 +1404,7 @@ function animal1_on (event)
 	        timer.performWithDelay( 6000, final_2, 1)
 
 	        _G.okAdivinanza=true
-	        sonido=audio.loadStream("music/explorador/nu1.mp3", {loops = 0, channel = channel})
+	        sonido=audio.loadStream("music/explorador/nu1.mp3", {loops = 0, channel = _G.channel2})
 	        audio.play(sonido)
 
 
@@ -1389,6 +1418,8 @@ function animal1_on (event)
 		    end
 	
 		end
+
+	 end
 	   
 	 
 	end
@@ -1403,11 +1434,10 @@ end
 
 function stopAudio()
 	
-	audio.stop(channel)
-	audio.dispose(channel)
-	audio.stop(channel2)
-	audio.dispose(channel2)
-
+	audio.stop(_G.channel3)
+	--audio.dispose(channel)
+	audio.stop(_G.channel2)
+	--audio.dispose(channel2)
 
 end
 
@@ -1418,14 +1448,16 @@ function signo_on( event )
  	if event.phase == "began" then
 
  		fadeOut()
+
+ 		valida=false
  		flechaA.isVisible=false
  		listo=false
  		transition.fadeIn( alert1, {time=1000} )
  		signo:removeEventListener( "touch", signo_on )
- 		cancelar()
- 		cancelar()
- 		audio.stop(channel2)
- 		audio.dispose(channel2)
+ 		--cancelar()
+ 		--cancelar()
+ 		audio.stop(_G.channel2)
+ 		--audio.dispose(channel2)
 
 
  		if (_G.count == 1) then
@@ -1471,38 +1503,38 @@ end
 
 function sonido_Adivinaza( event )
 
-	--audio.stop( channel )
+	audio.stop(_G.channel2)
 
     if (_G.count == 1) then
 
-	sonido=audio.loadSound("music/adivinanzas/La sabana.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/adivinanzas/La sabana.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 	elseif (_G.count == 2) then
 
-	sonido=audio.loadSound("music/adivinanzas/Cocodrilo.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/adivinanzas/Cocodrilo.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 	elseif (_G.count == 3) then
 
-	sonido=audio.loadSound("music/adivinanzas/Hipopotamo.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/adivinanzas/Hipopotamo.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 	elseif (_G.count == 4) then
 
-	sonido=audio.loadSound("music/adivinanzas/Cebra.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/adivinanzas/Cebra.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 
 	elseif (_G.count == 5) then
 
-	sonido=audio.loadSound("music/adivinanzas/Avestruz.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/adivinanzas/Avestruz.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 
     elseif (_G.count == 6) then
 
-	sonido=audio.loadSound("music/adivinanzas/Nu.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/adivinanzas/Nu.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
     end
@@ -1512,36 +1544,38 @@ end
 
 function sonido_Pistas( event )
 
+	audio.stop(_G.channel2)
+
     if (_G.count == 1) then
 
-	sonido=audio.loadSound("music/pistas/La sabana.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/pistas/La sabana.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 	elseif (_G.count == 2) then
 
-	sonido=audio.loadSound("music/pistas/Cocodrilo.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/pistas/Cocodrilo.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 	elseif (_G.count == 3) then
 
-	sonido=audio.loadSound("music/pistas/Hipopotamo.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/pistas/Hipopotamo.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 	elseif (_G.count == 4) then
 
-	sonido=audio.loadSound("music/pistas/Cebra.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/pistas/Cebra.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 
 	elseif (_G.count == 5) then
 
-	sonido=audio.loadSound("music/pistas/Avestruz.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/pistas/Avestruz.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
 
     elseif (_G.count == 6) then
 
-	sonido=audio.loadSound("music/pistas/Nu.mp3", {loops = 0, channel = channel})
+	sonido=audio.loadSound("music/pistas/Nu.mp3", {loops = 0, channel = _G.channel2})
 	audio.play(sonido)
 
     end
@@ -1566,8 +1600,16 @@ function volver_ambiente( event )
 	if event.phase == "began" then
 
 	  transition.pause()
-	  --audio.pause(channel2)
+
+	  audio.pause(_G.channel2)
+
 	  fadeOut()
+
+	  if (listo == false) then
+
+	  cancelar()
+
+	  end
 
 	  transition.fadeIn( texto21, {time=1000})
 	  transition.fadeIn( botonAceptar, {time=1000})
@@ -1577,8 +1619,8 @@ function volver_ambiente( event )
 	  botonCancelar:addEventListener("touch", cancelar_2)
 
 
-	  channel2= audio.findFreeChannel()
-	  palabra= audio.loadStream("music/explorador/salir.mp3", {channel = channel2, loops = 0})
+	  --channel2= audio.findFreeChannel()
+	  palabra= audio.loadStream("music/explorador/salir.mp3", {channel = _G.channel3, loops = 0})
       audio.play(palabra)
 	 
 	end
@@ -1727,11 +1769,19 @@ function pistas_on ( event )
  	    end
 
  	    fadeOut()
+
+ 	    if (listo == false) then
+ 	    cancelar()
+ 		end
+
+
  		flechaA.isVisible=false
  		transition.fadeIn( alert1, {time=1000} )
  		transition.fadeIn( texto2, {time=1000} )
+ 		
  		stopAudio()
- 		sonido=audio.loadSound("music/pistas/Titulo.mp3", {loops = 0, channel = channel})
+
+ 		sonido=audio.loadSound("music/pistas/Titulo.mp3", {loops = 0, channel = _G.channel2})
 	    audio.play(sonido)
 	    
 
@@ -1748,9 +1798,9 @@ function validar_Musica( event )
 	
 	if (audio.isChannelActive(_G.channel) == false) then
 
-		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.03, { channel=_G.channel })
-		audio.setMaxVolume( 0.03, { channel=_G.channel })
+		--_G.channel= audio.findFreeChannel()
+		--audio.setVolume( 0.03, { channel=_G.channel })
+		--audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM2, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -1776,9 +1826,9 @@ function cancelAll()
 
 	 --transition.cancel()
 	 --audio.stop(channel)
-	 audio.stop( channel2 )
+	 audio.stop( _G.channel2 )
 	 --audio.dispose(channel)
-	 audio.dispose( channel2 )
+	 --audio.dispose( channel2 )
 
 
 end
@@ -1803,8 +1853,8 @@ function texto_sinTuto(event)
 	mundo:addEventListener( "touch", volver_ambiente)
 	corchea:addEventListener( "touch", sin_musica )
 	--pistas:addEventListener( "touch", pistas_on)
-	dicci:addEventListener( "touch", fade_out)
-	cancelar()
+	--dicci:addEventListener( "touch", fade_out)
+	--cancelar()
 	--fondo:addEventListener( "touch", fondo_on)
 
 end
@@ -1820,10 +1870,10 @@ if event.phase == "began" then
 	 timer.cancel(time[i])
 	end
 
-	audio.stop(channel)
-	audio.dispose(channel)
-	audio.stop(channel2)
-	audio.dispose(channel2)
+	audio.stop(_G.channel3)
+	--audio.dispose(channel)
+	audio.stop(_G.channel2)
+	--audio.dispose(channel2)
 	transition.cancel()
 
 
@@ -1886,8 +1936,8 @@ function scene:enterScene( event)
 
 	transition.fadeIn( texto1, {time=1000})
 
-	channel=audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 21.mp3", {loops = -1, channel = channel})
+	--channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 21.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 	tutorial()

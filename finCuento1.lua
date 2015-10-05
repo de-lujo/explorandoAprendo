@@ -10,22 +10,23 @@ local time={}
 --_G.personaje="niño"
 local sheetOptions=
 {
-	width=685,
-	height=600,
-	numFrames=10,
-	sheetContentWidth = 2744,  
-    sheetContentHeight = 1802 
+	width=369,
+	height=369,
+	numFrames=30,
+
+	sheetContentWidth = 2214,  
+    sheetContentHeight = 1845
 
 }
 
 local sequences_Planeta = {
     {
-        name = "planetaRun",
+        name = "planetaMove",
         start = 1,
-        count = 10,
-        time = 3000,
+        count = 30,
+        time = 15000,
         loopCount = 0,
-        loopDirection = "bounce"
+        loopDirection = "forward"
     }
 }
 
@@ -142,9 +143,6 @@ function validar_Musica( event )
 	
 	if (audio.isChannelActive(_G.channel) == false) then
 
-		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.03, { channel=_G.channel })
-		audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 

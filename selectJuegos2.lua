@@ -93,21 +93,21 @@ function move_explorador( event )
 	transition.fadeIn( text11, {time=2000} )
 
 	if (_G.explicar == true) then
-	channel=audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 16.mp3", {loops = -1, channel = channel})
+	--channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 16.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 	elseif (_G.okAdivinanza == true and _G.okPictograma == true) then
 
-	channel=audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 20.mp3", {loops = -1, channel = channel})
+	--channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 20.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 
 	elseif (_G.okAdivinanza == true or _G.okPictograma == true) then
 
-	channel=audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 19.mp3", {loops = -1, channel = channel})
+	--channel=audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 19.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 
@@ -250,8 +250,8 @@ function validar_Musica( event )
 	if (audio.isChannelActive(_G.channel) == false) then
 
 		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.03, { channel=_G.channel })
-		audio.setMaxVolume( 0.03, { channel=_G.channel })
+		----audio.setVolume( 0.03, { channel=_G.channel })
+		--audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM2, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 

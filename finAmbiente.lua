@@ -10,22 +10,23 @@ local time={}
 --_G.personaje="niño"
 local sheetOptions=
 {
-	width=685,
-	height=600,
-	numFrames=10,
-	sheetContentWidth = 2744,  
-    sheetContentHeight = 1802 
+	width=369,
+	height=369,
+	numFrames=30,
+
+	sheetContentWidth = 2214,  
+    sheetContentHeight = 1845
 
 }
 
 local sequences_Planeta = {
     {
-        name = "planetaRun",
+        name = "planetaMove",
         start = 1,
-        count = 10,
-        time = 3000,
+        count = 30,
+        time = 15000,
         loopCount = 0,
-        loopDirection = "bounce"
+        loopDirection = "forward"
     }
 }
 

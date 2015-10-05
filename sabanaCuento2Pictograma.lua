@@ -8,13 +8,14 @@ local contador=1
 local variar=1
 local validar=1
 local time={}
+local self
 
 _G.okPictograma=true
 
 _G.explicar=false
 
 
-local channel=audio.findFreeChannel( )
+local channel--=audio.findFreeChannel( )
 
 local physics = require("physics")
 physics.start()
@@ -388,12 +389,12 @@ function  listen_on( event )
 
 		 audio.pause( _G.channel)
 
-		 audio.stop(channel2)
-		 audio.dispose(channel2)
-		 channel2= audio.findFreeChannel()
+		 audio.stop(_G.channel2)
+		 --audio.dispose(channel2)
+		 --channel2= audio.findFreeChannel()
 
-		 audio.setVolume( 0.10, { channel=channel2})
-		 audio.setMaxVolume( 0.10, { channel=_channel2})
+		 audio.setVolume( 0.10, { channel=_G.channel2})
+		 audio.setMaxVolume( 0.10, { channel=_G.channel2})
 
 		 play2:removeEventListener( "touch", listen_on)
 		 play2.alpha=0
@@ -404,7 +405,7 @@ function  listen_on( event )
 
 		if (contador ==  1) then
 
-			 sonido=audio.loadStream("music/pictograma/picto2-leon.mp3", {loops = -1, channel = channel2})
+			 sonido=audio.loadStream("music/pictograma/picto2-leon.mp3", {loops = -1, channel = _G.channel2})
 			 tempo=audio.getDuration(sonido)
 			 audio.play(sonido)
 			 time[0]=timer.performWithDelay( tempo -3000, sin_pause, 1)
@@ -412,7 +413,7 @@ function  listen_on( event )
 
 		elseif (contador == 2) then
 
-			sonido=audio.loadStream("music/pictograma/picto2-elefante.mp3", {loops = -1, channel = channel2})
+			sonido=audio.loadStream("music/pictograma/picto2-elefante.mp3", {loops = -1, channel = _G.channel2})
 		    tempo=audio.getDuration(sonido)
 		    audio.play(sonido)
 		    time[0]=timer.performWithDelay( tempo, sin_pause, 1)
@@ -420,7 +421,7 @@ function  listen_on( event )
 
 		elseif (contador == 3) then
 
-			sonido=audio.loadStream("music/pictograma/picto2-jirafa.mp3", {loops = -1, channel = channel2})
+			sonido=audio.loadStream("music/pictograma/picto2-jirafa.mp3", {loops = -1, channel = _G.channel2})
 		    tempo=audio.getDuration(sonido)
 		    audio.play(sonido)
 		    time[0]=timer.performWithDelay( tempo, sin_pause, 1)
@@ -428,7 +429,7 @@ function  listen_on( event )
 
 		elseif (contador == 4) then
 
-			sonido=audio.loadStream("music/pictograma/picto2-rino.mp3", {loops = -1, channel = channel2})
+			sonido=audio.loadStream("music/pictograma/picto2-rino.mp3", {loops = -1, channel = _G.channel2})
 		    tempo=audio.getDuration(sonido)
 		    audio.play(sonido)
 		    time[0]=timer.performWithDelay( tempo, sin_pause, 1)
@@ -436,7 +437,7 @@ function  listen_on( event )
 
 		elseif (contador == 5) then
 
-			sonido=audio.loadStream("music/pictograma/picto2-hienas.mp3", {loops = -1, channel = channel2})
+			sonido=audio.loadStream("music/pictograma/picto2-hienas.mp3", {loops = -1, channel = _G.channel2})
 		    tempo=audio.getDuration(sonido)
 		    audio.play(sonido)
 		    time[0]=timer.performWithDelay( tempo, sin_pause, 1)
@@ -444,7 +445,7 @@ function  listen_on( event )
 
 		elseif (contador == 6) then
 
-			sonido=audio.loadStream("music/pictograma/picto2-suricata.mp3", {loops = -1, channel = channel2})
+			sonido=audio.loadStream("music/pictograma/picto2-suricata.mp3", {loops = -1, channel = _G.channel2})
 		    tempo=audio.getDuration(sonido)
 		    audio.play(sonido)
 		    time[0]=timer.performWithDelay( tempo, sin_pause, 1)
@@ -464,8 +465,8 @@ function sin_pause()
 		 pause.alpha=0
 		 pause:removeEventListener( "touch", listen_off)
 
-		 audio.stop(channel2)
-		 audio.dispose(channel2)
+		 audio.stop(_G.channel2)
+		 --audio.dispose(channel2)
 
 		 audio.setVolume( 0.03, { channel=_G.channel})
 		 audio.setMaxVolume( 0.03, { channel=_G.channel})
@@ -488,8 +489,8 @@ function listen_off(event)
 		 pause.alpha=0
 		 pause:removeEventListener( "touch", listen_off)
 
-		 audio.stop(channel2)
-		 audio.dispose(channel2)
+		 audio.stop(_G.channel2)
+		 --audio.dispose(channel2)
 		 timer.cancel(time[0])
 		 audio.resume( _G.channel)
 
@@ -503,37 +504,41 @@ end
 
 function move_image( event )
 
-	local self = event.target
+	self = event.target
 
 	_G.collision= false
 
 	if event.phase == "began" then
 
 		physics.removeBody( self )
-	    display.getCurrentStage():setFocus( event.target )
-	    self.markX = self.x    -- store x location of object
-	    self.markY = self.y    -- store y location of object
+	    display.getCurrentStage():setFocus(self)
+	    self.startMoveX= self.x    -- store x location of object
+	    self.startMoveY= self.y    -- store y location of object
+
+	    self.x1=event.x
+	    self.y1=event.y
 
 	    _G.moveX=self.x
 	    _G.moveY=self.y
 
 	elseif event.phase == "moved" then
 
-	  	  local x = (event.x - event.xStart) + self.markX
-	  	  local y = (event.y - event.yStart) + self.markY
+	  	  self.x = (event.x - event.xStart) + self.startMoveX
+	  	  self.y = (event.y - event.yStart) + self.startMoveY
 
-	      self.x, self.y = x, y
+	      --self.x, self.y = x, y
 
     elseif event.phase == "ended"  or event.phase == "cancelled" then
 
 
-    	  audio.stop(channel2)
-	      audio.dispose(channel2)
-	      channel2=audio.findFreeChannel()
-	      audio.setVolume( 1, { channel=channel2})
-	      audio.setMaxVolume( 1, { channel=channel2})
+    	  audio.stop(_G.channel2)
+	     -- audio.dispose(channel2)
+	      --channel2=audio.findFreeChannel()
+	      audio.setVolume( 1, { channel=_G.channel2})
+	      audio.setMaxVolume( 1, { channel=_G.channel2})
 
     	  physics.addBody( self, "dynamic", { isSensor=true} )
+	   	  
 	   	  display.getCurrentStage():setFocus(nil)
 
 
@@ -561,7 +566,7 @@ function onCollision (event)
 		   contador=2
 		   texto1.text="Perfecto,\nes el león,\ncontinúa"
 		   mostrarSig(1)
-		   sonido=audio.loadStream("music/explorador/leon2.mp3", {loops = -1, channel = channel2})
+		   sonido=audio.loadStream("music/explorador/leon2.mp3", {loops = -1, channel = _G.channel2})
 		   audio.play(sonido)
 
 		  elseif (self.surfaceType == "elefante" and event.other.surfaceType == "ian2" and contador == 2) then
@@ -571,7 +576,7 @@ function onCollision (event)
 		  contador=3
 		  texto1.text="Perfecto,\nes el elefante,\ncontinúa"
 		  mostrarSig(2)
-		  sonido=audio.loadStream("music/explorador/elefante2.mp3", {loops = -1, channel = channel2})
+		  sonido=audio.loadStream("music/explorador/elefante2.mp3", {loops = -1, channel = _G.channel2})
 		  audio.play(sonido)
 
 		  elseif (self.surfaceType == "jirafa" and event.other.surfaceType == "ian3" and contador == 3 ) then
@@ -581,7 +586,7 @@ function onCollision (event)
 		  contador=4
 		  texto1.text="Perfecto,\nes la jirafa,\ncontinúa"
 		  mostrarSig(3)
-		  sonido=audio.loadStream("music/explorador/jirafa2.mp3", {loops = -1, channel = channel2})
+		  sonido=audio.loadStream("music/explorador/jirafa2.mp3", {loops = -1, channel = _G.channel2})
 		  audio.play(sonido)
 
 		  elseif (self.surfaceType == "rinoceronte" and event.other.surfaceType == "ian4" and contador == 4) then
@@ -591,7 +596,7 @@ function onCollision (event)
 		  contador=5
 		  texto1.text="Perfecto,\nes el rinoceronte,\ncontinúa"
 		  mostrarSig(4)
-		  sonido=audio.loadStream("music/explorador/rino2.mp3", {loops = -1, channel = channel2})
+		  sonido=audio.loadStream("music/explorador/rino2.mp3", {loops = -1, channel = _G.channel2})
 		   audio.play(sonido)
 
 		  elseif (self.surfaceType == "hienas" and event.other.surfaceType == "ian5" and contador == 5) then
@@ -602,7 +607,7 @@ function onCollision (event)
 		  mostrarSig(5)
 		  texto1.text="Perfecto,\nson las hienas,\ncontinúa"
 		  
-		  sonido=audio.loadStream("music/explorador/hienas2.mp3", {loops = -1, channel = channel2})
+		  sonido=audio.loadStream("music/explorador/hienas2.mp3", {loops = -1, channel = _G.channel2})
 		  audio.play(sonido)
 
 
@@ -615,7 +620,7 @@ function onCollision (event)
 		  texto1.text="¡Te felicito, eres\nmuy hábil para esto!"
 		  audio.pause( _G.channel)
 
-		  sonido=audio.loadStream("music/explorador/Frase 33.mp3", {loops = -1, channel = channel2})
+		  sonido=audio.loadStream("music/explorador/Frase 33.mp3", {loops = -1, channel = _G.channel2})
 		  audio.play(sonido)
 
 		  transition.fadeOut( nube2, {time=1000} )
@@ -638,11 +643,11 @@ function onCollision (event)
 	  	if (validar == 1) then
 
 	  	validar=2
-	  	audio.stop(channel2)
-	  	audio.dispose(channel2)
-	  	channel2=audio.findFreeChannel()
-	  	audio.setVolume( 1, { channel=channel2})
-	    audio.setMaxVolume( 1, { channel=channel2})
+	  	audio.stop(_G.channel2)
+	  	--audio.dispose(channel2)
+	  	--channel2=audio.findFreeChannel()
+	  	audio.setVolume( 1, { channel=_G.channel2})
+	    audio.setMaxVolume( 1, { channel=_G.channel2})
 
         variar=math.random()
 
@@ -651,7 +656,7 @@ function onCollision (event)
 	  	
 	  	texto1.text="¡¡Ánimo!!"
 
-	  	sonido=audio.loadStream("music/explorador/animo.mp3", {loops = -1, channel = channel2})
+	  	sonido=audio.loadStream("music/explorador/animo.mp3", {loops = -1, channel = _G.channel2})
 		audio.play(sonido)
 		timer.performWithDelay( 1, validar_on, 1)
 
@@ -660,7 +665,7 @@ function onCollision (event)
 
 	    texto1.text="¡¡Tú puedes!!"
 
-	  	sonido=audio.loadStream("music/explorador/puedes.mp3", {loops = -1, channel = channel2})
+	  	sonido=audio.loadStream("music/explorador/puedes.mp3", {loops = -1, channel = _G.channel2})
 		audio.play(sonido)
 		timer.performWithDelay( 1000, validar_on, 1)
 
@@ -668,7 +673,7 @@ function onCollision (event)
 
 	    texto1.text="¿Estás seguro?"
         
-        sonido=audio.loadStream("music/explorador/seguro.mp3", {loops = -1, channel = channel2})
+        sonido=audio.loadStream("music/explorador/seguro.mp3", {loops = -1, channel = _G.channel2})
 		audio.play(sonido)
 		timer.performWithDelay( 1000, validar_on, 1)
 
@@ -767,11 +772,11 @@ function mostrarSig( count)
 		transition.fadeIn( flechaB, {time=1000} )
 		timer.performWithDelay( 2000, blink, 1 )
 
-		channel=audio.findFreeChannel()
-		audio.setVolume( 1, { channel=channel})
-		audio.setMaxVolume( 1, { channel=channel})
+		--channel=audio.findFreeChannel()
+		--audio.setVolume( 1, { channel=channel})
+		--audio.setMaxVolume( 1, { channel=channel})
 
-		sonido=audio.loadStream("music/explorador/Frase 34.mp3", {loops = -1, channel = channel})
+		sonido=audio.loadStream("music/explorador/Frase 34.mp3", {loops = -1, channel = _G.channel2})
 		audio.play(sonido)
 
 		timer.performWithDelay( 5000, cancion_on, 1)
@@ -781,11 +786,12 @@ function mostrarSig( count)
 
 function cancion_on()
 
-		--audio.stop( _G.channel)
+		audio.stop( _G.channel4)
 		channel=audio.findFreeChannel()
-		audio.setVolume( 0.10, { channel=channel})
-		audio.setMaxVolume( 0.10, { channel=_channel})
-		sonido=audio.loadStream("music/pictograma/cuento2.mp3", {loops = -1, channel = channel})
+		_G.channel4=channel
+		audio.setVolume( 0.10, { channel=_G.channel4})
+		audio.setMaxVolume( 0.10, { channel=_G.channel4})
+		sonido=audio.loadStream("music/pictograma/cuento2.mp3", {loops = 0, channel =_G.channel4})
 		audio.play(sonido)
 		transition.fadeIn( icono,{time=1000})
 
@@ -824,12 +830,13 @@ function record(event)
         play.isVisible=true
         transition.fadeIn( play, {time=2000})
 
-        audio.stop(channel)
-	    audio.dispose(channel)
-	    channel=audio.findFreeChannel()
+        --audio.stop(channel)
+	    --audio.dispose(channel)
+	    --channel=audio.findFreeChannel()
 
+	    audio.stop( _G.channel4)
 
-        sonido=audio.loadStream("music/pictograma/cuento2.mp3", {loops = -1, channel = channel})
+        sonido=audio.loadStream("music/pictograma/cuento2.mp3", {loops = -1, channel = _G.channel4})
 		audio.play(sonido)
 		grabar:removeEventListener( "touch", record)
 
@@ -841,8 +848,8 @@ function stop(event)
 
     if event.phase == "began" then
 
-     audio.stop(channel)
-     audio.dispose(channel)
+     audio.stop(_G.channel4)
+     --audio.dispose(channel)
 
      r:stopRecording()
      grabar:addEventListener( "touch", record)
@@ -860,6 +867,14 @@ function start( event )
 	if event.phase == "began" then
 
 	  audio.resume( _G.channel)
+	  audio.stop( _G.channel2)
+	  audio.stop( _G.channel3)
+	  audio.stop( _G.channel4)
+
+	  audio.setVolume( 1, { channel=_G.channel4})
+	  audio.setMaxVolume( 1, { channel=_G.channel4})
+ 
+
 	  storyboard.gotoScene("selectJuegos2","fade",400)
 	end
 end
@@ -869,9 +884,9 @@ function validar_Musica( event )
 	
 	if (audio.isChannelActive(_G.channel) == false) then
 
-		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.03, { channel=_G.channel })
-		audio.setMaxVolume( 0.03, { channel=_G.channel })
+		--_G.channel= audio.findFreeChannel()
+		--audio.setVolume( 0.03, { channel=_G.channel })
+		--audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM2, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -882,8 +897,9 @@ end
 
 function texto_1()
 	
+	audio.stop( _G.channel2)
 	transition.fadeIn( texto1, {time=1000} )
-	sonido=audio.loadStream("music/explorador/Frase 32.mp3", {loops = -1, channel = channel})
+	sonido=audio.loadStream("music/explorador/Frase 32.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 end
@@ -913,7 +929,7 @@ function scene:enterScene( event)
     play:addEventListener( "touch", stop)
     play2:addEventListener( "touch", listen_on)
 
-    sonido=audio.loadStream("music/explorador/Parrafo 27.mp3", {loops = -1, channel = channel})
+    sonido=audio.loadStream("music/explorador/Parrafo 27.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
     --timer.performWithDelay( 4000, show_letra, 1)
@@ -958,14 +974,18 @@ function scene:exitScene( event )
     tran1:removeEventListener( "collision", onCollision )
     
   
-  	channel=audio.findFreeChannel()
-	audio.setVolume( 1, { channel=channel})
-	audio.setMaxVolume( 1, { channel=channel})
+  	--channel=audio.findFreeChannel()
+	--audio.setVolume( 1, { channel=channel})
+	--audio.setMaxVolume( 1, { channel=channel})
 	
     audio.stop(audioChannel)
     audio.dispose(audioChannel)
-    audio.stop(channel)
-    audio.dispose(channel)
+    audio.stop(_G.channel2)
+    audio.stop(_G.channel3)
+    audio.stop(_G.channel4)
+    --audio.stop(_G.channel)
+
+   -- audio.dispose(channel)
     
 
     transition.cancel()

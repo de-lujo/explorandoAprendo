@@ -1084,10 +1084,10 @@ function validar_Musica( event )
 	
 	if (audio.isChannelActive(_G.channel) == false) then
 
-		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.03, { channel=_G.channel })
-		audio.setMaxVolume( 0.03, {channel=_G.channel })
-		sonido=audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
+		--_G.channel= audio.findFreeChannel()
+		--audio.setVolume( 0.03, { channel=_G.channel })
+		--audio.setMaxVolume( 0.03, {channel=_G.channel })
+		sonido=audio.loadStream(_G.rutaM1, {loops = 0, channel = _G.channel})
 		audio.play(sonido)
 
 	end

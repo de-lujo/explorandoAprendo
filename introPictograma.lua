@@ -156,8 +156,8 @@ end
 function texto1( event )
 	transition.fadeIn( text1, {time=1000} )
 
-	otherChannel= audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 30_2.mp3", {loops = -1, channel = otherChannel})
+	--otherChannel= audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 30_2.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 
 end
@@ -169,8 +169,8 @@ function texto3( event )
 	transition.fadeIn( text1, {time=1000} )
 	transition.fadeIn( boton, {time=500})
 
-	otherChannel= audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 30_3.mp3", {loops = -1, channel = otherChannel})
+	--otherChannel= audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 30_3.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 	--otherChannel= audio.findFreeChannel()
 	--sonido=audio.loadStream("music/explorador/Frase 2.mp3", {loops = -1, channel = otherChannel})
@@ -183,9 +183,9 @@ function validar_Musica( event )
 	
 	if (audio.isChannelActive(_G.channel) == false) then
 
-		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.03, { channel=_G.channel })
-		audio.setMaxVolume( 0.03, { channel=_G.channel })
+		--_G.channel= audio.findFreeChannel()
+		--audio.setVolume( 0.03, { channel=_G.channel })
+		--audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM2, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -200,8 +200,8 @@ function cancelAll()
 	end
 
 	 transition.cancel()
-	 audio.stop(otherChannel)
-	 audio.dispose(otherChannel)
+	 audio.stop(_G.channel2)
+	 --audio.dispose(otherChannel)
 
 end
 
@@ -224,7 +224,7 @@ function texto_grabar()
 		transition.fadeIn( nube, {time=1000} )
 		transition.fadeIn( flechaB1, {time=1000} )
 
-		sonido=audio.loadStream("music/explorador/Frase 31.mp3", {loops = -1, channel = otherChannel})
+		sonido=audio.loadStream("music/explorador/Frase 31.mp3", {loops = -1, channel = _G.channel2})
 		audio.play(sonido)
 		--timer.performWithDelay( 2000, blink, 1 )
 

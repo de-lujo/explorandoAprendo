@@ -2,7 +2,9 @@ local storyboard = require ("storyboard")
 local scene= storyboard.newScene()
 local screenGroup, fondo, texto, nina, nino, boton, titulo, flag, text1, alert1, text2, sonido
 
-local otherChannel, channel2, sonido2
+local otherChannel
+local channel2=_G.channel2
+local sonido2
 local newFont=_G.font
 local time={}
 
@@ -127,10 +129,10 @@ function validarIn()
 	boton:removeEventListener( "touch", start )
 	nino:removeEventListener( "touch", elegirNino )
 	nina:removeEventListener("touch", elegirNina)
-	audio.pause(otherChannel)
+	audio.pause(channel2)
 
-	channel2= audio.findFreeChannel()
-	sonido2=audio.loadStream("music/explorador/Frase 4.mp3", {loops = -1, channel = channel2})
+	--channel2= audio.findFreeChannel()
+	sonido2=audio.loadStream("music/explorador/Frase 4.mp3", {loops = -1, channel = _G.channel3})
     audio.play(sonido2)
 
 
@@ -155,7 +157,7 @@ end
 
 function validarNombreOut()
 
-	audio.resume(otherChannel)
+	audio.resume(channel2)
 
 	for i=0,3 do
 	 timer.resume(time[i])
@@ -186,6 +188,8 @@ end
 
 function elegirNino( event )
 
+  if event.phase == "began" then
+
 	nina.strokeWidth = 0
 	nino:setStrokeColor( 1, 1, 1 )
 	nino.strokeWidth = 10
@@ -199,17 +203,19 @@ function elegirNino( event )
 	transition.fadeIn( textNino, {time=1000})
 	dialogNina.isVisible=false
 	textNina.isVisible=false
-	timer.performWithDelay( 400, dialogo, 1)
+	timer.performWithDelay(400, dialogo, 1)
 	nino:removeEventListener("touch", elegirNino)
 	nina:addEventListener("touch", elegirNina)
+
+   end
 
 end
 
 
 function elegirNina( event )
 
+ if event.phase == "began" then
 
-	
 	nino.strokeWidth = 0
 	nina:setStrokeColor (1, 1, 1)
 	nina.strokeWidth = 10	
@@ -229,25 +235,27 @@ function elegirNina( event )
 	nina:removeEventListener("touch", elegirNina)
 	nino:addEventListener("touch", elegirNino)
 
+  end
 
 end
 
+
 function dialogo( event )
 	
-
-		 --audio.pause(channel2)
-		 --audio.dispose(channel2)
-		 channel2=audio.findFreeChannel()
+		 audio.stop(_G.channel3)
+		 --audio.dispose(_G.channel3)
 
 		 if (_G.personaje == "niña") then
-		 sonido=audio.loadStream("music/explorador/Frase 402.mp3", {loops = -1, channel = channel2})
+		 sonido=audio.loadStream("music/explorador/Frase 402.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 		 end
 
 		 if (_G.personaje == "niño") then
-		 sonido=audio.loadStream("music/explorador/Frase 401.mp3", {loops = -1, channel = channel2})
+		 sonido=audio.loadStream("music/explorador/Frase 401.mp3", {loops = 0, channel = _G.channel3})
 		 audio.play(sonido)
 		 end
+
+		 --audio.resume( )
 
 end
 
@@ -268,8 +276,8 @@ function texto1( event )
 
 	transition.fadeIn( text1, {time=1000} )
 
-	otherChannel= audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 2.mp3", {loops = -1, channel = otherChannel})
+	--otherChannel= audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 2.mp3", {loops = -1, channel = channel2})
 	audio.play(sonido)
 
 end
@@ -282,11 +290,11 @@ function texto3()
 	transition.fadeIn( text1, {time=1000} )
 
 	audio.stop(channel2)
-	audio.dispose(channel2)
+	--audio.dispose(channel2)
 
-	otherChannel= audio.findFreeChannel()
+	--otherChannel= audio.findFreeChannel()
 
-	sonido=audio.loadStream("music/explorador/Frase 3.mp3", {loops = -1, channel = otherChannel})
+	sonido=audio.loadStream("music/explorador/Frase 3.mp3", {loops = -1, channel = channel2})
 	audio.play(sonido)
 
 end
@@ -296,9 +304,9 @@ function validar_Musica( event )
 	
 	if (audio.isChannelActive(_G.channel) == false) then
 
-		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.03, { channel=_G.channel })
-		audio.setMaxVolume( 0.03, { channel=_G.channel })
+		--_G.channel= audio.findFreeChannel()
+		--audio.setVolume( 0.03, { channel=_G.channel })
+		--audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -314,10 +322,11 @@ function cancelAll()
 
 
 	 transition.cancel()
-	 audio.stop(otherChannel)
+	 --audio.stop(otherChannel)
 	 audio.stop(channel2)
-	 audio.dispose(otherChannel)
-	 audio.dispose(channel2)
+	 audio.stop( _G.channel3)
+	 --audio.dispose(otherChannel)
+	 --audio.dispose(channel2)
 
 end
 

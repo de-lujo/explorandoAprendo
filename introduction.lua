@@ -7,28 +7,29 @@ local sonido= audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
 local time={}
 
 
-local sonido2, otherChannel
+local sonido2
 
 local newFont=_G.font
 
 local sheetOptions=
 {
-	width=685,
-	height=600,
-	numFrames=10,
-	sheetContentWidth = 2744,  
-    sheetContentHeight = 1802 
+	width=369,
+	height=369,
+	numFrames=30,
+
+	sheetContentWidth = 2214,  
+    sheetContentHeight = 1845
 
 }
 
 local sequences_Planeta = {
     {
-        name = "planetaRun",
+        name = "planetaMove",
         start = 1,
-        count = 10,
-        time = 3000,
+        count = 30,
+        time = 15000,
         loopCount = 0,
-        loopDirection = "bounce"
+        loopDirection = "forward"
     }
 }
 
@@ -176,10 +177,10 @@ function texto( event ) --10500
 
 	transition.to( text1, {time=1000, alpha=1} ) --11500
 
-	otherChannel= audio.findFreeChannel()
-	sonido2= audio.loadStream("music/explorador/Frase 1.mp3", {loops = -1, channel = otherChannel})
+	--otherChannel= audio.findFreeChannel()
+	sonido2= audio.loadStream("music/explorador/Frase 1.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido2)
-
+    --audio.stop( _G.channel)
 
 end
 
@@ -209,7 +210,7 @@ function cancelAll()
 	 end
 
 	 transition.cancel()
-	 audio.stop(otherChannel)
+	 audio.stop(channel2)
 
 end
 
@@ -219,8 +220,6 @@ function scene:enterScene(event)
 
 	audio.play(sonido)
 	time[0]=timer.performWithDelay( 0, desaTitulo, 1)
-	--timer.performWithDelay( 0, button_in, 1)
-
 	time[1]=timer.performWithDelay( 5000, animaTitulo, 1)
 	time[2]=timer.performWithDelay( 6200, image, 1)
 	time[3]=timer.performWithDelay( 6200, explora_in, 1)

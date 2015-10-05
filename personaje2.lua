@@ -134,11 +134,9 @@ function validarIn()
 	boton:removeEventListener( "touch", start )
 	boton1:removeEventListener( "touch", back )
 	transition.pause()
-	audio.pause(otherChannel)
+	audio.pause(_G.channel2)
 
-
-	channel2= audio.findFreeChannel()
-	sonido2=audio.loadStream("music/explorador/Frase 6.mp3", {loops = -1, channel = channel2})
+	sonido2=audio.loadStream("music/explorador/Frase 6.mp3", {loops = -1, channel = channel3})
     audio.play(sonido2)
 
 
@@ -166,7 +164,7 @@ function validarOut()
     boton:addEventListener( "touch", start )
 	boton1:addEventListener( "touch", back )
 	transition.resume()
-	audio.resume( otherChannel )
+	audio.resume( _G.channel2 )
 
 	for i=0,3 do
 	 timer.resume(time[i])
@@ -208,8 +206,8 @@ end
 
 function texto1( event )
 	transition.fadeIn( text1, {time=1000} )
-	otherChannel= audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 5.mp3", {loops = -1, channel = otherChannel})
+	--otherChannel= audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 5.mp3", {loops = -1, channel = _G.channel2})
 	audio.play(sonido)
 end
 
@@ -220,8 +218,8 @@ function texto3( event )
 	text1.text= "Para continuar, presiona la flecha."
 	transition.fadeIn( text1, {time=1000} )
 
-	otherChannel= audio.findFreeChannel()
-	sonido=audio.loadStream("music/explorador/Frase 3.mp3", {loops = -1, channel = otherChannel})
+	--otherChannel= audio.findFreeChannel()
+	sonido=audio.loadStream("music/explorador/Frase 3.mp3", {loops = -1, channel = _G.channel3})
 	audio.play(sonido)
 
 end
@@ -231,9 +229,9 @@ function validar_Musica( event )
 	
 	if (audio.isChannelActive(_G.channel) == false) then
 
-		_G.channel= audio.findFreeChannel()
-		audio.setVolume( 0.03, { channel=_G.channel })
-		audio.setMaxVolume( 0.03, { channel=_G.channel })
+		--_G.channel= audio.findFreeChannel()
+		--audio.setVolume( 0.03, { channel=_G.channel })
+		--audio.setMaxVolume( 0.03, { channel=_G.channel })
 		sonido=audio.loadStream(_G.rutaM1, {loops = -1, channel = _G.channel})
 		audio.play(sonido)
 
@@ -248,8 +246,8 @@ function cancelAll()
 	 end
 
 	 transition.cancel()
-	 audio.stop(otherChannel)
-	 audio.dispose(otherChannel)
+	 audio.stop(_G.channel2)
+	 audio.dispose(_G.channel2)
 
 end
 
